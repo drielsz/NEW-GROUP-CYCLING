@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "GROUP-CYCLING",
+    "slug": "GROUP-CYCLING",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "GROUP-CYCLING"
+}

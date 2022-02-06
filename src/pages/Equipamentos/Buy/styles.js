@@ -1,0 +1,84 @@
+import React from 'react';
+import { Image as ImageReact, Dimensions, TouchableOpacity } from 'react-native';
+// Estilos
+import styled from 'styled-components';
+// Cores
+import { colors } from '../../../styles/colors';
+// Pegando as dimensões
+var width = Dimensions.get('window').width;
+var height = Dimensions.get('window').height;
+
+
+export const Container = styled.View`
+    flex: 1;
+    background: ${(props) => props.bg || colors.secondary}
+
+`
+
+export const Image = styled(ImageReact)`
+    width: ${(props) => props.width || width};
+    height: ${(props) => props.height || height * 0.35};
+
+`
+
+export const ViewImage = styled.View`
+    align-self: center;
+    justify-content: center;
+`
+export const Dot = styled.View`
+    justify-content: space-around;
+    flex-direction: row;
+    align-self: center;
+    width: ${(props) => props.width || width * 0.025};
+    height: ${(props) => props.height || height * 0.012};
+    border-radius: ${(props) => props.radius || height * 0.1}
+    background: ${(props) => props.bg || colors.secondary}
+    bottom: ${(props) => props.bottom || height  * 0.10}
+    margin: 1.9px;
+`
+export const DotView = styled.View`
+    align-self: center;
+    flex-direction: row;
+`
+export const Arrow = styled.View`
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    width: ${(props) => props.width || width * 0.12};
+    height: ${(props) => props.height || height * 0.06};
+    border-radius: ${(props) => props.radius || height * 0.1}
+    bottom: ${(props) => props.bottom || height  * 0.29}
+    right: ${(props) => props.right || height * 0.018}
+`
+export const MarginlANDr = styled.View`
+    margin-left: ${(props) => props.left || height * 0.030}
+    margin-right: ${(props) => props.right || height * 0.030}
+`
+
+export const Spacer = styled.View`
+    margin-top: ${(props) => props.top || height * 0.023}
+`
+
+export const Button = styled(TouchableOpacity)`
+    bottom: ${(props) => props.bottom || height  * 0.020}
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: ${(props) => props.width || width * 0.89};
+    height: ${(props) => props.height || height * 0.065};
+    background: ${(props) => props.bg || '#101010'}
+    border-radius: ${(props) => props.radius || height * 0.008}
+`
+// width: 320
+export const ViewHeart = styled.View`
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: ${(props) => props.bg || '#101010'}
+    width: ${(props) => props.width || width * 0.3};
+    height: ${(props) => props.height || height * 0.046};
+    border-radius: ${(props) => props.radius || height * 0.03}
+    top: ${(props) => props.top || height * 0.42}
+    align-self: flex-end;
+`

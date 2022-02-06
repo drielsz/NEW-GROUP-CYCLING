@@ -1,0 +1,132 @@
+import React from 'react';
+import {StyleSheet, View, Dimensions, TouchableOpacity, Text as Text02, Image as ImageIconTopBar} from 'react-native';
+import AppLoading from 'expo-app-loading';
+import {useFonts, Roboto_500Medium, Roboto_700Bold, Roboto_300Light,Roboto_900Black} from '@expo-google-fonts/roboto'
+// Styles do Perfil:
+import {AnotherView, PrimaryView, Text} from './styles';
+// Styles Global:
+import {ImageProfile} from '../../styles'
+import {colors} from '../../styles/colors'
+import MyCarousel from '../MyCarousel';
+import EditProfile from '../../assets/EditProfile.png'
+import Lines from '../../assets/Lines.png'
+import {Ionicons} from '@expo/vector-icons';
+
+// Pegando as dimensões da tela
+var height = Dimensions.get('window').height
+var width = Dimensions.get('window').width
+
+
+function Perfil({navigation, props}) {
+  // Se as fontes não forem carregadas então exibir um carregamento
+  let [fontsLoaded] = useFonts ({
+    Roboto_500Medium,
+    Roboto_700Bold,
+    Roboto_300Light,
+    Roboto_900Black
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return(
+      <PrimaryView>
+
+      <View style={{left: width /1.52, top: height * 0.013}}>
+        <View style={styles.circle}>
+          <TouchableOpacity onPress={() =>navigation.navigate('EditProfile')}>
+            <ImageIconTopBar source={EditProfile} 
+            style={{
+            width: width * 0.050625, 
+            height : height * 0.540625,
+            left: height * 0.003,
+            }} resizeMode='contain'/> 
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View style={{left: width * 0.77, top: height * 0.013}}>
+        <View style={styles.circle}>
+      <TouchableOpacity  onPress={() => navigation.openDrawer()}>
+        <Ionicons name="ios-reorder-three-outline" size={30}color="black" /> 
+      </TouchableOpacity>
+        </View>
+      </View>
+      
+          <AnotherView style={styles.anotherView}>
+                <ImageProfile source={require('../../assets/Perfil-picture.png')}/>
+
+                {/* <View style={{position: 'absolute', left: height * 0.08, top: height * -0.0255}}>  
+                  <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>254
+                  <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguindo</Text></Text> 
+                </View>
+
+                <View style={{position: 'absolute', right: height * 0.08, top: height * -0.0255}}>  
+                  <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>455
+                  <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguidores</Text></Text> 
+                </View> */}
+
+                  <Text style={{fontFamily: 'Roboto_700Bold'}}>Adriel Laurentino</Text>
+                  <Text 
+                  style={{fontFamily: 'Roboto_300Light'}} 
+                  size={height* 0.02}
+                  margin={height * 0.003}
+                  >
+                  adriellaurentino4@gmail.com</Text>
+          
+          
+
+
+            <View style={styles.container}>
+              <TouchableOpacity style={styles.button}>
+                      <Text02 color={colors.namebutton} 
+                      style={{fontFamily: 'Roboto_900Black', fontSize: height * 0.0225, color: colors.namebutton}}>SEGUIR</Text02>
+                </TouchableOpacity>
+            </View>
+
+            <Text size={height * 0.0225}  style={{fontFamily: 'Roboto_500Medium', left: width * 0.59, top: height * 0.24, 
+            position: 'absolute',color: colors.tertiary}}>Mensagem</Text>
+
+          <MyCarousel/>
+          </AnotherView>
+      </PrimaryView>
+    )
+}
+}
+
+
+const styles= StyleSheet.create({
+  anotherView:{
+    borderTopLeftRadius: width * 0.09,
+    borderTopRightRadius: width * 0.09,
+  },
+  container: {
+    flex: 0.2, // POSSIVEL BUG DE RESPONSIVIDADE. 
+    justifyContent: 'center',
+    paddingHorizontal: height * 0.016,
+    top: height * 0.02000,
+    right: height * 0.09
+  },
+  button:{
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: `${colors.primary}`,
+    borderRadius: height * 0.02,
+    width: height * 0.1875,
+    height: height * 0.0953125000000001,
+  },
+  circle:{
+    flex: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: height * 0.04,
+    width: 33,
+    height: 33,
+    borderRadius: 33,
+    backgroundColor: `${colors.secondary}`,
+    position: 'absolute',
+  }
+});
+
+export default Perfil
