@@ -12,14 +12,14 @@ export const ImagesPosts = [
         avatar: AvatarImage,
         time: "5 minutos atrás",
         desc: "Descrição do comentário aqui, pedalando mais 1 dia na fé.",
-        image: require('../assets/FEED01.png')
+        image: require('../assets/FEED02.png')
     },
     {
         name: "Monroe",
         avatar: AvatarImage01,
         time: "5 minutos atrás",
         desc: "Descrição do comentário aqui, pedalando mais 1 dia na fé.",
-        image: require('../assets/FEED02.png')
+        image: require('../assets/FEED01.png')
     },
     {
         name: "Thiago",
@@ -34,13 +34,6 @@ export const ImagesPosts = [
         time: "5 minutos atrás",
         desc: "Descrição do comentário aqui, pedalando mais 1 dia na fé.",
         image: require('../assets/FEED04.png')
-    },
-    {
-        name: "xandaogod",
-        avatar: AvatarImage04,
-        time: "5 minutos atrás",
-        desc: "Descrição do comentário aqui, pedalando mais 1 dia na fé.",
-        image: require('../assets/FEED05.png')
     },
     {
         name: "Lucas",

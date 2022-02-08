@@ -8,7 +8,9 @@ import Routes from '../src/routes';
 import Perfil from '../src/pages/Perfil';
 import EditProfile from '../src/pages/Perfil/EditProfile';
 import Buy from '../src/pages/Equipamentos/Buy';
-import Comments from '../src/pages/Equipamentos/Buy/Comments'
+import Comments from '../src/pages/Equipamentos/Buy/Comments';
+import Register from '../src/pages/Register';
+import Feed from '../src/pages/Feed';
 // Importando Theme
 import {ThemeProvider} from 'styled-components';
 import themes from './styles/themes';
@@ -25,7 +27,9 @@ const store = createStore(combineReducers({ThemeReducer}), applyMiddleware(thunk
 function MyStack() {
   return (
     <Stack.Navigator >
+      <Stack.Screen name="Feed" component={Feed} options={{headerShown:false}}/>
       <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
+      <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
       <Stack.Screen name='InstaStories' component={InstaStories} options={{headerShown:false}} />
       <Stack.Screen name='Perfil' component={Perfil} options={{haderShown:false}}/>
       <Stack.Screen name="Map" component={Map} options={{headerShown: false}}/>

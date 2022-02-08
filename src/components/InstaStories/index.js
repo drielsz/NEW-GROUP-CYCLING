@@ -10,7 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 // Scroll View responsavel por scrollar;
 import { ScrollView } from 'react-native-gesture-handler';
 // Lista de usuarios ( Nomes e Imagens );
-import users from '../userList.json';
+import { userStories } from '../userStories'
 // Cores para ser utilizada;
 import { colors } from '../../styles/colors'
 // Icones;
@@ -23,27 +23,25 @@ const InstaStories = () => {
         <SafeAreaView style={{flex:1, marginLeft: height * 0.040}}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <View style={{padding: height * 0.007}}>
-                    {/* Imagem do usuario, do lado fica os stories */}
-                    <Image source={{uri: 'https://randomuser.me/api/portraits/med/men/61.jpg'}} style={styles.userImage}/>
+                    {/* Primeira imagem, para o usuario adicionar alguma foto*/}
+                    <View style={[styles.userImage, {backgroundColor:colors.primary}]}/>
                     {/* Style Sheet absolute fill = position:'absolute' só que ja vem com um top, bot, left, right = 0; */}
                     <View style={{...StyleSheet.absoluteFill}}>
                         <View style={styles.addBtnContainer}>
                             <Ionicons name="add" style={styles.addBtn}/>
                         </View>
-                        <Text style={[styles.userName, {textTransform:'capitalize'}]}>Você</Text>
+                        
                     </View>
                 </View>
                 {/* Mapeando o json e desestruturando, para pegar o item, index, usado para acessar algo dentro do json, por exemplo: item.photo */}
-               {users.map((item, index) =>(
+               {userStories.map((item, index) =>(
                    <View style={{width: height * 0.085, padding: height * 0.005}} key={index}>
                        <LinearGradient 
                        style={{padding: height * 0.002, borderRadius: height * 0.050}}
                        colors={[colors.primary, '#FF914D', '#FF914D95']}>
                            {/* Acessando a foto através de item.photo */}
-                           <Image source={{uri: item.avatar}} style={[styles.userImage,{borderWidth: height * 0.002}]}/>
+                           <Image source={item.avatar} style={[styles.userImage,{borderWidth: height * 0.0005}]}/>
                        </LinearGradient>
-                {/* Aqui um exemplo do item.alguma coisa */}
-                       <Text style={styles.userName}>{item.name}</Text>
                    </View>
                ))}
             </ScrollView>

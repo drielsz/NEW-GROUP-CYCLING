@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Dimensions, LogBox, ImageBackground } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Dimensions, LogBox, ImageBackground, Animated, Keyboard, TouchableOpacity, Alert } from 'react-native';
 import AppLoading from 'expo-app-loading';
 
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
@@ -15,6 +15,42 @@ var height = Dimensions.get("window").height
 var width = Dimensions.get("window").width;
 
 export default function App({navigation}) {
+
+    const [logo] = useState(new Animated.ValueXY({x: height * 0.176, y: height * 0.176 }))
+    useEffect(() => {
+        keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow)
+        keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide)
+    })
+
+    function keyboardDidShow () {
+        Animated.parallel([
+            Animated.timing(logo.x, {
+                toValue: height * 0,
+                duration: 100,
+                useNativeDriver: false,
+            }),
+            Animated.timing(logo.y, {
+                toValue: height * 0,
+                duration: 100,
+                useNativeDriver: false,
+            })
+        ]).start()
+    }
+
+    function keyboardDidHide () {
+        Animated.parallel([
+            Animated.timing(logo.x, {
+                toValue:  height * 0.176,
+                duration: 100,
+            }),
+            Animated.timing(logo.y, {
+                toValue:  height * 0.176,
+                duration: 100
+            })
+        ]).start()
+    }
+
+
   let [fontsLoaded] = useFonts({
     Inter_900Black,
     Nunito_700Bold,
@@ -28,8 +64,8 @@ export default function App({navigation}) {
     return (
         <Container source={require('../../assets/background.png')}>
         <View style={{alignItems:'center'}}>
-            <Image width = {height * 0.176}
-            height = {height * 0.176}
+            <Animated.Image 
+            style={{width: logo.x, height: logo.y}}
             source = {require('../../assets/logoxd.png')}
             />    
             
@@ -91,23 +127,25 @@ export default function App({navigation}) {
                 { fontFamily: 'Nunito_900Black' }
             }
             color = { colors.backgroundLogin }
-            fontSize = { height * 0.018 }>CADASTRAR-SE</Text> 
+            fontSize = { height * 0.018 }>ENTRAR</Text> 
             </Button >
             
             <View style={{marginTop: height * 0.015}}>
             <Text texttransform = 'none'
             style={{fontFamily:'Roboto_400Regular'}}
-            fontSize = { height * 0.015 }>Já possui uma conta?
+            fontSize = { height * 0.015 }>Não possui uma conta?
             
-            <Text color = { colors.primary }
+            <Text onPress={() => navigation.navigate('Register')} color = { colors.primary }
             fontSize = { height * 0.015 }
             style={{fontFamily:'Nunito_900Black'}}
             texttransform = 'none'
-            borderBottomWidth = { height * 0.002 }> Faça o login aqui.</Text> 
+            borderBottomWidth = { height * 0.002 }> Cadastre-se aqui.</Text> 
             </Text>
             </View> 
-            
-            <View>
+            <View style={{top: height * 0.04}}>
+                <Image source={require('../../assets/OU02.png')} resizeMode='contain' style={{width: height * 0.5, height: height * 0.015}}/>
+            </View>
+            <View style={{top: height * 0.02}}>
                 <Button height={height * 0.055} background={colors.facebookLogin} style={{alignItems:'center', justifyContent:'center', flexDirection: 'row'}}>
                     <Image style={{width: height * 0.04}} source={require('../../assets/facebooklogin.png')}/>
                     <Text texttransform='none'  style={{fontFamily: 'Nunito_700Bold'}} color={colors.googleLogin} fontSize={height * 0.016}> Entre com o Facebook</Text>

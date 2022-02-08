@@ -30,6 +30,7 @@
     "react-native-fast-image": "^8.5.11",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-get-location": "^2.2.1",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-maps": "^0.29.4",
     "react-native-paper": "^4.11.2",
@@ -53,7 +54,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@iconify/react": "^3.1.2"
+    "@iconify/react": "^3.1.2",
+    "json-server": "^0.17.0"
   },
   "private": true
 }

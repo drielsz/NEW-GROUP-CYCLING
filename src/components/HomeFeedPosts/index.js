@@ -13,6 +13,8 @@ import {
     ViewIcons,
     ViewReport
 }  from './styles';
+
+import {styles} from './styles'
 // Cores utilizadas
 import { colors } from '../../styles/colors';
 // Scroll View responsavel por scrollar;
@@ -30,25 +32,28 @@ const HomeFeedPosts = () => {
                 {/* Vai ser utilizado: ImageBackground, Image. A imageBackground é para permitir Image ficar por cima. */}
                 {ImagesPosts.map((item, index) =>(
                 <View>
-                    <ImageBackground  key={index} source={item.image} style={{marginVertical: height * 0.08}} imageStyle={{borderRadius: height * 0.03}} resizeMode='cover'>
-                        <Image source={item.avatar} size={height * 0.06}/>
+                    <ImageBackground  key={index} source={item.image} style={{marginVertical: height * 0.08}} resizeMode='cover'>
+                    <View style={{ bottom: height * 0.05,}}>       
+                            <Image source={item.avatar} size={height * 0.065} style={styles.viewIcon}/>                        
+                    </View>
+                    {/* <View style={{bottom: height * 0.03, right: height * 0.02}}>
+                        <Image source={item.avatar} size={height * 0.06} style={styles.viewIcon}/>
                         <Text style={{color: colors.tertiary, left: height * 0.11, bottom: height * 0.082}}>{item.name}</Text>
                         <Text style={{color: colors.desc, left:height * 0.29, bottom: height * 0.105}}>{item.time}</Text>
-                        <ViewIcons>
+                    </View>
+                        <ViewIcons style={styles.viewIcon}>
                             <View style={{flexDirection:'row'}}>
                                 <Octicons name='comment' size={height * 0.034} style={{right: height * 0.015}}/>
                                 <Ionicons name="share-social-outline" size={height * 0.034} />
                                 <Ionicons name="heart-outline" size={height * 0.034} style={{left: height * 0.015}}/>
                             </View>
-                        </ViewIcons>
-                        <ViewReport>
-                            <MaterialCommunityIcons name='dots-vertical' size={height * 0.035} style={{right: height * 0.009}}/>
-                        </ViewReport>
+                        </ViewIcons> */}
                     </ImageBackground>
-                    <View style={{bottom: height * 0.07, left: width * 0.05}}>
+                    
+                    {/* <View style={{bottom: height * 0.07, left: width * 0.05}}>
                         <Text>{item.name}</Text>
                         <Text style={{color: colors.desc}}>{item.desc}</Text>
-                    </View>
+                    </View> */}
                 </View>
                 ))}
             </ScrollView>

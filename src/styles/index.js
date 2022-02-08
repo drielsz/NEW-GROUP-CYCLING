@@ -44,7 +44,6 @@ export const Container = styled(ImageBackground)
 flex:1;
 align-items: ${(props) => props.align || 'center'};
 justify-content: ${(props) => (props.justify || 'center')};
-opacity:${(props) => (props.opacity || '0.88')}
 `
 
 export const ImageProfile = styled.Image.attrs(props => ({
