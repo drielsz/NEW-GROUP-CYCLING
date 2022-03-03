@@ -5,7 +5,7 @@ import RoutesAuth from './routes'
 import {AuthProvider} from './contexts/auth';
 
 
-export default function App () {
+export default function Navigation () {
   return(
         <NavigationContainer>
           <AuthProvider>

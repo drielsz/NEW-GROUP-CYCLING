@@ -8,7 +8,9 @@ import { colors } from '../styles/colors'
 import Home from '../pages/Home';
 import Pedal from '../pages/Pedal';
 import Equipamentos from '../pages/Equipamentos';
+// Images
 import EQUIPAMENTS from '../assets/Equipaments.png'
+import LOCATION from '../assets/location.png'
 
 import { Entypo, MaterialCommunityIcons, Octicons } from '@expo/vector-icons'
 
@@ -29,11 +31,14 @@ export default function BottomRoutes({}) {
                         paddingBottom: height * 0.005,
                         paddingTop: height * 0.007,
                         height: width * 0.13,
+                        borderTopLeftRadius: height * 0.012,
+                        borderTopRightRadius: height * 0.012
                     }
                 }}
                 tabBarOptions={{
                     activeTintColor: colors.quaternary,
                     inactiveTintColor: colors.blind,
+                    showLabel: false
                 }}
             >
             <Tab.Screen name='Início' component={Home} options={{headerShown: false, tabBarIcon: ({size, color}) => (

@@ -2,11 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { View, Dimensions, LogBox, Animated, Keyboard, Alert} from 'react-native';
 // TouchableOpacity
 import { TouchableOpacity } from 'react-native-gesture-handler';
-// Fontes
-import AppLoading from 'expo-app-loading';
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-import { Nunito_700Bold, Nunito_900Black } from '@expo-google-fonts/nunito';
-import { Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/roboto';
 // Estilos
 import { Container, Image, Button, Text } from '../../styles/';
 import { colors } from '../../styles/colors';
@@ -90,17 +85,6 @@ const Login = ({navigation}) => {
         ]).start()
     }
 
-
-  let [fontsLoaded] = useFonts({
-    Inter_900Black,
-    Nunito_700Bold,
-    Nunito_900Black,
-    Roboto_700Bold
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
     return (
         <Container source={require('../../assets/background.png')}>
         <View style={{alignItems:'center'}}>
@@ -117,6 +101,7 @@ const Login = ({navigation}) => {
             autoCapitalize='none'
             onChangeText = {txtEmail => onChangeEmail(txtEmail)}
             label = 'E-mail'
+            labelStyle={{fontSize: 300}}
             mode = 'flat'
             style = {
                 { width: height * 0.30}
@@ -165,19 +150,19 @@ const Login = ({navigation}) => {
             
             <Button onPress={SignIn}  
                 style={{alignItems:'center', justifyContent:'center'}}>
-                <Text style={{fontFamily: 'Nunito_900Black'}}
+                <Text style={{fontFamily: 'Nunito_700Bold'}}
                 color = { colors.backgroundLogin }
                 fontSize = { height * 0.018 }>ENTRAR</Text> 
             </Button >
             
             <TouchableOpacity style={{marginTop: height * 0.015}}  onPress={() => navigation.navigate('Register')} >
                 <Text texttransform = 'none'
-                style={{fontFamily:'Roboto_400Regular'}}
+                style={{fontFamily:'Nunito_400Regular'}}
                 fontSize = { height * 0.015 }>Não possui uma conta?
                 
                 <Text color={colors.primary}
                 fontSize = { height * 0.015 }
-                style={{fontFamily:'Nunito_900Black'}}
+                style={{fontFamily:'Nunito_700Bold'}}
                 texttransform = 'none'
                 borderBottomWidth = { height * 0.002 }> Cadastre-se aqui.</Text> 
                 </Text>
@@ -185,19 +170,20 @@ const Login = ({navigation}) => {
             <View style={{top: height * 0.04}}>
                 <Image source={require('../../assets/OU02.png')} resizeMode='contain' style={{width: height * 0.5, height: height * 0.015}}/>
             </View>
+
             <View style={{top: height * 0.02}}>
                 <Button height={height * 0.055} background={colors.facebookLogin} style={{alignItems:'center', justifyContent:'center', flexDirection: 'row'}}>
                     <Image style={{width: height * 0.04}} source={require('../../assets/facebooklogin.png')}/>
-                    <Text texttransform='none'  style={{fontFamily: 'Nunito_700Bold'}} color={colors.googleLogin} fontSize={height * 0.016}> Entre com o Facebook</Text>
+                    <Text texttransform='none'  style={{fontFamily: 'Nunito_400Regular'}} color={colors.googleLogin} fontSize={height * 0.016}> Entre com o Facebook</Text>
                 </Button>
-            <View style={{bottom: height * 0.04}}>
-                <Button height={height * 0.055} background={colors.googleLogin} style={{alignItems:'center', justifyContent:'center', flexDirection: 'row'}}>
-                    <View style={{flexDirection:'row', right: height * 0.01}}>
-                        <Image style={{width: height * 0.04}} source={require('../../assets/googlelogin.png')}/>
-                        <Text texttransform='none'  style={{fontFamily: 'Nunito_700Bold'}} color={colors.backgroundLogin} fontSize={height * 0.016}> Entre com o Google</Text>
-                    </View>
-                </Button>
-            </View>
+                <View style={{bottom: height * 0.04}}>
+                    <Button height={height * 0.055} background={colors.googleLogin} style={{alignItems:'center', justifyContent:'center', flexDirection: 'row'}}>
+                        <View style={{flexDirection:'row', right: height * 0.01}}>
+                            <Image style={{width: height * 0.04}} source={require('../../assets/googlelogin.png')}/>
+                            <Text texttransform='none'  style={{fontFamily: 'Nunito_400Regular'}} color={colors.backgroundLogin} fontSize={height * 0.016}> Entre com o Google</Text>
+                        </View>
+                    </Button>
+                </View>
             </View>
             
             
@@ -206,6 +192,6 @@ const Login = ({navigation}) => {
         </Container >
     );
   }
-}
+
 
 export default Login

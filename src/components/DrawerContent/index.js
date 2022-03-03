@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, StyleSheet, Dimensions, Image } from 'react-native';
 // Drawer 
 import { 
@@ -33,9 +33,26 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {  Entypo, Octicons, MaterialCommunityIcons  } from '@expo/vector-icons'
 // API
 import { useAuth } from '../../contexts/auth';
-
+import {api} from '../../services/axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export function DrawerContent(props, state) {
+    const [name, setName] = useState('')
+  // Pegar o nome e email do usuario
+  const getUser = async () => {
+    const response = await api.get("user-info", { headers : {
+     "X-access-token" : await AsyncStorage.getItem("token")
+    }}).then(response => {
+      setName(response.data.name)
+      console.log(name)
+    }).catch(err => {
+      console.log(err);
+    })
+    }
+
+    useEffect(() => {
+    getUser()
+    }, [])
 
     const {user, signOut} = useAuth()
     
@@ -61,7 +78,7 @@ export function DrawerContent(props, state) {
                                 <View style={{marginLeft: 15,
                                 flexDirection: 'column'
                                 }}>
-                                    <Title>{user?.name}</Title>
+                                    <Title>{name}</Title>
                                     <Caption>
                                         @drielsz</Caption>
                                 </View>

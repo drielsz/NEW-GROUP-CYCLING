@@ -30,7 +30,6 @@ const HomeFeedPosts = () => {
         <SafeAreaView>
             <ScrollView vertical showsVerticalScrollIndicator={false}>
                 <View style={{alignItems:'center', justifyContent:'center', alignSelf: 'center', width: width, backgroundColor:'red'}}>
-                    <Text style={{textAlign:'center', color:'yellow'}}>TELA EM CONSTRUÇÃO</Text>
                 </View>
                 {/* Vai ser utilizado: ImageBackground, Image. A imageBackground é para permitir Image ficar por cima. */}
                 {ImagesPosts.map((item, index) =>(

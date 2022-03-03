@@ -40,19 +40,7 @@ function Perfil({navigation, props}) {
   useEffect(() => {
     getUser()
   }, [])
-
-  // Se as fontes não forem carregadas então exibir um carregamento
-  let [fontsLoaded] = useFonts ({
-    Roboto_500Medium,
-    Roboto_700Bold,
-    Roboto_300Light,
-    Roboto_900Black
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return(
+  return(
       <PrimaryView>
 
       <View style={{left: width /1.52, top: height * 0.013}}>
@@ -89,9 +77,9 @@ function Perfil({navigation, props}) {
                   <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguidores</Text></Text> 
                 </View> */}
 
-                  <Text style={{fontFamily: 'Roboto_700Bold'}}>{name}</Text>
+                  <Text style={{fontFamily: 'Nunito_700Bold'}}>{name}</Text>
                   <Text 
-                  style={{fontFamily: 'Roboto_300Light'}} 
+                  style={{fontFamily: 'Nunito_400Regular'}} 
                   size={height* 0.02}
                   margin={height * 0.003}
                   >
@@ -115,7 +103,7 @@ function Perfil({navigation, props}) {
       </PrimaryView>
     )
 }
-}
+
 
 
 const styles= StyleSheet.create({
