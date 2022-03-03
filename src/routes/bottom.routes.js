@@ -10,9 +10,9 @@ import Pedal from '../pages/Pedal';
 import Equipamentos from '../pages/Equipamentos';
 // Images
 import EQUIPAMENTS from '../assets/Equipaments.png'
-import LOCATION from '../assets/location.png'
+import PERFILPICTURE from '../assets/Perfil-picture.png'
 
-import { Entypo, MaterialCommunityIcons, Octicons } from '@expo/vector-icons'
+import { Entypo, MaterialCommunityIcons, Octicons, AntDesign } from '@expo/vector-icons'
 
 var height = Dimensions.get("window").height
 var width = Dimensions.get("window").width;
@@ -31,8 +31,6 @@ export default function BottomRoutes({}) {
                         paddingBottom: height * 0.005,
                         paddingTop: height * 0.007,
                         height: width * 0.13,
-                        borderTopLeftRadius: height * 0.012,
-                        borderTopRightRadius: height * 0.012
                     }
                 }}
                 tabBarOptions={{
@@ -59,6 +57,7 @@ export default function BottomRoutes({}) {
 
             <Tab.Screen name='Perfil' component={DrawerNavigator} options={{headerShown:false, tabBarIcon: ({size, color}) => (
                 <MaterialCommunityIcons name="face-profile" size={size} color={color} />
+                
             )}}/>
 
         </Tab.Navigator>
