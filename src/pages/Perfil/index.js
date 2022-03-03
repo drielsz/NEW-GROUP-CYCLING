@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Dimensions, TouchableOpacity, Text as Text02, Image as ImageIconTopBar} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import {useFonts, Roboto_500Medium, Roboto_700Bold, Roboto_300Light,Roboto_900Black} from '@expo-google-fonts/roboto'
@@ -8,16 +8,39 @@ import {AnotherView, PrimaryView, Text} from './styles';
 import {ImageProfile} from '../../styles'
 import {colors} from '../../styles/colors'
 import MyCarousel from '../MyCarousel';
-import EditProfile from '../../assets/EditProfile.png'
-import Lines from '../../assets/Lines.png'
+import EditProfile from '../../assets/EditProfile.png';
+import Lines from '../../assets/Lines.png';
 import {Ionicons} from '@expo/vector-icons';
 
 // Pegando as dimensões da tela
-var height = Dimensions.get('window').height
-var width = Dimensions.get('window').width
-
+var height = Dimensions.get('window').height;
+var width = Dimensions.get('window').width;
+// API AsyncStorage
+import {api} from  '../../services/axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Perfil({navigation, props}) {
+
+  const [ name, setName ] = useState('')
+  const [ email, setEmail ] = useState('')
+
+  // Pegar o nome e email do usuario
+  const getUser = async () => {
+      const response = await api.get("user-info", { headers : {
+       "X-access-token" : await AsyncStorage.getItem("token")
+      }}).then(response => {
+        setName(response.data.name)
+        setEmail(response.data.email) 
+        console.log(name, email)
+      }).catch(err => {
+        console.log(err);
+      })
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
+
   // Se as fontes não forem carregadas então exibir um carregamento
   let [fontsLoaded] = useFonts ({
     Roboto_500Medium,
@@ -66,13 +89,13 @@ function Perfil({navigation, props}) {
                   <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguidores</Text></Text> 
                 </View> */}
 
-                  <Text style={{fontFamily: 'Roboto_700Bold'}}>Adriel Laurentino</Text>
+                  <Text style={{fontFamily: 'Roboto_700Bold'}}>{name}</Text>
                   <Text 
                   style={{fontFamily: 'Roboto_300Light'}} 
                   size={height* 0.02}
                   margin={height * 0.003}
                   >
-                  adriellaurentino4@gmail.com</Text>
+                  {email}</Text>
           
           
 

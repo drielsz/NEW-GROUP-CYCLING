@@ -30,7 +30,7 @@ export default function EditProfile ({navigation}) {
             <View style={styles.head}>
                 {/* Parte onde destina o usuario a tela anterior */}
                 <View style={styles.circle}>
-                  <TouchableOpacity onPress={() => navigation.navigate('Routes')}>
+                  <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     <Feather name="arrow-left" size={height * 0.04} color={colors.secondary} />
                   </TouchableOpacity>
                 </View>

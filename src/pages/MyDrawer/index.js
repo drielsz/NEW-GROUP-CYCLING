@@ -7,7 +7,6 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 // 
 import { DrawerContent } from '../../components/DrawerContent'
 
-import Routes from '../../routes';
 import Perfil from '../Perfil'
 
 var width = Dimensions.get('window').width

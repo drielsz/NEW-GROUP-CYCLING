@@ -1,22 +1,62 @@
 import React, {useState, useEffect} from 'react';
-import { View, Dimensions, LogBox, ImageBackground, Animated, Keyboard, TouchableOpacity, Alert } from 'react-native';
+import { View, Dimensions, LogBox, Animated, Keyboard, Alert} from 'react-native';
+// TouchableOpacity
+import { TouchableOpacity } from 'react-native-gesture-handler';
+// Fontes
 import AppLoading from 'expo-app-loading';
-
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { Nunito_700Bold, Nunito_900Black } from '@expo-google-fonts/nunito';
 import { Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/roboto';
-
+// Estilos
 import { Container, Image, Button, Text } from '../../styles/';
-import { colors } from '../../styles/colors'
-import { TextInput } from 'react-native-paper'
+import { colors } from '../../styles/colors';
+import { TextInput } from 'react-native-paper';
+// api
+import {api} from '../../services/axios';
+import {useAuth} from '../../contexts/auth'
+// AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 LogBox.ignoreAllLogs(true);
 var height = Dimensions.get("window").height
-var width = Dimensions.get("window").width;
 
-export default function App({navigation}) {
+const Login = ({navigation}) => {
+    const {signed, user, signIn} = useAuth()
+    console.log(signed)
+    console.log(user)
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const onChangeEmail = (txtEmail) => {
+        setEmail(txtEmail)
+    }
+
+    const onChangePassword = (txtPassword) => {
+        setPassword(txtPassword)
+    }
+
+    const SignIn = async () => {
+        const response = await api.post("login", {
+            email: email,
+            password: password
+        }).then (async (response) => {
+            await AsyncStorage.setItem("token", response.data.token);
+            signIn()
+        }).catch (async (error) => {
+            if(error.response.status === 422){
+                Alert.alert('', 'Preencha todos os dados.')
+            }
+            if(error.response.status === 400){
+                Alert.alert('', "E-mail e/ou senha incorretos!")
+            }
+            console.log(error.response.data)
+        }
+        )
+    }
 
     const [logo] = useState(new Animated.ValueXY({x: height * 0.176, y: height * 0.176 }))
+
     useEffect(() => {
         keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow)
         keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide)
@@ -71,15 +111,15 @@ export default function App({navigation}) {
             
             <Text style ={{fontFamily:'Nunito_700Bold', top: height * 0.03}} fontSize = { height * 0.035 }>GROUP CYCLING</Text> 
         
-
-
         <View style={{top: height * 0.05}}>
             <TextInput
-            
+            value={email}
+            autoCapitalize='none'
+            onChangeText = {txtEmail => onChangeEmail(txtEmail)}
             label = 'E-mail'
             mode = 'flat'
             style = {
-                { width: height * 0.30, height: height * 0. }
+                { width: height * 0.30}
             }
             theme = {
                 {
@@ -97,9 +137,13 @@ export default function App({navigation}) {
             }
             /> 
             <TextInput label = 'Senha'
+            value={password}
+            onChangeText = {txtPassword => onChangePassword(txtPassword)}
+            autoCapitalize='none'
+            secureTextEntry
             mode = 'flat'
             style = {
-                { width: height * 0.30, height: height * 0., marginTop: height * 0.030, marginBottom: height * 0.019 }
+                { width: height * 0.30, marginTop: height * 0.030, marginBottom: height * 0.019 }
             }
             theme = {
                 {
@@ -119,29 +163,25 @@ export default function App({navigation}) {
 
         </View>
             
-            <Button onPress = {
-                () => navigation.navigate('Routes')
-            }  style={{alignItems:'center', justifyContent:'center'}}>
-            
-            <Text style = {
-                { fontFamily: 'Nunito_900Black' }
-            }
-            color = { colors.backgroundLogin }
-            fontSize = { height * 0.018 }>ENTRAR</Text> 
+            <Button onPress={SignIn}  
+                style={{alignItems:'center', justifyContent:'center'}}>
+                <Text style={{fontFamily: 'Nunito_900Black'}}
+                color = { colors.backgroundLogin }
+                fontSize = { height * 0.018 }>ENTRAR</Text> 
             </Button >
             
-            <View style={{marginTop: height * 0.015}}>
-            <Text texttransform = 'none'
-            style={{fontFamily:'Roboto_400Regular'}}
-            fontSize = { height * 0.015 }>Não possui uma conta?
-            
-            <Text onPress={() => navigation.navigate('Register')} color = { colors.primary }
-            fontSize = { height * 0.015 }
-            style={{fontFamily:'Nunito_900Black'}}
-            texttransform = 'none'
-            borderBottomWidth = { height * 0.002 }> Cadastre-se aqui.</Text> 
-            </Text>
-            </View> 
+            <TouchableOpacity style={{marginTop: height * 0.015}}  onPress={() => navigation.navigate('Register')} >
+                <Text texttransform = 'none'
+                style={{fontFamily:'Roboto_400Regular'}}
+                fontSize = { height * 0.015 }>Não possui uma conta?
+                
+                <Text color={colors.primary}
+                fontSize = { height * 0.015 }
+                style={{fontFamily:'Nunito_900Black'}}
+                texttransform = 'none'
+                borderBottomWidth = { height * 0.002 }> Cadastre-se aqui.</Text> 
+                </Text>
+            </TouchableOpacity> 
             <View style={{top: height * 0.04}}>
                 <Image source={require('../../assets/OU02.png')} resizeMode='contain' style={{width: height * 0.5, height: height * 0.015}}/>
             </View>
@@ -167,3 +207,5 @@ export default function App({navigation}) {
     );
   }
 }
+
+export default Login

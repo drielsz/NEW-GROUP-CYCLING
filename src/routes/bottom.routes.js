@@ -3,42 +3,39 @@ import { Image, Dimensions } from 'react-native'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { colors } from './styles/colors'
+import { colors } from '../styles/colors'
 
-import Home from './pages/Home';
-import Pedal from './pages/Pedal';
-import Equipamentos from './pages/Equipamentos';
-import Perfil from './pages/Perfil';
-import NewEvent from './pages/NewEvent'
-import DrawerNavigator from './pages/MyDrawer'
-import ButtonNew from './components/ButtonNew'
+import Home from '../pages/Home';
+import Pedal from '../pages/Pedal';
+import Equipamentos from '../pages/Equipamentos';
+import EQUIPAMENTS from '../assets/Equipaments.png'
+
+import { Entypo, MaterialCommunityIcons, Octicons } from '@expo/vector-icons'
 
 var height = Dimensions.get("window").height
 var width = Dimensions.get("window").width;
 
-import { Entypo, Feather, MaterialCommunityIcons, Octicons } from '@expo/vector-icons'
+import DrawerNavigator from '../pages/MyDrawer'
 
-
-import EQUIPAMENTS from './assets/Equipaments.png'
 const Tab = createBottomTabNavigator();
 
-export default function Routes({props}) {
+export default function BottomRoutes({}) {
     return(
         <Tab.Navigator 
-            screenOptions={{
-                tabBarStyle:{
-                    backgroundColor: colors.colorButtom,
-                    borderTopColor: colors.transparent,
-                    paddingBottom: height * 0.005,
-                    paddingTop: height * 0.007,
-                    height: width * 0.13,
-                }
-            }}
-            tabBarOptions={{
-                activeTintColor: colors.quaternary,
-                inactiveTintColor: colors.blind,
-            }}
-        >
+                screenOptions={{
+                    tabBarStyle:{
+                        backgroundColor: colors.colorButtom,
+                        borderTopColor: colors.transparent,
+                        paddingBottom: height * 0.005,
+                        paddingTop: height * 0.007,
+                        height: width * 0.13,
+                    }
+                }}
+                tabBarOptions={{
+                    activeTintColor: colors.quaternary,
+                    inactiveTintColor: colors.blind,
+                }}
+            >
             <Tab.Screen name='Início' component={Home} options={{headerShown: false, tabBarIcon: ({size, color}) => (
                 <Entypo name='home' size={size} color={color}/>
             )}}/>

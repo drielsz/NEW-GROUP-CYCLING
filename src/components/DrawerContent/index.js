@@ -31,18 +31,18 @@ import {
 // Import Icon
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {  Entypo, Octicons, MaterialCommunityIcons  } from '@expo/vector-icons'
-
-// Themes, Ainda não está funcionando
-// import { lightTheme, darkTheme } from '../../styles/themes'
-// import { switchTheme } from '../Redux/ThemeActions' ;
-// import {useDispatch, useSelector, userSelector} from 'react-redux';
+// API
+import { useAuth } from '../../contexts/auth';
 
 
 export function DrawerContent(props, state) {
 
-    // const theme = useSelector((state) => state.switchTheme.theme);
-    // const dispatch = useDispatch();
+    const {user, signOut} = useAuth()
     
+    function handleSignOut() {
+        signOut()
+    }
+
     const  [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
     const toggleTheme = () => {
@@ -61,8 +61,7 @@ export function DrawerContent(props, state) {
                                 <View style={{marginLeft: 15,
                                 flexDirection: 'column'
                                 }}>
-                                    <Title>
-                                        Adriel Laurentino</Title>
+                                    <Title>{user?.name}</Title>
                                     <Caption>
                                         @drielsz</Caption>
                                 </View>
@@ -184,7 +183,7 @@ export function DrawerContent(props, state) {
                             />
                         ) }      
                         label='Sair'
-                        onPress={() => {}}
+                        onPress={handleSignOut}
                         />
             </Drawer.Section>
         </Container>

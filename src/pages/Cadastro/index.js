@@ -3,7 +3,7 @@ import React from 'react';
 // import { Container } from './styles';
 
 function Cadastro() {
-  return <div />;
+  return <View />;
 }
 
 export default Cadastro;
