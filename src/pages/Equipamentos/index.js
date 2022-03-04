@@ -20,14 +20,12 @@ function Equipamentos({props, navigation}) {
   const [ images, setimages] = React.useState([
     require('../../assets/FEED08.png'),
     require('../../assets/MENSCREEN.png'),
-    // require('../../assets/BIKE-SCREEN2.png'),
+    require('../../assets/BIKE-SCREEN2.png'),
     require('../../assets/QUADROBIKE.png'),
     require('../../assets/WOMAN01.png'),
-    // require('../../assets/WOMAN02.png'), 
-        // require('../../assets/BIKE-SCREEN2.png'),
-        require('../../assets/QUADROBIKE.png'),
-        require('../../assets/WOMAN01.png'),
-        // require('../../assets/WOMAN02.png'),   
+    require('../../assets/WOMAN02.png'), 
+    require('../../assets/BIKE-SCREEN2.png'),
+    require('../../assets/QUADROS.png'),   
   ])
 
 
@@ -74,6 +72,7 @@ function Equipamentos({props, navigation}) {
         <ListaHorizontal data={data}/>
 
         <FlatList 
+        keyExtractor={item => String(item)}
         data={images}
         numColumns={2}
         renderItem={({item, index}) => (
@@ -84,7 +83,7 @@ function Equipamentos({props, navigation}) {
                   source={item}
                   resizeMode={'cover'}
                   key={index}
-                  style={{width: width/2, height: height * 0.3, margin: height * 0.005, right: height * 0.005}}/>
+                  style={{width: width/2, height: height * 0.3, margin: height * 0.0016, right: height * 0.005}}/>
           </TouchableWithoutFeedback>
      
         )}
