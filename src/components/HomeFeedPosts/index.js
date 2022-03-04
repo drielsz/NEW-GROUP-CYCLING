@@ -40,8 +40,8 @@ const HomeFeedPosts = () => {
                     </View>
                     {/* <View style={{bottom: height * 0.03, right: height * 0.02}}>
                         <Image source={item.avatar} size={height * 0.06} style={styles.viewIcon}/>
-                        <Text style={{color: colors.tertiary, left: height * 0.11, bottom: height * 0.082}}>{item.name}</Text>
-                        <Text style={{color: colors.desc, left:height * 0.29, bottom: height * 0.105}}>{item.time}</Text>
+                        <Text allowFontScaling={false} style={{color: colors.tertiary, left: height * 0.11, bottom: height * 0.082}}>{item.name}</Text>
+                        <Text allowFontScaling={false} style={{color: colors.desc, left:height * 0.29, bottom: height * 0.105}}>{item.time}</Text>
                     </View>
                         <ViewIcons style={styles.viewIcon}>
                             <View style={{flexDirection:'row'}}>
@@ -53,8 +53,8 @@ const HomeFeedPosts = () => {
                     </ImageBackground>
                     
                     {/* <View style={{bottom: height * 0.07, left: width * 0.05}}>
-                        <Text>{item.name}</Text>
-                        <Text style={{color: colors.desc}}>{item.desc}</Text>
+                        <Text allowFontScaling={false}>{item.name}</Text>
+                        <Text allowFontScaling={false} style={{color: colors.desc}}>{item.desc}</Text>
                     </View> */}
                 </View>
                 ))}

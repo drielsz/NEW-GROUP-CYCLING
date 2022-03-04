@@ -28,7 +28,7 @@ export default class SearchLocationMap extends Component {
                 <View style={{flex: 1,justifyContent: "center",alignItems: "center", marginTop: 22}}>
                 <View  style={{ width: 420, height: 600, margin: 20, backgroundColor: "#0B1A36", borderRadius: 20, padding: 35, alignItems: "center",
                 shadowColor: "#000", shadowOffset: { width: 0,height: 2}, shadowOpacity: 0.25, shadowRadius: 4, elevation: 5}}>
-                 <Text style={{  fontWeight: "bold", color:'#FFF', marginBottom: 15, textAlign: "center"  }}>Configure o seu pedal</Text>
+                 <Text allowFontScaling={false} style={{  fontWeight: "bold", color:'#FFF', marginBottom: 15, textAlign: "center"  }}>Configure o seu pedal</Text>
                         <>
                             <TextInput 
                                 placeholder='Tipo de rota:'

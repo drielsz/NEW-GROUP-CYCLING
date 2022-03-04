@@ -36,7 +36,7 @@ export default function EditProfile ({navigation}) {
                 </View>
 
 
-                    <Text style={styles.textH}>Editar seu perfil</Text>
+                    <Text allowFontScaling={false} style={styles.textH}>Editar seu perfil</Text>
             </View>
 
             {/* Parte de baixo */}
@@ -49,7 +49,7 @@ export default function EditProfile ({navigation}) {
                 </View>
 
                 <View style={styles.viewN}>
-                    <Text style={styles.textN}>Adriel Laurentino</Text>
+                    <Text allowFontScaling={false} style={styles.textN}>Adriel Laurentino</Text>
                     {/* Linha em baixo do nome */}
                         <View style={styles.line}/>
                 </View>
@@ -57,26 +57,26 @@ export default function EditProfile ({navigation}) {
             </View>
             {/* Informações básicas */}
             <View style={styles.viewBasic}>
-                <Text style={styles.textInfo}>Informações básicas</Text>
+                <Text allowFontScaling={false} style={styles.textInfo}>Informações básicas</Text>
                 <View style={styles.lineinfo}/>
             <View style={styles.resultName}>
-                    <Text style={styles.textoCinza}>Nome:<Text style={{color: 'black'}}> Adriel Laurentino de Oliveira</Text></Text>
+                    <Text allowFontScaling={false} style={styles.textoCinza}>Nome:<Text style={{color: 'black'}}> Adriel Laurentino de Oliveira</Text></Text>
             </View>
                 <View style={styles.resultData}>
-                    <Text style={styles.textoCinza}>Data de Nascimento:<Text style={{color: 'black'}}> 18/11/2004</Text></Text>
+                    <Text allowFontScaling={false} style={styles.textoCinza}>Data de Nascimento:<Text style={{color: 'black'}}> 18/11/2004</Text></Text>
                 </View>
             </View>
 
             {/* Informações Privadas */}
             <View style={styles.viewPrivate}>
-                <Text style={styles.textInfo}>Informações privadas</Text>
+                <Text allowFontScaling={false} style={styles.textInfo}>Informações privadas</Text>
                 <View style={styles.lineinfo}/>
             <View style={styles.resultName}>
-                    <Text style={styles.textoCinza}>E-mail:<Text style={{color: 'black'}}> adriellaurentino4@gmail.com</Text></Text>
+                    <Text allowFontScaling={false} style={styles.textoCinza}>E-mail:<Text style={{color: 'black'}}> adriellaurentino4@gmail.com</Text></Text>
             </View>
                 <View style={styles.resultData}>
-                    <Text style={styles.textoCinza}>Estado:<Text style={{color: 'black'}}> Rio grande do Norte</Text><Text>  Cidade:</Text><Text style={{color: 'black'}}> Mossoró</Text></Text>
-                    <Text style={{top: height * 0.022, color: colors.cinzaEditProfile}}>Telefone:<Text style={{color: 'black'}}> (84) 9 88065971</Text></Text>
+                    <Text allowFontScaling={false} style={styles.textoCinza}>Estado:<Text style={{color: 'black'}}> Rio grande do Norte</Text><Text>  Cidade:</Text><Text style={{color: 'black'}}> Mossoró</Text></Text>
+                    <Text allowFontScaling={false} style={{top: height * 0.022, color: colors.cinzaEditProfile}}>Telefone:<Text style={{color: 'black'}}> (84) 9 88065971</Text></Text>
                 </View>
                 
             </View>

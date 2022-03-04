@@ -65,8 +65,8 @@ export default function Buy ({navigation, item, route}) {
                     </MarginlANDr>
                     {/* Informaçoes do produto */}
                     <MarginlANDr style={{position:'absolute', top: height * 0.369}}>
-                            <Text style={{fontFamily:'Nunito_700Bold'}}>Tarmac SL7 Comp 2022</Text> 
-                            <Text style={{fontFamily:'Nunito_300Light'}}>R$ 48.000,00</Text>      
+                            <Text allowFontScaling={false} style={{fontFamily:'Nunito_700Bold'}}>Tarmac SL7 Comp 2022</Text> 
+                            <Text allowFontScaling={false} style={{fontFamily:'Nunito_300Light'}}>R$ 48.000,00</Text>      
                     </MarginlANDr>
                     {/* Parte para >>> a foto */}
                     <Arrow>
@@ -85,12 +85,12 @@ export default function Buy ({navigation, item, route}) {
 
                 {/* Adicionar ao carrinho */}
                 <Button style={{top: height * 0.04}}>
-                    <Text style={{color: colors.secondary, fontFamily:'Roboto_700Bold'}}>Adicionar ao carrinho</Text>
+                    <Text allowFontScaling={false}  style={{color: colors.secondary, fontFamily:'Roboto_700Bold'}}>Adicionar ao carrinho</Text>
                 </Button>
 
                 {/* Parte dos produtos relacionados */}
                 <MarginlANDr style={{marginTop: height * 0.090}}>
-                    <Text style={{bottom: height * 0.005, fontFamily: 'Roboto_700Bold'}}>Produtos relacionados</Text>
+                    <Text allowFontScaling={false} style={{bottom: height * 0.005, fontFamily: 'Roboto_700Bold'}}>Produtos relacionados</Text>
                     {/* @Adrielly ORIGINAL */}
                 
 

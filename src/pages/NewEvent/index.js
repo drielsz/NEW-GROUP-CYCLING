@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native';
 function NewEvent() {
   return(
     <View style={styles.container}>
-      <Text style={styles.text}>NewEvent</Text>
+      <Text allowFontScaling={false} style={styles.text}>NewEvent</Text>
     </View>
   )
 }

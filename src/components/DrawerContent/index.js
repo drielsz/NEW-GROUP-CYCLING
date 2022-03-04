@@ -78,30 +78,30 @@ export function DrawerContent(props, state) {
                                 <View style={{marginLeft: 15,
                                 flexDirection: 'column'
                                 }}>
-                                    <Title>{name}</Title>
-                                    <Caption>@drielsz</Caption>
+                                    <Title allowFontScaling={false}>{name}</Title>
+                                    <Caption allowFontScaling={false}>@drielsz</Caption>
                                 </View>
                             </View>
 
                             <View style={styles.row}>
                                 <View style={styles.section}>
-                                    <Paragraph style={[styles.paragraph,
+                                    <Paragraph allowFontScaling={false} style={[styles.paragraph,
                                     styles.caption]}>
                                         80</Paragraph>
-                                    <Caption>Seguindo</Caption>
+                                    <Caption allowFontScaling={false}>Seguindo</Caption>
                                         
                                 </View>
                                 <View style={styles.section}>
-                                    <Paragraph style={[styles.paragraph,
+                                    <Paragraph allowFontScaling={false} style={[styles.paragraph,
                                     styles.caption]}>
                                         120</Paragraph>
-                                    <Caption>Conquistas</Caption>            
+                                    <Caption allowFontScaling={false}>Conquistas</Caption>            
                                 </View>
                                 <View style={styles.section}>
-                                    <Paragraph style={[styles.paragraph, styles.caption
+                                    <Paragraph allowFontScaling={false} style={[styles.paragraph, styles.caption
                                     ]}>
                                         320</Paragraph>
-                                    <Caption>Seguidores</Caption>
+                                    <Caption allowFontScaling={false}>Seguidores</Caption>
 
                                 </View>
                             </View>

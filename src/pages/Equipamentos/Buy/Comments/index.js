@@ -26,6 +26,7 @@ export default function Comments () {
             <View style={!clicked ? styles.searchBar__unclicked : styles.searchBar__clicked}>
  
                 <TextInput 
+                    allowFontScaling={false}
                     placeholder='Comentar'
                     style={styles.input}
                 />
@@ -40,7 +41,7 @@ export default function Comments () {
 
             <ViewBack>
                 <AntDesign name="arrowleft" size={height * 0.029} color={colors.tertiary} />
-                <Text style={{position:'absolute',left: height * 0.065}}>Comentarios sobre</Text>
+                <Text allowFontScaling={false} style={{position:'absolute',left: height * 0.065}}>Comentarios sobre</Text>
             </ViewBack>
             
         <View style={{flex:1}}>
@@ -48,32 +49,32 @@ export default function Comments () {
                 <ViewAvatar>
                     <Avatar.Image size={height * 0.07} source={AvatarImage} />
                 </ViewAvatar>
-                <TextNameProfileComment>Thiago Mendes</TextNameProfileComment>
-                <TextComment>Qual é o tamanho da bike?</TextComment>
+                <TextNameProfileComment allowFontScaling={false}>Thiago Mendes</TextNameProfileComment>
+                <TextComment allowFontScaling={false}>Qual é o tamanho da bike?</TextComment>
             </ViewComments>
 
             <ViewComments bottom={height * 0.56}>
                 <ViewAvatar>
                     <Avatar.Image size={height * 0.07} source={AvatarImage01} />
                 </ViewAvatar>
-                <TextNameProfileComment>Leticia Alves</TextNameProfileComment>
-                <TextComment>Onde é a loja?</TextComment>
+                <TextNameProfileComment allowFontScaling={false}>Leticia Alves</TextNameProfileComment>
+                <TextComment allowFontScaling={false}>Onde é a loja?</TextComment>
             </ViewComments>
 
             <ViewComments bottom={height * 0.42}>
                 <ViewAvatar>
                     <Avatar.Image size={height * 0.07} source={AvatarImage02} />
                 </ViewAvatar>
-                <TextNameProfileComment>Fernandinha Beiramar</TextNameProfileComment>
-                <TextComment>Muito lindo e envolvente, me interessei!</TextComment>
+                <TextNameProfileComment allowFontScaling={false}>Fernandinha Beiramar</TextNameProfileComment>
+                <TextComment allowFontScaling={false}>Muito lindo e envolvente, me interessei!</TextComment>
             </ViewComments>
 
             <ViewComments bottom={height * 0.28}>
                 <ViewAvatar>
                     <Avatar.Image size={height * 0.07} source={AvatarImage03} />
                 </ViewAvatar>
-                <TextNameProfileComment>João Fernandes</TextNameProfileComment>
-                <TextComment>Pastel de flango</TextComment>
+                <TextNameProfileComment allowFontScaling={false}>João Fernandes</TextNameProfileComment>
+                <TextComment allowFontScaling={false}>Pastel de flango</TextComment>
             </ViewComments>
 
             <ViewComments>
@@ -82,12 +83,10 @@ export default function Comments () {
                 </ViewAvatar>
                 {/* Icone para excluir, editar e reportar */}
                 {/* <Entypo style={{position:'absolute', alignSelf: 'center', top: width * 0.04, left: width * 0.2}} name="dots-three-horizontal" size={24} color="black" /> */}
-                <TextNameProfileComment>Henrique Picasso</TextNameProfileComment>
-                <TextComment>Tem suporte para a garrafinha?</TextComment>
+                <TextNameProfileComment allowFontScaling={false}>Henrique Picasso</TextNameProfileComment>
+                <TextComment allowFontScaling={false}>Tem suporte para a garrafinha?</TextComment>
             </ViewComments>
         </View>
-            
-            
         </Container>
     )
 

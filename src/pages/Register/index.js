@@ -97,10 +97,11 @@ export default function Register ({navigation}) {
                 source={require('../../assets/logoxd.png')} 
                 style={{bottom: height * 0.023, width: logo.x, height: logo.y}}/>
 
-                <Text style ={{fontFamily:'Nunito_700Bold'}} fontSize = { height * 0.035 }>GROUP CYCLING</Text>
+                <Text allowFontScaling={false} style ={{fontFamily:'Nunito_700Bold'}} fontSize = { height * 0.035 }>GROUP CYCLING</Text>
                 <KeyboardAvoidingView style={{top: height * 0.08, alignItems:'center'}}>
                     <TextInput 
                         value={email} 
+                        allowFontScaling={false}
                         keyboardType='email-address'
                         textContentType='none'
                         autoCapitalize='none'
@@ -111,6 +112,7 @@ export default function Register ({navigation}) {
                     />
                     <View style={{top: height * 0.033}}>
                         <TextInput 
+                        allowFontScaling={false}
                         autoCapitalize='none'
                         secureTextEntry
                         value={password} 
@@ -121,6 +123,7 @@ export default function Register ({navigation}) {
                     </View>
                     <View style={{top: height * 0.066}}>
                         <TextInput 
+                        allowFontScaling={false}
                         value={name} 
                         onChangeText = {txtName => onChangeName(txtName)} 
                         placeholder='Nome de usuário' style={styles.input}
@@ -132,15 +135,15 @@ export default function Register ({navigation}) {
                         () => RegisterUser()
                     }  style={{alignItems:'center', justifyContent:'center'}}>
                     
-                    <Text style = {
+                    <Text allowFontScaling={false} style = {
                         { fontFamily: 'Nunito_700Bold' }
                     }
                     color = { colors.backgroundLogin }
                     fontSize = { height * 0.018 }>CADASTRAR-SE</Text> 
                 </Button >
                 <TouchableOpacity style={{top: height * 0.02    }} onPress={() => navigation.navigate('Login')}>
-                    <Text texttransform='none' style={{fontFamily: 'Nunito_400Regular'}} fontSize={height * 0.015} >Já possui uma conta?
-                    <Text texttransform='none' fontSize={height * 0.015} color={colors.primary} style={{fontFamily:'Nunito_800ExtraBold'}}> Faça o login aqui.</Text></Text>
+                    <Text allowFontScaling={false} texttransform='none' style={{fontFamily: 'Nunito_400Regular'}} fontSize={height * 0.015} >Já possui uma conta?
+                    <Text allowFontScaling={false} texttransform='none' fontSize={height * 0.015} color={colors.primary} style={{fontFamily:'Nunito_800ExtraBold'}}> Faça o login aqui.</Text></Text>
                 </TouchableOpacity>
 
                </View>

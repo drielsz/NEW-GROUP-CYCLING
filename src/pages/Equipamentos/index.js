@@ -148,6 +148,7 @@ function Equipamentos({props, navigation}) {
           style={{ marginLeft: 1 }}
         />
         <TextInput 
+          allowFontScaling={false}
           placeholder='Pesquisar'
           style={styles.input}
           onChangeText={(s) => search(s)}
@@ -155,7 +156,7 @@ function Equipamentos({props, navigation}) {
         />
       </View>
         <View style={styles.text}>
-          <Text style={{textAlign:'left', fontFamily:'Nunito_700Bold'}}>
+          <Text allowFontScaling={false} style={{textAlign:'left', fontFamily:'Nunito_700Bold'}}>
             Em Destaque
           </Text>
       </View>

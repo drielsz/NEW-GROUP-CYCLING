@@ -77,8 +77,9 @@ function Perfil({navigation, props}) {
                   <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguidores</Text></Text> 
                 </View> */}
 
-                  <Text style={{fontFamily: 'Nunito_700Bold'}}>{name}</Text>
+                  <Text allowFontScaling={false} style={{fontFamily: 'Nunito_700Bold'}}>{name}</Text>
                   <Text 
+                  allowFontScaling={false}
                   style={{fontFamily: 'Nunito_400Regular'}} 
                   size={height* 0.02}
                   margin={height * 0.003}
@@ -90,12 +91,12 @@ function Perfil({navigation, props}) {
 
             <View style={styles.container}>
               <TouchableOpacity style={styles.button}>
-                      <Text02 color={colors.namebutton} 
+                      <Text02 allowFontScaling={false} color={colors.namebutton} 
                       style={{fontFamily: 'Roboto_900Black', fontSize: height * 0.0225, color: colors.namebutton}}>SEGUIR</Text02>
                 </TouchableOpacity>
             </View>
 
-            <Text size={height * 0.0225}  style={{fontFamily: 'Roboto_500Medium', left: width * 0.59, top: height * 0.24, 
+            <Text allowFontScaling={false} size={height * 0.0225}  style={{fontFamily: 'Roboto_500Medium', left: width * 0.59, top: height * 0.24, 
             position: 'absolute',color: colors.tertiary}}>Mensagem</Text>
 
           <MyCarousel/>

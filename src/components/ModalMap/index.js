@@ -81,7 +81,7 @@ function ModalComponent (props) {
     return(
         <View style={{ flex: 1 }}>
 
-            <Text>Tipo de rota:</Text>
+            <Text allowFontScaling={false}>Tipo de rota:</Text>
             <Picker                
             selectedValue={selectedtyperote}
             onValueChange={(itemVal) => {
@@ -94,7 +94,7 @@ function ModalComponent (props) {
                     ))
           }
             </Picker>
-            <Text>Tipo de bike:</Text>
+            <Text allowFontScaling={false}>Tipo de bike:</Text>
             <Picker
             style={{bottom: 10}}
             selectedValue={selectedbike}
@@ -109,7 +109,7 @@ function ModalComponent (props) {
                }
 
              </Picker>
-             <Text style={{marginVertical: 20, marginLeft:5 }}>Estilo de encontro:</Text>
+             <Text allowFontScaling={false} style={{marginVertical: 20, marginLeft:5 }}>Estilo de encontro:</Text>
                             <Picker
                             style={{bottom: 10}}
                             selectedValue={selectedmeeting}
@@ -124,7 +124,7 @@ function ModalComponent (props) {
                                 }
                             </Picker>
                             
-                            <Text style={{marginVertical: 20, marginLeft:5 }}>Intensidade:</Text>
+                            <Text allowFontScaling={false} style={{marginVertical: 20, marginLeft:5 }}>Intensidade:</Text>
                             <Picker
                             style={{ marginVertical: 20, bottom: 25}}
                             selectedValue={selectedIntensify}
@@ -140,6 +140,7 @@ function ModalComponent (props) {
                             </Picker>
 
                             <TextInput
+                                allowFontScaling={false}
                                 style={{marginVertical: 20, marginLeft: 5, color:'black'}}
                                 placeholder='Título'
                                 placeholderTextColor='gray'
@@ -147,7 +148,7 @@ function ModalComponent (props) {
                             <Button title="Show modal" onPress={toggleModal} />
         <Modal style={{alignSelf: 'center'}} isVisible={isModalVisible}>
           <View style={{ width: 150, height: 150, backgroundColor: 'white', justifyContent:'center', alignItems:'center'}}>
-            <Text>MODAL BUCETUDO</Text>
+            <Text allowFontScaling={false}>MODAL</Text>
           </View>
         </Modal>
       </View>

@@ -93,10 +93,11 @@ const Login = ({navigation}) => {
             source = {require('../../assets/logoxd.png')}
             />    
             
-            <Text style ={{fontFamily:'Nunito_700Bold', top: height * 0.03}} fontSize = { height * 0.035 }>GROUP CYCLING</Text> 
+            <Text allowFontScaling={false} style ={{fontFamily:'Nunito_700Bold', top: height * 0.03}} fontSize = { height * 0.035 }>GROUP CYCLING</Text> 
         
         <View style={{top: height * 0.05}}>
             <TextInput
+            allowFontScaling={false}
             value={email}
             autoCapitalize='none'
             onChangeText = {txtEmail => onChangeEmail(txtEmail)}
@@ -122,6 +123,7 @@ const Login = ({navigation}) => {
             }
             /> 
             <TextInput label = 'Senha'
+            allowFontScaling={false}
             value={password}
             onChangeText = {txtPassword => onChangePassword(txtPassword)}
             autoCapitalize='none'
@@ -150,17 +152,19 @@ const Login = ({navigation}) => {
             
             <Button onPress={SignIn}  
                 style={{alignItems:'center', justifyContent:'center'}}>
-                <Text style={{fontFamily: 'Nunito_700Bold'}}
+                <Text allowFontScaling={false} style={{fontFamily: 'Nunito_700Bold'}}
                 color = { colors.backgroundLogin }
                 fontSize = { height * 0.018 }>ENTRAR</Text> 
             </Button >
             
             <TouchableOpacity style={{marginTop: height * 0.015}}  onPress={() => navigation.navigate('Register')} >
-                <Text texttransform = 'none'
+                <Text allowFontScaling={false} 
+                texttransform = 'none'
                 style={{fontFamily:'Nunito_400Regular'}}
                 fontSize = { height * 0.015 }>Não possui uma conta?
                 
-                <Text color={colors.primary}
+                <Text allowFontScaling={false} 
+                color={colors.primary}
                 fontSize = { height * 0.015 }
                 style={{fontFamily:'Nunito_800ExtraBold'}}
                 texttransform = 'none'
@@ -174,13 +178,13 @@ const Login = ({navigation}) => {
             <View style={{top: height * 0.02}}>
                 <Button height={height * 0.055} background={colors.facebookLogin} style={{alignItems:'center', justifyContent:'center', flexDirection: 'row'}}>
                     <Image style={{width: height * 0.04}} source={require('../../assets/facebooklogin.png')}/>
-                    <Text texttransform='none'  style={{fontFamily: 'Nunito_400Regular'}} color={colors.googleLogin} fontSize={height * 0.016}> Entre com o Facebook</Text>
+                    <Text allowFontScaling={false} texttransform='none'  style={{fontFamily: 'Nunito_400Regular'}} color={colors.googleLogin} fontSize={height * 0.016}> Entre com o Facebook</Text>
                 </Button>
                 <View style={{bottom: height * 0.04}}>
                     <Button height={height * 0.055} background={colors.googleLogin} style={{alignItems:'center', justifyContent:'center', flexDirection: 'row'}}>
                         <View style={{flexDirection:'row', right: height * 0.01}}>
                             <Image style={{width: height * 0.04}} source={require('../../assets/googlelogin.png')}/>
-                            <Text texttransform='none'  style={{fontFamily: 'Nunito_400Regular'}} color={colors.backgroundLogin} fontSize={height * 0.016}> Entre com o Google</Text>
+                            <Text allowFontScaling={false} texttransform='none'  style={{fontFamily: 'Nunito_400Regular'}} color={colors.backgroundLogin} fontSize={height * 0.016}> Entre com o Google</Text>
                         </View>
                     </Button>
                 </View>

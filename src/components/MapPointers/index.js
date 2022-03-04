@@ -50,9 +50,9 @@ const MapPointers = () => {
                     image={markerImage}
                     >
                     <Callout onPress={incrementValue}>
-                        <Text>{item.title}</Text>
-                        <Text>{item.description}</Text>
-                        <Text>Participantes: {counter}</Text>
+                        <Text allowFontScaling={false}>{item.title}</Text>
+                        <Text allowFontScaling={false}>{item.description}</Text>
+                        <Text allowFontScaling={false}>Participantes: {counter}</Text>
                     </Callout>
                         
                     </Marker>
