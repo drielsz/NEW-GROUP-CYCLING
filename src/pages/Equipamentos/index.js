@@ -1,6 +1,6 @@
 import React, {useState, componentDidMount} from 'react'; 
-import { View, Text, StyleSheet, Dimensions, TextInput, ScrollView, FlatList, Image, TouchableWithoutFeedback} from 'react-native';
-import SafeAreaView from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback} from 'react-native';
+import { FlatList, ScrollView} from 'react-native-gesture-handler';
 // Importando dimensões
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
@@ -23,7 +23,11 @@ function Equipamentos({props, navigation}) {
     // require('../../assets/BIKE-SCREEN2.png'),
     require('../../assets/QUADROBIKE.png'),
     require('../../assets/WOMAN01.png'),
-    // require('../../assets/WOMAN02.png'),   
+    // require('../../assets/WOMAN02.png'), 
+        // require('../../assets/BIKE-SCREEN2.png'),
+        require('../../assets/QUADROBIKE.png'),
+        require('../../assets/WOMAN01.png'),
+        // require('../../assets/WOMAN02.png'),   
   ])
 
 
@@ -32,7 +36,12 @@ function Equipamentos({props, navigation}) {
   const [clicked, setClicked] = useState(false);
   
   return(
-    <View sytle={styles.container}>
+          
+    <ScrollView
+    vertical
+    data={images}
+    showsVerticalScrollIndicator={false}
+    >
       
         {/* Icons */}
       <View style={styles.icons}>
@@ -63,13 +72,7 @@ function Equipamentos({props, navigation}) {
       </View>
 
         <ListaHorizontal data={data}/>
-      
-        <ScrollView
-        vertical
-        data={images}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{flexDirection:'row', flexWrap:'wrap', top: height * 0.005}}
-        >
+
         <FlatList 
         data={images}
         numColumns={2}
@@ -85,12 +88,8 @@ function Equipamentos({props, navigation}) {
           </TouchableWithoutFeedback>
      
         )}
-        />
-        </ScrollView>
-
-
-        
-    </View>
+        />      
+    </ScrollView>
   )
 }
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, TouchableOpacity, Dimensions, TouchableWithoutFeedback,SafeAreaView, Image as ImageR } from 'react-native';
+import { View, Text, TouchableOpacity, Dimensions, TouchableWithoutFeedback, Image as ImageR } from 'react-native';
 import { Container, Image, ViewImage, Dot, DotView, Arrow, MarginlANDr, Spacer,  Button, ViewHeart} from './styles'
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { FlatList, ScrollView} from 'react-native-gesture-handler';
 // Icones
 import { AntDesign } from '@expo/vector-icons'; 
 import Comments  from '../../../assets/Comments.png'
@@ -45,8 +45,8 @@ export default function Buy ({navigation, item, route}) {
     }
     // Fontes
         return(
-            <Container>
-                <ViewImage>
+            <ScrollView contentContainerstyle={{alignItems:'center', justifyContent:'center', flex: 1}}>
+              <ViewImage>
                     {/* Imagem recebendo route do que foi clicado na outra tela */}
                     <Image source={route.params.imageData} />
                 </ViewImage>
@@ -118,8 +118,6 @@ export default function Buy ({navigation, item, route}) {
 
                 </MarginlANDr>
                 
-            </Container>
+            </ScrollView>
         )
-    
-    }
-   
+}
