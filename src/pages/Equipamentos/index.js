@@ -1,4 +1,4 @@
-import React, {useState, componentDidMount} from 'react'; 
+import React, {useState, componentDidMount, useEffect} from 'react'; 
 import { View, Text, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback} from 'react-native';
 import { FlatList, ScrollView} from 'react-native-gesture-handler';
 // Importando dimensões
@@ -15,29 +15,118 @@ import FastImage from 'react-native-fast-image'
 // 
 import { data } from './data'
 
-function Equipamentos({props, navigation}) {
-  
-  const [ images, setimages] = React.useState([
-    require('../../assets/FEED08.png'),
-    require('../../assets/MENSCREEN.png'),
-    require('../../assets/BIKE-SCREEN2.png'),
-    require('../../assets/QUADROBIKE.png'),
-    require('../../assets/WOMAN01.png'),
-    require('../../assets/WOMAN02.png'), 
-    require('../../assets/BIKE-SCREEN2.png'),
-    require('../../assets/QUADROS.png'),   
-  ])
-
+function Equipamentos({props, navigation}) {  
 
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
   const [clicked, setClicked] = useState(false);
-  
+  // Array de backup
+  const [originalImages, setOriginalImages] = useState([
+    {
+      id: 1,
+      name: 'specialized',
+      image: require('../../assets/FEED08.png'),
+    },
+    {
+      id: 2,
+      name: 'menscreen',
+      image: require('../../assets/MENSCREEN.png'),
+    },
+    {
+      id: 3,
+      name: 'quadro',
+      image:  require('../../assets/BIKE-SCREEN2.png'),
+    },
+    {
+      id: 4,
+      name: 'quadro-specialized',
+      image:  require('../../assets/QUADROBIKE.png'),
+    },
+    {
+      id: 5,
+      name: 'mulher-bike',
+      image:   require('../../assets/WOMAN01.png'),
+    },
+    {
+      id: 6,
+      name: 'mulher',
+      image:   require('../../assets/WOMAN02.png'), 
+    },
+    {
+      id: 7,
+      name: 'bike',
+      image:   require('../../assets/BIKE-SCREEN2.png'),
+    },
+    {
+      id: 8,
+      name: 'quadros',
+      image:   require('../../assets/QUADROS.png'),   
+    }
+  ])
+  // Array original
+  const [ images, setimages] = React.useState([
+    {
+      id: 1,
+      name: 'specialized',
+      image: require('../../assets/FEED08.png'),
+    },
+    {
+      id: 2,
+      name: 'menscreen',
+      image: require('../../assets/MENSCREEN.png'),
+    },
+    {
+      id: 3,
+      name: 'quadro',
+      image:  require('../../assets/BIKE-SCREEN2.png'),
+    },
+    {
+      id: 4,
+      name: 'quadro-specialized',
+      image:  require('../../assets/QUADROBIKE.png'),
+    },
+    {
+      id: 5,
+      name: 'mulher-bike',
+      image:   require('../../assets/WOMAN01.png'),
+    },
+    {
+      id: 6,
+      name: 'mulher',
+      image:   require('../../assets/WOMAN02.png'), 
+    },
+    {
+      id: 7,
+      name: 'bike',
+      image:   require('../../assets/BIKE-SCREEN2.png'),
+    },
+    {
+      id: 8,
+      name: 'quadros',
+      image:   require('../../assets/QUADROS.png'),   
+    }
+  ])
+
+
+  // useEffect(() => {
+  //   fetch(images)
+  //   .then((response) => response.json())
+  //   .then((json) => {
+  //     setOriginalImages(json)
+  //     setimages(json)
+  //   })
+  // },[])
+
+  function search (s) {
+    var arr = JSON.parse(JSON.stringify(originalImages))
+    setimages(arr.filter(d => d.name.includes(s)))
+  }
+
   return(
           
     <ScrollView
     vertical
-    data={images}
+    
     showsVerticalScrollIndicator={false}
     >
       
@@ -61,6 +150,8 @@ function Equipamentos({props, navigation}) {
         <TextInput 
           placeholder='Pesquisar'
           style={styles.input}
+          onChangeText={(s) => search(s)}
+          autoCapitalize='none'
         />
       </View>
         <View style={styles.text}>
@@ -77,10 +168,10 @@ function Equipamentos({props, navigation}) {
         numColumns={2}
         renderItem={({item, index}) => (
           <TouchableWithoutFeedback onPress={() => setClicked(item, navigation.navigate('Buy', {
-            imageData: item
+            imageData: item.image
           }))}>
                  <Image 
-                  source={item}
+                  source={item.image}
                   resizeMode={'cover'}
                   key={index}
                   style={{width: width/2, height: height * 0.3, margin: height * 0.0016, right: height * 0.005}}/>

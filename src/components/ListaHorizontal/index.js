@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { FlatList, View, Dimensions, Image, ScrolLView } from 'react-native';
 
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
 
 const ListaHorizontal = ({data}) => {
+
+    // Images
     const [ images, setimages] = useState([
         require('../../assets/FEED01.png'),
         require('../../assets/FEED02.png'),
@@ -14,9 +16,9 @@ const ListaHorizontal = ({data}) => {
         require('../../assets/FEED09.png'),
         require('../../assets/FEED07.png'),
     ])
-
     const CARD_WIDTH = width * 0.8 - 20
     const CARD_HEIGHT = height / 3.9
+
 
     return(
         <FlatList
