@@ -22,6 +22,7 @@ export const UserInfoSection = styled.View`
 export const Title = styled(TitlePaper)`
     font-size: ${(props) => props.fontSize || height *  0.022};
     font-weight: ${(props) =>(props.bold ? 'bold' : 'normal')};
+    font-family: ${(props => props.fontfamily || 'Nunito_700Bold')};
 `
 
 export const Paragraph = styled(ParagraphPaper)`

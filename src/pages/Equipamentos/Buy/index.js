@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, TouchableOpacity, Dimensions, FlatList, ScrollView, TouchableWithoutFeedback, Image as ImageR } from 'react-native';
+import { View, Text, TouchableOpacity, Dimensions, TouchableWithoutFeedback,SafeAreaView, Image as ImageR } from 'react-native';
 import { Container, Image, ViewImage, Dot, DotView, Arrow, MarginlANDr, Spacer,  Button, ViewHeart} from './styles'
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 // Icones
 import { AntDesign } from '@expo/vector-icons'; 
 import Comments  from '../../../assets/Comments.png'
@@ -43,13 +44,6 @@ export default function Buy ({navigation, item, route}) {
         setHeartClicked(!heartClicked)
     }
     // Fontes
-    let [fontsLoaded] = useFonts({
-        Roboto_700Bold, 
-        Roboto_300Light
-    })
-    if (!fontsLoaded) {
-        return <AppLoading/>
-    } else{
         return(
             <Container>
                 <ViewImage>
@@ -71,8 +65,8 @@ export default function Buy ({navigation, item, route}) {
                     </MarginlANDr>
                     {/* Informaçoes do produto */}
                     <MarginlANDr style={{position:'absolute', top: height * 0.369}}>
-                            <Text style={{fontFamily:'Roboto_700Bold'}}>Tarmac SL7 Comp 2022</Text> 
-                            <Text style={{fontFamily:'Roboto_300Light'}}>R$ 48.000,00</Text>      
+                            <Text style={{fontFamily:'Nunito_700Bold'}}>Tarmac SL7 Comp 2022</Text> 
+                            <Text style={{fontFamily:'Nunito_300Light'}}>R$ 48.000,00</Text>      
                     </MarginlANDr>
                     {/* Parte para >>> a foto */}
                     <Arrow>
@@ -80,6 +74,7 @@ export default function Buy ({navigation, item, route}) {
                             {/* <AntDesign name="arrowright" size={24} color="black" /> */}
                         </TouchableOpacity>
                     </Arrow>
+
                {/* DotView para a imagem */}
                 {/* <DotView style={{bottom: height * 0.050}}>
                     <Dot/>
@@ -96,30 +91,35 @@ export default function Buy ({navigation, item, route}) {
                 {/* Parte dos produtos relacionados */}
                 <MarginlANDr style={{marginTop: height * 0.090}}>
                     <Text style={{bottom: height * 0.005, fontFamily: 'Roboto_700Bold'}}>Produtos relacionados</Text>
-                <View style={{flexGrow:1}}>
-                    <FlatList 
-                        data={images}
-                        numColumns={2}
-                        contentContainerStyle={{flex:0}}
-                        nestedScrollEnabled={true}
-                        renderItem={({item, index}) => (
-                    <TouchableWithoutFeedback onPress={() => setClicked(item)}>
-                            <Image 
-                            source={item}
-                            resizeMode={'cover'}
-                            key={index}
-                            style={{width: width/2.3, height: height * 0.2, 
-                            margin: height * 0.002, right: height * 0.005}}/>
-                            
-                    </TouchableWithoutFeedback>
-                    )}
-                    />
-                </View>
+                    {/* @Adrielly ORIGINAL */}
+                
+
+
+                    <View>
+                        <ScrollView scrollEnabled>
+                            <FlatList
+                            data={images}
+                            numColumns={2}
+                            nestedScrollEnabled
+                            renderItem={({item, index}) => (
+                                <TouchableWithoutFeedback>
+                                    <Image
+                                        source={item}
+                                        resizeMode={'cover'}
+                                        key={index}
+                                        style={{width: width / 2.3, height: height * 0.2,
+                                        margin: height * 0.002, right: height * 0.005}}
+                                    />
+                                </TouchableWithoutFeedback>
+                            )}
+                            />
+                        </ScrollView>
+                    </View>
+
                 </MarginlANDr>
                 
             </Container>
         )
     
-    }
     }
    

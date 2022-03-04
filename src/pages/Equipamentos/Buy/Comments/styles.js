@@ -50,6 +50,7 @@ export const TextComment = styled.Text`
     marginLeft: ${(props) => props.left || height * 0.012}
     top: ${(props) => props.top || height * 0.012};
     color: ${(props) => props.color || colors.replyfromComments}
+    font-family: ${(props) => props.fontFamily || 'Nunito_400Regular'}
 `
 export const TextNameProfileComment = styled.Text`
     color: ${(props) => props.color || colors.namefromComments}
@@ -58,4 +59,5 @@ export const TextNameProfileComment = styled.Text`
     bottom: ${(props) => props.bottom || height * 0.06};
     margin-left: ${(props) => props.left || height * 0.115}
     position: absolute;
+    font-family: ${(props) => props.fontFamily || 'Nunito_700Bold'}
 `

@@ -1,5 +1,6 @@
 import React, {useState, componentDidMount} from 'react'; 
 import { View, Text, StyleSheet, Dimensions, TextInput, ScrollView, FlatList, Image, TouchableWithoutFeedback} from 'react-native';
+import SafeAreaView from 'react-native-safe-area-context';
 // Importando dimensões
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
@@ -56,7 +57,7 @@ function Equipamentos({props, navigation}) {
         />
       </View>
         <View style={styles.text}>
-          <Text style={{textAlign:'left'}}>
+          <Text style={{textAlign:'left', fontFamily:'Nunito_700Bold'}}>
             Em Destaque
           </Text>
       </View>
@@ -122,7 +123,8 @@ const styles= StyleSheet.create({
   },
   input:{
     marginLeft: height * 0.02,
-    color: '#A4A4A4'
+    color: '#A4A4A4',
+    fontFamily: 'Nunito_700Bold'
   },
   icons:{
     flexDirection: 'row',

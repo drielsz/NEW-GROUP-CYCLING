@@ -162,7 +162,7 @@ const Login = ({navigation}) => {
                 
                 <Text color={colors.primary}
                 fontSize = { height * 0.015 }
-                style={{fontFamily:'Nunito_700Bold'}}
+                style={{fontFamily:'Nunito_800ExtraBold'}}
                 texttransform = 'none'
                 borderBottomWidth = { height * 0.002 }> Cadastre-se aqui.</Text> 
                 </Text>

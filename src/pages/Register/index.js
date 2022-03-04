@@ -133,14 +133,14 @@ export default function Register ({navigation}) {
                     }  style={{alignItems:'center', justifyContent:'center'}}>
                     
                     <Text style = {
-                        { fontFamily: 'Nunito_900Black' }
+                        { fontFamily: 'Nunito_700Bold' }
                     }
                     color = { colors.backgroundLogin }
                     fontSize = { height * 0.018 }>CADASTRAR-SE</Text> 
                 </Button >
                 <TouchableOpacity style={{top: height * 0.02    }} onPress={() => navigation.navigate('Login')}>
-                    <Text texttransform='none' fontSize={height * 0.015} >Já possui uma conta?
-                    <Text texttransform='none' fontSize={height * 0.015} color={colors.primary} style={{fontFamily:'Nunito_900Black'}}> Faça o login aqui.</Text></Text>
+                    <Text texttransform='none' style={{fontFamily: 'Nunito_400Regular'}} fontSize={height * 0.015} >Já possui uma conta?
+                    <Text texttransform='none' fontSize={height * 0.015} color={colors.primary} style={{fontFamily:'Nunito_800ExtraBold'}}> Faça o login aqui.</Text></Text>
                 </TouchableOpacity>
 
                </View>

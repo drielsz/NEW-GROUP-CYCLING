@@ -79,8 +79,7 @@ export function DrawerContent(props, state) {
                                 flexDirection: 'column'
                                 }}>
                                     <Title>{name}</Title>
-                                    <Caption>
-                                        @drielsz</Caption>
+                                    <Caption>@drielsz</Caption>
                                 </View>
                             </View>
 
