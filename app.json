@@ -2,6 +2,7 @@
   "expo": {
     "name": "GROUP-CYCLING",
     "slug": "GROUP-CYCLING",
+    "userInterfaceStyle": "automatic",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

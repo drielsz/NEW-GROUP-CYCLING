@@ -11,7 +11,8 @@ import MyCarousel from '../MyCarousel';
 import EditProfile from '../../assets/EditProfile.png';
 import Lines from '../../assets/Lines.png';
 import {Ionicons} from '@expo/vector-icons';
-
+// Images 
+import background from '../../assets/backgroundPerfil.png'
 // Pegando as dimensões da tela
 var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
@@ -41,7 +42,7 @@ function Perfil({navigation, props}) {
     getUser()
   }, [])
   return(
-      <PrimaryView>
+      <PrimaryView source={background} style={{width: '100%', height: '25%'}}>
 
       <View style={{left: width /1.52, top: height * 0.013}}>
         <View style={styles.circle}>
@@ -85,10 +86,7 @@ function Perfil({navigation, props}) {
                   margin={height * 0.003}
                   >
                   {email}</Text>
-          
-          
-
-
+   
             <View style={styles.container}>
               <TouchableOpacity style={styles.button}>
                       <Text02 allowFontScaling={false} color={colors.namebutton} 

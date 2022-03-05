@@ -4,7 +4,7 @@ import React from 'react';
 import {View, Dimensions, Text, Image, StyleSheet} from 'react-native';
 // Safe area View, responsavel por os componentes dentro do aplicativo em lugares seguros, ou seja, não deixar um texto no topo
 // em cima de alguma coisa.
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from './styles'
 // Degrade;
 import { LinearGradient } from 'expo-linear-gradient';
 // Scroll View responsavel por scrollar;

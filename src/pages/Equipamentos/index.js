@@ -1,15 +1,13 @@
 import React, {useState, componentDidMount, useEffect} from 'react'; 
-import { View, Text, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback} from 'react-native';
-import { FlatList, ScrollView} from 'react-native-gesture-handler';
+import { View, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 // Importando dimensões
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
-// Icones
-import { Feather, Entypo, FontAwesome5, Ionicons  } from "@expo/vector-icons";
 // import
 import ListaHorizontal from '../../components/ListaHorizontal';
 // Importando estilos
-import { Container, MyBox } from './styles';
+import {ScrollView, Text, Feather, Entypo, FontAwesome5, Ionicons} from './styles';
 // import FastImage
 import FastImage from 'react-native-fast-image'
 // 
@@ -126,17 +124,16 @@ function Equipamentos({props, navigation}) {
           
     <ScrollView
     vertical
-    
     showsVerticalScrollIndicator={false}
     >
       
         {/* Icons */}
       <View style={styles.icons}>
         <View style={styles.heart}>
-            <FontAwesome5 name="heart" size={25} color="black" />
+            <FontAwesome5 name="heart" size={25}/>
           </View>
           <View>
-            <Ionicons name="reorder-three-outline" size={27} color="black" />
+            <Ionicons name="reorder-three-outline" size={27} />
             </View>
         </View>
       <View style={ !clicked ? styles.searchBar__unclicked : styles.searchBar__clicked }>

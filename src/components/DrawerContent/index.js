@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { View, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 // Drawer 
 import { 
     DrawerContentScrollView,
     DrawerItem
 }  from '@react-navigation/drawer';
 // Importando as cores
-import { colors } from '../../styles/colors';
+import { colors, LabelColor } from '../../styles/colors';
 // Pegando as dimensões da tela
 var width = Dimensions.get('window').width; 
 var height = Dimensions.get('window').height
@@ -18,19 +18,22 @@ import {
     UserInfoSection,
     Title,
     Paragraph,
-    Caption
+    Caption,
+    Entypo,
+    Octicons,
+    Icons,
+    MaterialCommunityIcons,
+    Text,
+    Image,
+    Line
 } from './styles'
 // Importando do react native paper
 import {
     Avatar,
     Drawer,
-    Text,
     TouchableRipple,
-    Switch
+    Switch,
 } from 'react-native-paper';
-// Import Icon
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import {  Entypo, Octicons, MaterialCommunityIcons  } from '@expo/vector-icons'
 // API
 import { useAuth } from '../../contexts/auth';
 import {api} from '../../services/axios'
@@ -110,103 +113,136 @@ export function DrawerContent(props, state) {
                         <Drawer.Section style={styles.drawerSection}>
                             {/* Home */}
                                 <DrawerItem 
-                                icon={({color, size}) => (
-                                    <Entypo name='home' size={size} color={color}/>
-                                ) }      
-                                label='Início'
+                                icon={({color, size, props}) => (
+                                    <>
+                                        <Entypo name='home' size={size}/>
+                                        <Text>Ínicio</Text> 
+                                    </>
+                                )}      
+                                label=''
                                 onPress={() => {}}
                                 />
                             {/* Pedal */}
                                 <DrawerItem 
                                 icon={({color, size}) => (
-                                    <Octicons name='location' size={size} color={color}/>
+                                    <>
+                                        <Octicons name='location' size={size} style={{}} />
+                                        <Text style={{marginLeft: height * 0.035}}>Pedal</Text> 
+                                    </>
                                 ) }      
-                                label='Pedal'
+                                label=''
                                 onPress={() => {}}
                                 />
                             {/* Equipamentos */}
                                 <DrawerItem 
                                 icon={({color, size}) => (
+                                    <>
                                     <Image
-                                    source={require('../../assets/Equipaments.png')}
-                                    style={{
-                                        tintColor: color,
-                                        width: size,
-                                        height: size,
-                                    }}
-                                    />
+                                        source={require('../../assets/Equipaments.png')}
+                                        style={{
+                                            tintColor: color,
+                                            width: size,
+                                            height: size,
+                                        }}
+                                        />
+                                     <Text>Equipamentos</Text> 
+                                    </>
+                           
                                 ) }      
-                                label='Equipamentos'
+                                label=''
                                 onPress={() => {}}
                                 />
                             {/* Wish List */}
                                 <DrawerItem 
-                                icon={({color, size}) => (
-                                    <Icon 
-                                        name='heart-outline' 
-                                        color={color}
-                                        size={size}
-                                    />
+                                    icon={({color, size}) => (
+                                        <>
+                                        <Icons 
+                                            name='heart-outline' 
+                                            color={color}
+                                            size={size}
+                                        />
+                                        <Text>Wish List</Text>
+                                        </>
                                 ) }      
-                                label='Wish list'
+                                label=''
                                 onPress={() => {}}
                                 />
                             {/* Configurações */}
                                 <DrawerItem 
                                 icon={({color, size}) => (
-                                    <Icon 
+                                    <>
+                                    <Icons 
                                         name='cog-outline' 
                                         color={color}
                                         size={size}
                                     />
+                                    <Text>Configurações</Text>
+                                    </>
+                                   
                                 ) }      
-                                    label='Configurações'
+                                 
+                                    label=''
                                     onPress={() => {}}
                                     />
                             {/* Suporte */}
                                 <DrawerItem 
                                 icon={({color, size}) => (
-                                    <Icon 
+                                    <>
+                                     <Icons 
                                         name='account-check-outline' 
                                         color={color}
                                         size={size}
                                     />
+                                    <Text>Suporte</Text>
+                                    </>
+                                   
                                 ) }      
-                                label='Suporte'
+                                label=''
                                 onPress={() => {}}
                                 />
                             {/*  */}
-
+                            <View style={{borderBottomColor: '#f4f4f4', borderBottomWidth: height * 0.001}}/>
                         </Drawer.Section>
                     </View>
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>
-                    <DrawerItem
+                    {/* <DrawerItem
                         icon={({color, size}) => (
-                            <MaterialCommunityIcons name="theme-light-dark" size={size} color={color} />
+                            <>
+                                <MaterialCommunityIcons name="theme-light-dark" size={size} color={color} />
+                                <Text>Dark Theme</Text>
+                            </>
+                            
                             
                         )}
-                          label='Dark Theme'
+                          label=''
                           onPress={() => {}}  
-                    />
-                    <Switch  style={{position: 'absolute', alignSelf:'flex-end'}}/>
+                    /> */}
+                    {/* <Switch  style={{position: 'absolute', alignSelf:'flex-end'}}/> */}
                     <DrawerItem 
                         icon={({color, size}) => (
-                            <Icon 
+                            <>
+                            <Icons 
                                 name='exit-to-app' 
                                 color={color}
                                 size={size}
                             />
+                            <Text>Sair</Text>
+                            </>
                         ) }      
-                        label='Sair'
+                        label=''
                         onPress={handleSignOut}
                         />
+                    <View style={{borderBottomColor: '#f4f4f4', borderBottomWidth: height * 0.001}}/>
             </Drawer.Section>
         </Container>
     )
 }
 
 const styles= StyleSheet.create ({
+    locatorViewContainer: (props) => {
+        borderColor: props.theme.color
+    },  
     caption:{
         fontSize:height * 0.014,
         lineHeight: height * 0.014,
@@ -219,14 +255,16 @@ const styles= StyleSheet.create ({
     section:{
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: height * 0.015,
+        marginRight: height * 0.015
     },
     paragraph:{
         fontWeight: 'bold',
         marginRight: height * 0.003,
     },
     drawerSection:{
-        marginTop: height * 0.015,
+        marginTop: height * 0.05,
+        borderTopColor: '#f4f4f4',
+        borderTopWidth: height * 0.001
     },
     bottomDrawerSection:{
         marginBottom: height * 0.015,

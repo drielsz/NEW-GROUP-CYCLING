@@ -13,6 +13,6 @@ import { SafeAreaView as SafeAreaContext } from 'react-native-safe-area-context'
 // Vou utilizar bastante props, para caso se quiser mudar a cor, ou algo do tipo, é fácil de acessar e mudar, O Safe Area View vai ser o container do projeto
 export const SafeAreaView = styled(SafeAreaContext)`
     flex:1;
-    background: ${(props) => props.bg || colors.backgroundComments}
+    background-color: ${(props) => props.bg || props.theme.background}
 
 `

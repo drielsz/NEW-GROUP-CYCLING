@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, TextInput, Image, TouchableOpacity } from 'react-native'; 
-import { Container, ViewEmoji, ViewComments, ViewBack, ViewAvatar, TextComment, TextNameProfileComment } from './styles';
-// Icones
-import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
+import { View, StyleSheet, Dimensions, TextInput, Image, TouchableOpacity } from 'react-native'; 
+import { Container, ViewEmoji, ViewComments, ViewBack, ViewAvatar, TextComment, TextNameProfileComment, Text, Ionicons, AntDesign, Entypo } from './styles';
+// 
 import Emoji01 from '../../../../assets/Emoji02.png';
 import Emoji02 from '../../../../assets/Emoji01.png';
 import AvatarImage from '../../../../assets/Avatar.jpg';
@@ -32,9 +31,9 @@ export default function Comments () {
                 />
             <View style={{flexDirection:'row', marginRight: height * 0.015}}>
                 {/* Emojis */}
-               <Entypo name="emoji-flirt" size={height * 0.030} style={{left: width * 0.56}} color="black" />
+               <Entypo name="emoji-flirt" size={height * 0.030} style={{left: width * 0.56}}  />
                 {/* Enviar mensagem */}
-               <Ionicons name="send" size={height * 0.030} style={{left: width * 0.6}} color="black" />
+               <Ionicons name="send" size={height * 0.030} style={{left: width * 0.6}} />
 
             </View>
             </View>

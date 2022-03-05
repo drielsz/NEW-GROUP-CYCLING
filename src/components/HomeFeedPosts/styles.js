@@ -14,41 +14,41 @@ import { SafeAreaView as SafeAreaContext } from 'react-native-safe-area-context'
 export const SafeAreaView = styled(SafeAreaContext)`
     flex:10;
     align-items: center;
-    background: ${(props) => props.bg || '#FDFDFD'} 
+    background: ${(props) => props.bg || props.theme.background} 
 `
 
 export const ImageBackground = styled(ImageReactNative) `
-    width: ${(props) => props.width || width}
+    width: ${(props) => props.width || width};
     height: ${(props) => props.height || height * 0.42}
 `
 
 export const Image = styled(ImageReact)`
-    width: ${(props) => props.size || height * 0.070}
-    height: ${(props) => props.size || height * 0.070}
-    border-radius: ${(props) => props.radius || height * 0.050}
-    left: ${(props) => props.left || height * 0.030}
+    width: ${(props) => props.size || height * 0.070};
+    height: ${(props) => props.size || height * 0.070};
+    border-radius: ${(props) => props.radius || height * 0.050};
+    left: ${(props) => props.left || height * 0.030};
     top: ${(props) => props.top || height * -0.034}
 `
 
 export const ViewIcons = styled.View`
-    background: ${(props) => props.bg || '#FDFDFD'}
-    width: ${(props) => props.size || height * 0.25}
-    height: ${(props) => props.size || height * 0.06}
-    top: ${(props) => props.top || height * 0.32}
-    left: ${(props) => props.left || height * 0.18}
-    border-radius: ${(props) => props.radius || height * 0.03}
+    background: ${(props) => props.bg || '#FDFDFD'};
+    width: ${(props) => props.size || height * 0.25};
+    height: ${(props) => props.size || height * 0.06};
+    top: ${(props) => props.top || height * 0.32};
+    left: ${(props) => props.left || height * 0.18};
+    border-radius: ${(props) => props.radius || height * 0.03};
     justify-content: space-between;
     align-items: center;
     justify-content: center;
     margin-horizontal: ${(props) => props.horizontal || 0}
 `
 export const ViewReport = styled.View`
-    background: ${(props) => props.bg || colors.backgroundComments}
-    width: ${(props) => props.size || height * 0.06}
-    height: ${(props) => props.size || height * 0.1}
-    border-radius: ${(props) => props.radius || height * 0.03}
-    left: ${(props) => props.left || height * 0.44}
-    top: ${(props) => props.top || height * 0.09}
+    background: ${(props) => props.bg || colors.backgroundComments};
+    width: ${(props) => props.size || height * 0.06};
+    height: ${(props) => props.size || height * 0.1};
+    border-radius: ${(props) => props.radius || height * 0.03};
+    left: ${(props) => props.left || height * 0.44};
+    top: ${(props) => props.top || height * 0.09};
     align-items: center;
     justify-content: center;
 `

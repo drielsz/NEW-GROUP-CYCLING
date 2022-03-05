@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const colors = {
   // Principais cores
     primary: "#FF914D",
@@ -23,5 +25,9 @@ export const colors = {
     gray: '#DDD',
     backgroundLogin: '#3B2F47',
     facebookLogin: '#1778F2',
-    googleLogin: "#F5F5F5"
+    googleLogin: "#F5F5F5",
   };
+
+export const LabelColor = (props) => {
+    primaryLabel: props.theme.color 
+}

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, TouchableOpacity, Dimensions, TouchableWithoutFeedback, Image as ImageR } from 'react-native';
-import { Container, Image, ViewImage, Dot, DotView, Arrow, MarginlANDr, Spacer,  Button, ViewHeart} from './styles'
-import { FlatList, ScrollView} from 'react-native-gesture-handler';
+import { View, TouchableOpacity, Dimensions, TouchableWithoutFeedback, Image as ImageR } from 'react-native';
+import { Container, Image, ViewImage, Dot, DotView, Arrow, MarginLeftRight, Spacer,  Button, ViewHeart, ScrollView, Text} from './styles'
+import { FlatList} from 'react-native-gesture-handler';
 // Icones
 import { AntDesign } from '@expo/vector-icons'; 
 import Comments  from '../../../assets/Comments.png'
@@ -51,7 +51,7 @@ export default function Buy ({navigation, item, route}) {
                     <Image source={route.params.imageData} />
                 </ViewImage>
                     {/* Area de marcar como preferido e comentar sobre o produto  */}
-                    <MarginlANDr style={{bottom: height * 0.402}}>
+                    <MarginLeftRight style={{bottom: height * 0.402}}>
                         <ViewHeart style={{position:'absolute'}}>
                             <TouchableOpacity onPress={() => favoriteHeart()}>
                                 <AntDesign name={heartClicked ? 'hearto' : 'heart'} size={height * 0.032} color={heartClicked ? colors.blind : colors.red} style={{right: height * 0.01}}/>
@@ -62,12 +62,12 @@ export default function Buy ({navigation, item, route}) {
                             </TouchableOpacity>
 
                         </ViewHeart>
-                    </MarginlANDr>
+                    </MarginLeftRight>
                     {/* Informaçoes do produto */}
-                    <MarginlANDr style={{position:'absolute', top: height * 0.369}}>
+                    <MarginLeftRight style={{position:'absolute', top: height * 0.369}}>
                             <Text allowFontScaling={false} style={{fontFamily:'Nunito_700Bold'}}>Tarmac SL7 Comp 2022</Text> 
                             <Text allowFontScaling={false} style={{fontFamily:'Nunito_300Light'}}>R$ 48.000,00</Text>      
-                    </MarginlANDr>
+                    </MarginLeftRight>
                     {/* Parte para >>> a foto */}
                     <Arrow>
                         <TouchableOpacity>
@@ -89,7 +89,7 @@ export default function Buy ({navigation, item, route}) {
                 </Button>
 
                 {/* Parte dos produtos relacionados */}
-                <MarginlANDr style={{marginTop: height * 0.090}}>
+                <MarginLeftRight style={{marginTop: height * 0.090}}>
                     <Text allowFontScaling={false} style={{bottom: height * 0.005, fontFamily: 'Roboto_700Bold'}}>Produtos relacionados</Text>
                     {/* @Adrielly ORIGINAL */}
                 
@@ -116,7 +116,7 @@ export default function Buy ({navigation, item, route}) {
                         </ScrollView>
                     </View>
 
-                </MarginlANDr>
+                </MarginLeftRight>
                 
             </ScrollView>
         )

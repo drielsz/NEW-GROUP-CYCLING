@@ -24,9 +24,9 @@ var width = Dimensions.get("window").width;
 import { StatusBar } from 'expo-status-bar';
 const RedeSocial =  ({navigation}) => {
     return (
-      <SafeAreaView style={{backgroundColor: '#FDFDFD'}}>
+      <SafeAreaView>
           <StatusBar mode='dark'/>
-          <InstaStories/>
+          {/* <InstaStories/> */}
           <HomeFeedPosts/>
       </SafeAreaView>
     );
