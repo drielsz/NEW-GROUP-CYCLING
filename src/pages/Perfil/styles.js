@@ -8,7 +8,8 @@ var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
 
 export const PrimaryView = styled.ImageBackground.attrs(props => ({
-    resizeMode: props.mode || 'cover',
+    resizeMethod: props.method || 'scale',
+    resizeMode: props.mode || 'stretch',
 }))`
     /* background-color: ${(props) => props.background || colors.primary} */
 `;

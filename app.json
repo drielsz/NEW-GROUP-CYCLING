@@ -2,6 +2,14 @@
   "expo": {
     "name": "GROUP-CYCLING",
     "slug": "GROUP-CYCLING",
+    "plugins" : [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O aplicativo acessa suas fotos para permitir que você as compartilhe com seus amigos."
+        }
+      ]
+    ],
     "userInterfaceStyle": "automatic",
     "version": "1.0.0",
     "assetBundlePatterns": [

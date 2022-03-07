@@ -1,5 +1,5 @@
 import React, {useState, componentDidMount, useEffect} from 'react'; 
-import { View, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback} from 'react-native';
+import { View, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback, Animated} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 // Importando dimensões
 var width = Dimensions.get('window').width;
@@ -7,14 +7,31 @@ var height = Dimensions.get('window').height;
 // import
 import ListaHorizontal from '../../components/ListaHorizontal';
 // Importando estilos
-import {ScrollView, Text, Feather, Entypo, FontAwesome5, Ionicons} from './styles';
+import {ScrollView, Text, Feather, Entypo, FontAwesome5, Ionicons, Header} from './styles';
 // import FastImage
 import FastImage from 'react-native-fast-image'
 // 
 import { data } from './data'
 
-function Equipamentos({props, navigation}) {  
+function Equipamentos({navigation}) {  
+  // Scroll Animation
+  let AnimatedHeaderValue = new Animated.Value(0)
+  const Header_Max_Height = 110 // Max Height of the Header
+  const Header_Min_Height = 50// Min Height of the Header
 
+  const animateHeaderBackgroundColor = AnimatedHeaderValue.interpolate({
+    inputRange: [0, Header_Max_Height - Header_Min_Height],
+    outputRange: ['transparent', 'transparent'],
+    extrapolate: 'clamp'
+  })
+
+  const animatedHeaderHeight = AnimatedHeaderValue.interpolate({
+    inputRange: [0, Header_Max_Height - Header_Min_Height],
+    outputRange: [Header_Max_Height, Header_Min_Height],
+    extrapolate: 'clamp'
+  })
+
+  // Search
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
   const [clicked, setClicked] = useState(false);
@@ -50,59 +67,45 @@ function Equipamentos({props, navigation}) {
       name: 'mulher',
       image:   require('../../assets/WOMAN02.png'), 
     },
-    {
-      id: 7,
-      name: 'bike',
-      image:   require('../../assets/BIKE-SCREEN2.png'),
-    },
-    {
-      id: 8,
-      name: 'quadros',
-      image:   require('../../assets/QUADROS.png'),   
-    }
   ])
   // Array original
-  const [ images, setimages] = React.useState([
+  const [ images, setimages] = useState([
     {
       id: 1,
-      name: 'specialized',
+      name: 'Specialized SL7 Comp 2022',
+      price: '50.000,00',
       image: require('../../assets/FEED08.png'),
     },
     {
       id: 2,
-      name: 'menscreen',
+      name: 'Macacão bicisport',
+      price: '250,00',
       image: require('../../assets/MENSCREEN.png'),
     },
     {
       id: 3,
-      name: 'quadro',
+      name: 'Quadro Specialized',
+      price: '349,00',
       image:  require('../../assets/BIKE-SCREEN2.png'),
     },
     {
       id: 4,
-      name: 'quadro-specialized',
+      name: 'Mountain Bike Specialized 2022',
+      price: '3500,00',
       image:  require('../../assets/QUADROBIKE.png'),
     },
     {
       id: 5,
-      name: 'mulher-bike',
+      name: 'Capacete Specialized',
+      price: '950,00',
       image:   require('../../assets/WOMAN01.png'),
     },
     {
       id: 6,
-      name: 'mulher',
+      name: 'Sapatilha Specialized',
+      price: '650,00',
       image:   require('../../assets/WOMAN02.png'), 
     },
-    {
-      id: 7,
-      name: 'bike',
-      image:   require('../../assets/BIKE-SCREEN2.png'),
-    },
-    {
-      id: 8,
-      name: 'quadros',
-      image:   require('../../assets/QUADROS.png'),   
-    }
   ])
 
 
@@ -125,40 +128,55 @@ function Equipamentos({props, navigation}) {
     <ScrollView
     vertical
     showsVerticalScrollIndicator={false}
+    scrollEventThrottle={16}
+    onScroll={Animated.event(
+      [{nativeEvent: {contentOffset: {y: AnimatedHeaderValue}}}],
+      {useNativeDriver: false}
+    )}
     >
-      
         {/* Icons */}
-      <View style={styles.icons}>
-        <View style={styles.heart}>
-            <FontAwesome5 name="heart" size={25}/>
+    <Animated.View style={[styles.header, {
+      height: animatedHeaderHeight,
+      backgroundColor: animateHeaderBackgroundColor
+    }]}>
+        <View style={styles.icons}>
+          <View style={styles.heart}>
+              <FontAwesome5 name="heart" size={25}/>
           </View>
-          <View>
-            <Ionicons name="reorder-three-outline" size={27} />
+            <View>
+              <Ionicons name="reorder-three-outline" size={27} />
             </View>
         </View>
-      <View style={ !clicked ? styles.searchBar__unclicked : styles.searchBar__clicked }>
-        {/* Search */}
-        <Feather
-          name="search"
-          size={20}
-          color="#A4A4A4"
-          style={{ marginLeft: 1 }}
-        />
-        <TextInput 
-          allowFontScaling={false}
-          placeholder='Pesquisar'
-          style={styles.input}
-          onChangeText={(s) => search(s)}
-          autoCapitalize='none'
-        />
-      </View>
+        <View style={styles.searchBar__unclicked}>
+          {/* Search */}
+          <Feather
+            name="search"
+            size={20}
+            color="#A4A4A4"
+            style={{ marginLeft: 1 }}
+          />
+          <TextInput 
+            allowFontScaling={false}
+            placeholder='Pesquisar'
+            style={styles.input}
+            onChangeText={(s) => search(s)}
+            autoCapitalize='none'
+          />
+        </View>
+    </Animated.View>
+
         <View style={styles.text}>
           <Text allowFontScaling={false} style={{textAlign:'left', fontFamily:'Nunito_700Bold'}}>
             Em Destaque
           </Text>
       </View>
 
-        <ListaHorizontal data={data}/>
+
+        <ListaHorizontal 
+      
+        onPress={item => navigation.navigate('Buy', {
+          imageData: item.image
+        })}/>
 
         <FlatList 
         keyExtractor={item => String(item)}
@@ -166,13 +184,18 @@ function Equipamentos({props, navigation}) {
         numColumns={2}
         renderItem={({item, index}) => (
           <TouchableWithoutFeedback onPress={() => setClicked(item, navigation.navigate('Buy', {
-            imageData: item.image
+            imageData: item.image,
+            imageTitle: item.name,
+            imagePrice: item.price
           }))}>
                  <Image 
                   source={item.image}
-                  resizeMode={'cover'}
+                  fadeDuration={400}
+                  loadingIndicatorSource
+                  progressiveRenderingEnabled
+                  resizeMethod='scale'
                   key={index}
-                  style={{width: width/2, height: height * 0.3, margin: height * 0.0016, right: height * 0.005}}/>
+                  style={{width: width/2, height: height * 0.3, margin: height * 0.0016}}/>
           </TouchableWithoutFeedback>
      
         )}
@@ -197,16 +220,6 @@ const styles= StyleSheet.create({
     borderRadius: height * 0.015,
     alignItems: "center",
     top: height * 0.015,
-  },
-  searchBar__clicked:{
-    padding: height * 0.010,
-    flexDirection: "row",
-    width: width - 20,
-    backgroundColor: "#EFEFEF",
-    borderRadius: height * 0.015,
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    top: height * 0.015
   },
   input:{
     marginLeft: height * 0.02,

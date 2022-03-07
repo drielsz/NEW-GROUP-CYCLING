@@ -1,186 +1,229 @@
-import React from 'react';
-// Importações normais
-import {View, Text, Dimensions, StyleSheet, Image, TouchableOpacity} from 'react-native';
-// Se as fontes não forem carregadas:
-import AppLoading from 'expo-app-loading';
-// Fontes
-import {useFonts, Nunito_700Bold} from '@expo-google-fonts/nunito';
-// Icones
-import {Feather, MaterialCommunityIcons} from '@expo/vector-icons'; 
-// Cor
-import {colors} from '../../../styles/colors'
-// Styles Global
-import {ImageProfile} from '../../../styles'
-// Pegando as dimensões da tela
-var height = Dimensions.get('window').height
-var width = Dimensions.get('window').width
+import React, { useState, useEffect } from 'react';
+import { Button, View, TouchableOpacity, Image, Dimensions, StyleSheet, Platform, ImageBackground, TextInput } from 'react-native';
+import { ImageProfile } from '../../../styles';
+import * as ImagePicker from 'expo-image-picker';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import {Title, Caption, Avatar, Text, TouchableRipple} from 'react-native-paper'
 
-export default function EditProfile ({navigation}) {
-    // Se as fontes não forem carregadas..
-    let [fontsLoaded] = useFonts({
-        Nunito_700Bold
-    })
-    if (!fontsLoaded) {
-        return <AppLoading/>
-    }else{
-        // Se forem carregadas:
-    return(
-        <View style={styles.container}>
-            {/* Parte de cima */}
-            <View style={styles.head}>
-                {/* Parte onde destina o usuario a tela anterior */}
-                <View style={styles.circle}>
-                  <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                    <Feather name="arrow-left" size={height * 0.04} color={colors.secondary} />
-                  </TouchableOpacity>
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Feather from 'react-native-vector-icons/Feather'
+
+import BottomSheet from 'reanimated-bottom-sheet'
+import Animated from 'react-native-reanimated';
+
+import { colors } from '../../../styles/colors';
+
+const {width, height} = Dimensions.get('window')
+
+export default function EditProfile() {
+  const [image, setImage] = useState(null);
+  
+ 
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };    
+
+   function RenderInner()  {
+       return(
+           <View style={styles.panel}>
+               <View style={{alignItems:'center'}}>
+                <Text style={styles.panelTitle}>
+                    Atualizar a foto
+                </Text>
+                <Text style={styles.panelSubtitle}>
+                    Escolha sua miniatura de perfil
+                </Text>
+               </View>
+               <TouchableOpacity style={styles.panelButtom}>
+                   <Text style={styles.panelButtomTitle}>Tirar Uma Foto</Text>
+               </TouchableOpacity>
+               <TouchableOpacity style={styles.panelButtom} onPress={pickImage}>
+                   <Text style={styles.panelButtomTitle}>Escolher Da Galeria</Text>
+               </TouchableOpacity>
+               <TouchableOpacity style={styles.panelButtom} onPress={() => bs.current.snapTo(1)}>
+                   <Text style={styles.panelButtomTitle}>Cancelar</Text>
+               </TouchableOpacity>
+           </View>
+       )
+   }
+
+
+  function RenderHeader  ()  {
+      return (
+        <View style={styles.header}>
+            <View style={styles.panelHeader}>
+                <View style={styles.panelHandle}>
+                    
                 </View>
-
-
-                    <Text allowFontScaling={false} style={styles.textH}>Editar seu perfil</Text>
-            </View>
-
-            {/* Parte de baixo */}
-            <View>
-                <ImageProfile margin={height * 0.040625} source={require('../../../assets/Perfil-picture.png')}/>
-
-                {/* Zona que permite o usuario trocar a imagem de perfil*/}
-                <View style={styles.circleEdit}>
-                    <Feather name="edit" size={height * 0.0275} color={colors.secondary}/>
-                </View>
-
-                <View style={styles.viewN}>
-                    <Text allowFontScaling={false} style={styles.textN}>Adriel Laurentino</Text>
-                    {/* Linha em baixo do nome */}
-                        <View style={styles.line}/>
-                </View>
-
-            </View>
-            {/* Informações básicas */}
-            <View style={styles.viewBasic}>
-                <Text allowFontScaling={false} style={styles.textInfo}>Informações básicas</Text>
-                <View style={styles.lineinfo}/>
-            <View style={styles.resultName}>
-                    <Text allowFontScaling={false} style={styles.textoCinza}>Nome:<Text style={{color: 'black'}}> Adriel Laurentino de Oliveira</Text></Text>
-            </View>
-                <View style={styles.resultData}>
-                    <Text allowFontScaling={false} style={styles.textoCinza}>Data de Nascimento:<Text style={{color: 'black'}}> 18/11/2004</Text></Text>
-                </View>
-            </View>
-
-            {/* Informações Privadas */}
-            <View style={styles.viewPrivate}>
-                <Text allowFontScaling={false} style={styles.textInfo}>Informações privadas</Text>
-                <View style={styles.lineinfo}/>
-            <View style={styles.resultName}>
-                    <Text allowFontScaling={false} style={styles.textoCinza}>E-mail:<Text style={{color: 'black'}}> adriellaurentino4@gmail.com</Text></Text>
-            </View>
-                <View style={styles.resultData}>
-                    <Text allowFontScaling={false} style={styles.textoCinza}>Estado:<Text style={{color: 'black'}}> Rio grande do Norte</Text><Text>  Cidade:</Text><Text style={{color: 'black'}}> Mossoró</Text></Text>
-                    <Text allowFontScaling={false} style={{top: height * 0.022, color: colors.cinzaEditProfile}}>Telefone:<Text style={{color: 'black'}}> (84) 9 88065971</Text></Text>
-                </View>
-                
             </View>
         </View>
-    )
+      )
 }
+
+  var bs = React.createRef()
+
+  var fall = new Animated.Value(1)
+
+  return (
+    <SafeAreaView style={styles.container}>
+        <BottomSheet 
+            ref={bs}
+            snapPoints={[330, 0]}
+            renderContent={RenderInner}
+            renderHeader={RenderHeader}
+            initialSnap={1}
+            callbackNode={fall}
+            enabledGestureInteraction
+        />
+        <Animated.View style={{margin: 20, opacity: Animated.add(0.5, Animated.multiply(fall, 1.0))}}>
+            <View style={{alignItems:'center'}}>
+                <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
+                    <View style={styles.viewStyle}>
+                        <ImageBackground
+                            source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ6xHwZck5v7nMjMdmZ4sOWDbaIl29HGVnBw&usqp=CAU'}}
+                            style={{width: 100, height: 100}}
+                            imageStyle={{borderRadius:15}}
+                        >
+                        <View style={styles.viewCameraIcon}>
+                            <Icon name="camera" size={35} color="#FFF" style={styles.styleCameraIcon}/>
+                        </View>
+                        </ImageBackground>
+                    </View>
+                </TouchableOpacity>
+                <Text style={styles.textName}>Adriel Laurentino</Text>
+            </View>
+            <View style={{top: 55}}>
+                <View style={styles.action}>
+                    <FontAwesome name="user-o" size={20} style={{marginTop: 3}}/>
+                    <TextInput placeholder='Nome' placeholderTextColor='#666666' style={styles.textinput} autoCorrect={false} />
+                </View>
+                <View style={styles.action}>
+                    <FontAwesome name="envelope-o" size={20} style={{marginTop: 3}}/>
+                    <TextInput placeholder='Email' keyboardType='email-address' placeholderTextColor='#666666' style={styles.textinput} autoCorrect={false} />
+                </View>
+            </View>
+            <TouchableOpacity style={styles.commandButton}>
+                <Text style={styles.panelButtomTitle}>Atualizar os dados</Text>
+            </TouchableOpacity>
+        </Animated.View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        top: height * 0.02
-    },
-    head:{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems:'center',
-        marginTop: height * 0.050625,
-    },
-    circle: {
-        alignItems:'center',
-        justifyContent:'center',
-        position:'absolute',
-        backgroundColor: colors.primary,
-        width: height * 0.065625,
-        height: height * 0.065625,
-        borderRadius: height * 0.065625,
-        right: width * 0.8
-    },
-    circleEdit: {
-        alignItems:'center',
-        justifyContent:'center',
-        position:'absolute',
-        backgroundColor: colors.primary,
-        width: height * 0.055625,
-        height: height * 0.055625,
-        borderRadius: height * 0.065625,
-        right: width * 0.333,
-        top: height * 0.15,
-        // Sombras
-        shadowColor: colors.tertiary,
-        shadowOffset: {
-            width: 0,
-            height: 12,
-        },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        
-        elevation: 16,
-    },
-    textH:{
-        textAlign:'center',
-        fontSize: height * 0.02125,
-        color: colors.tertiary,
-        fontFamily: 'Nunito_700Bold'
-    },
-    textN:{
-        textAlign:'center',
-        fontSize: width * 0.075,
-        color: colors.tertiary,
-        fontFamily: 'Nunito_700Bold',
-    },
-    viewN:{
-        bottom: height * 0.02,
-    },
-    line:{
-        alignSelf: 'center',
-        borderBottomColor: colors.primary,
-        borderBottomWidth: width * 0.005,
-        width: height * 0.336,
-        position: 'relative',
-        bottom: height * 0.008
-    },
-
-    // lineinfo:{
-    //     alignSelf: 'stretch',
-    //     borderBottomColor: colors.primary,
-    //     borderBottomWidth: width * 0.005,
-    //     width: height * 0.245,
-    //     position: 'relative',
-    //     bottom: height * 0.004
-    // },
-
-    viewBasic:{
-        justifyContent: 'flex-start',
-        padding: width * 0.05,
-        top: height * 0.04,
-    },
-    viewPrivate:{
-        justifyContent: 'flex-start',
-        padding: width * 0.05,
-        top: height * 0.0529,
-    },
-    textInfo:{
-        fontSize: height * 0.02425,
-        fontFamily: 'Nunito_700Bold',
-    },
-    resultName:{
-        top: height * 0.0159
-    },
-    resultData:{
-        top: height * 0.039999
-    },
-    textoCinza:{
-        color: colors.cinzaEditProfile
-    }
+textName:{
+    marginTop: 10,
+    fontSize: 18,
+    fontWeight:'bold'
+},
+viewCameraIcon:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center'
+},
+styleCameraIcon:{
+    opacity: 0.7,
+    alignItems:'center',
+    justifyContent:'center',
+    borderWidth: 1,
+    borderColor: '#fff',
+    borderRadius: 10,
+},
+viewStyle:{
+    height:100,
+    width: 100,
+    borderRadius:15,
+    justifyContent:'center',
+    alignItems:'center'
+},  
+container: {
+    flex:1,
+    backgroundColor: '#fafafa'
+},
+commandButton: {
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    marginTop: 100
+},
+panel: {
+    padding: 20,
+    backgroundColor: '#FFFFFF',
+    paddingTop: 20,
+},
+header:{
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#333333',
+    shadowOffset: {width: -1, height: -3},
+    shadowRadius: 2,
+    shadowOpacity: 0.4
+},
+panelHeader:{
+    alignItems:'center'
+},
+panelHandle:{
+    width: 40,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#00000040',
+    marginBottom: 10
+},
+panelTitle:{
+    fontSize: 27,
+    height: 35,
+},
+panelSubtitle:{
+    fontSize:14,
+    color:'gray',
+    height: 30,
+    marginBottom: 10
+},
+panelButtom:{
+    padding: 13,
+    borderRadius: 10,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    marginVertical: 7,
+},
+panelButtomTitle:{
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'white'
+},
+action:{
+    flexDirection:'row',
+    marginTop: 10,
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F2F2F2',
+    paddingBottom: 5,
+},
+actionError:{
+    flexDirection:'row',
+    marginTop: 10,
+    borderBottomWidth:1,
+    borderBottomColor: '#FF0000',
+    paddingBottom:5
+},
+textinput:{
+    flex:1,
+    // marginTop: Platform.OS === 'ios' ? 0 : -12,
+    paddingLeft: 20,
+    color:  '#05375a'
+}
 })

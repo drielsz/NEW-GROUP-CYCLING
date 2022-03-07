@@ -27,7 +27,7 @@ const RedeSocial =  ({navigation}) => {
       <SafeAreaView>
           <StatusBar mode='dark'/>
           {/* <InstaStories/> */}
-          <HomeFeedPosts/>
+          {/* <HomeFeedPosts/> */}
       </SafeAreaView>
     );
 }

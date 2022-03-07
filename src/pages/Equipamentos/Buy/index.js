@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { View, TouchableOpacity, Dimensions, TouchableWithoutFeedback, Image as ImageR } from 'react-native';
+import React, {useState, useEffect, useCallback} from 'react';
+import { View, TouchableOpacity, Dimensions, TouchableWithoutFeedback, Image as ImageR, RefreshControl} from 'react-native';
 import { Container, Image, ViewImage, Dot, DotView, Arrow, MarginLeftRight, Spacer,  Button, ViewHeart, ScrollView, Text} from './styles'
 import { FlatList} from 'react-native-gesture-handler';
 // Icones
@@ -18,9 +18,22 @@ import {
     Roboto_300Light
 } from '@expo-google-fonts/roboto'
 
+const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout))
+}
 
 export default function Buy ({navigation, item, route}) {
-    const [ images, setimages]= useState([
+    // Scroll
+    const [position, setPosition] = useState(0)
+    
+    // Mudar a cor do coração
+    const [heartClicked, setHeartClicked] = useState(false);
+
+    const favoriteHeart = () => {
+        setHeartClicked(!heartClicked)
+    }
+
+    const [ images, setimages ] = useState([
         require('../../../assets/FEED08.png'),
         require('../../../assets/QUADROBIKE.png'),
         require('../../../assets/WOMAN02.png'),
@@ -29,23 +42,19 @@ export default function Buy ({navigation, item, route}) {
         require('../../../assets/FEED09.png'),
         require('../../../assets/FEED02.png'),
         require('../../../assets/FEED04.png'),
+        require('../../../assets/QUADROS.png'),
+        require('../../../assets/FEED09.png'),
+        require('../../../assets/FEED02.png'),
+        require('../../../assets/FEED04.png'),
       ])
-
-    // Randomizar imagens
-    const changeImage = () => {
-        const randomNumber = Math.floor(Math.random() * item.length);
+    
+    const handleScroll = (event) => {
+        var positionX = event.nativeEvent.contentOffset.x;
+        var positionY = setPosition(positionY = event.nativeEvent.contentOffset.y);
     }
-    // Clickado ou não?
-    const [ clicked, setClicked]= useState()
-    // Mudar a cor do coração
-    const [heartClicked, setHeartClicked] = useState(false);
-
-    const favoriteHeart = () => {
-        setHeartClicked(!heartClicked)
-    }
-    // Fontes
+    console.log(position)
         return(
-            <ScrollView contentContainerstyle={{alignItems:'center', justifyContent:'center', flex: 1}}>
+            <ScrollView contentContainerstyle={{alignItems:'center', justifyContent:'center', flex: 1}} onScroll={handleScroll}>
               <ViewImage>
                     {/* Imagem recebendo route do que foi clicado na outra tela */}
                     <Image source={route.params.imageData} />
@@ -65,8 +74,8 @@ export default function Buy ({navigation, item, route}) {
                     </MarginLeftRight>
                     {/* Informaçoes do produto */}
                     <MarginLeftRight style={{position:'absolute', top: height * 0.369}}>
-                            <Text allowFontScaling={false} style={{fontFamily:'Nunito_700Bold'}}>Tarmac SL7 Comp 2022</Text> 
-                            <Text allowFontScaling={false} style={{fontFamily:'Nunito_300Light'}}>R$ 48.000,00</Text>      
+                            <Text allowFontScaling={false} style={{fontFamily:'Nunito_700Bold'}}>{route.params.imageTitle}</Text> 
+                            <Text allowFontScaling={false} style={{fontFamily:'Nunito_300Light'}}>R$ {route.params.imagePrice}</Text>      
                     </MarginLeftRight>
                     {/* Parte para >>> a foto */}
                     <Arrow>
@@ -84,16 +93,14 @@ export default function Buy ({navigation, item, route}) {
                 </DotView> */}
 
                 {/* Adicionar ao carrinho */}
-                <Button style={{top: height * 0.04}}>
-                    <Text allowFontScaling={false}  style={{color: colors.secondary, fontFamily:'Roboto_700Bold'}}>Adicionar ao carrinho</Text>
-                </Button>
+            
+                    <Button style={{top: height * 0.04}}>
+                        <Text allowFontScaling={false}  style={{color: colors.secondary, fontFamily:'Roboto_700Bold'}}>Adicionar ao carrinho</Text>
+                    </Button> 
 
                 {/* Parte dos produtos relacionados */}
                 <MarginLeftRight style={{marginTop: height * 0.090}}>
                     <Text allowFontScaling={false} style={{bottom: height * 0.005, fontFamily: 'Roboto_700Bold'}}>Produtos relacionados</Text>
-                    {/* @Adrielly ORIGINAL */}
-                
-
 
                     <View>
                         <ScrollView scrollEnabled>
@@ -102,7 +109,12 @@ export default function Buy ({navigation, item, route}) {
                             numColumns={2}
                             nestedScrollEnabled
                             renderItem={({item, index}) => (
-                                <TouchableWithoutFeedback>
+                                <TouchableWithoutFeedback onPress={() => setTimeout(() => {
+                                    item,
+                                    navigation.navigate('Buy', {
+                                        imageData: item
+                                    })
+                                }, 350)}>
                                     <Image
                                         source={item}
                                         resizeMode={'cover'}
@@ -117,7 +129,7 @@ export default function Buy ({navigation, item, route}) {
                     </View>
 
                 </MarginLeftRight>
-                
+
             </ScrollView>
         )
 }

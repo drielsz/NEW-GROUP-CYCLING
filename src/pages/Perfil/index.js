@@ -42,7 +42,7 @@ function Perfil({navigation, props}) {
     getUser()
   }, [])
   return(
-      <PrimaryView source={background} style={{width: '100%', height: '25%'}}>
+      <PrimaryView source={background} style={{width: width}}>
 
       <View style={{left: width /1.52, top: height * 0.013}}>
         <View style={styles.circle}>

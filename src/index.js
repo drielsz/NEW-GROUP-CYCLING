@@ -12,13 +12,13 @@ import themes from './styles/themes'
 export default function Navigation () {
   // dark, ligth, null, undefined
   const deviceTheme = useColorScheme()
-
   const theme = themes[deviceTheme] || theme.ligth
+
   return(
         <NavigationContainer>
           <AuthProvider>
             <ThemeProvider theme={theme}>
-              <StatusBar style="light" backgroundColor='transparent' />
+              <StatusBar style="light"/>
               <RoutesAuth/>
             </ThemeProvider>
           </AuthProvider>

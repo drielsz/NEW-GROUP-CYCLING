@@ -1,24 +1,53 @@
 import React, {useState, useEffect} from 'react';
-import { FlatList, View, Dimensions, Image, ScrolLView } from 'react-native';
+import { FlatList, View, Dimensions, Image, ScrolLView, TouchableWithoutFeedback } from 'react-native';
 
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
 
-const ListaHorizontal = ({data}) => {
-
+function ListaHorizontal ({onPress, style, navigation}) {
+    const [clicked, setClicked] = useState()
     // Images
     const [ images, setimages] = useState([
-        require('../../assets/FEED01.png'),
-        require('../../assets/FEED02.png'),
-        require('../../assets/FEED03.png'),
-        require('../../assets/FEED04.png'),
-        require('../../assets/FEED06.png'),
-        require('../../assets/FEED09.png'),
-        require('../../assets/FEED07.png'),
+        {
+            id: 1,
+            name: 'Specialized SL7 Comp 2022',
+            price: '50.000,00',
+            image: require('../../assets/FEED01.png'),
+          },
+          {
+            id: 2,
+            name: 'Macacão bicisport',
+            price: '250,00',
+            image: require('../../assets/FEED02.png'),
+          },
+          {
+            id: 3,
+            name: 'Quadro Specialized',
+            price: '349,00',
+            image:  require('../../assets/FEED03.png'),
+          },
+          {
+            id: 4,
+            name: 'Mountain Bike Specialized 2022',
+            price: '3500,00',
+            image:  require('../../assets/FEED04.png'),
+          },
+          {
+            id: 5,
+            name: 'Capacete Specialized',
+            price: '950,00',
+            image:    require('../../assets/FEED06.png'),
+          },
+          {
+            id: 6,
+            name: 'Sapatilha Specialized',
+            price: '650,00',
+            image:   require('../../assets/FEED09.png'), 
+          },
     ])
+
     const CARD_WIDTH = width * 0.8 - 20
     const CARD_HEIGHT = height / 3.9
-
 
     return(
         <FlatList
@@ -31,19 +60,19 @@ const ListaHorizontal = ({data}) => {
             horizontal
             showsHorizontalScrollIndicator={false}
             snapToAlignment='center'
-            renderItem={({item, index, separators}) => 
-        <Image 
-            source={item}
-            key={index}
-            resizeMode='cover'
-            style={{
-                height: CARD_HEIGHT, 
-                width: CARD_WIDTH,
-                margin: height * 0.0016
-                // borderRadius: height * 0.012
-        }}/>}
+            renderItem={({index, item}) => (
+                <>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('Buy', {imageData: item.image})}>
+                    <Image
+                        source={item.image}
+                        key={index}
+                        resizeMode='cover'
+                        style={{height: CARD_HEIGHT, width: CARD_WIDTH, margin: height * 0.0016}} 
+                    />
+                </TouchableWithoutFeedback>
+                </>
+            )}
         />
-
     )
 }
 

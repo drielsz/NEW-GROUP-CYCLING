@@ -12,6 +12,7 @@ import {Title as TitlePaper, Paragraph as ParagraphPaper, Caption as CaptionPape
 // 
 import {  Entypo as EntypoProps, Octicons as OcticonsProps, MaterialCommunityIcons as MaterialCommunityIconsProps  } from '@expo/vector-icons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
 export const Container = styled.View`
     background-color: ${props => props.theme.background};
     flex: 1;

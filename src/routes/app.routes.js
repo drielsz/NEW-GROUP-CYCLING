@@ -10,6 +10,7 @@ import Buy from '../../src/pages/Equipamentos/Buy';
 import Comments from '../../src/pages/Equipamentos/Buy/Comments';
 import Feed from '../../src/pages/Feed';
 import InstaStories from '../components/InstaStories';
+import ListaHorizontal from '../components/ListaHorizontal'
 
 const AppStack = createStackNavigator()
 
@@ -20,9 +21,11 @@ const AppRoutes = React.FC = () => (
         <AppStack.Screen name='InstaStories' component={InstaStories} options={{headerShown:false}} />
         <AppStack.Screen name='Perfil' component={Perfil} options={{haderShown:false}}/>
         <AppStack.Screen name="Map" component={Map} options={{headerShown: false}}/>
-        <AppStack.Screen name='EditProfile' component={EditProfile} options={{headerShown: false}} />
+        <AppStack.Screen name='EditProfile' component={EditProfile} 
+        options={{headerShown: true, title:'Edite o seu Perfil', headerTitleAlign:'center', headerStyle:{backgroundColor:'#FAFAFA'}}} />
         <AppStack.Screen name='Buy' component={Buy} options={{headerShown: false}} />
         <AppStack.Screen name='Comments' component={Comments} options={{headerShown: false}} />
+        <AppStack.Screen name ='ListaHorizontal' component={ListaHorizontal} options={{headerShown: false}} />
     </AppStack.Navigator>
 )
 

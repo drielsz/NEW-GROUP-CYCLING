@@ -9,6 +9,11 @@ import {ScrollView as ScrollViewGesture} from 'react-native-gesture-handler';
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height
 
+export const Header = styled.View`
+
+`
+
+
 export const ScrollView = styled(ScrollViewGesture)`
     flex:1;
     background-color: ${props => props.theme.background};
