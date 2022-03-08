@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, View, TouchableOpacity, Image, Dimensions, StyleSheet, Platform, ImageBackground, TextInput } from 'react-native';
+import { Button, View, TouchableOpacity, Image, Dimensions, StyleSheet, Platform, ImageBackground, TextInput, Alert } from 'react-native';
 import { ImageProfile } from '../../../styles';
 import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -13,13 +13,36 @@ import BottomSheet from 'reanimated-bottom-sheet'
 import Animated from 'react-native-reanimated';
 
 import { colors } from '../../../styles/colors';
-
+// API AsyncStorage
+import {api} from '../../../services/axios'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Firebase from "firebase"
+import { firebaseConfig } from '../../../services/firebase';
 const {width, height} = Dimensions.get('window')
 
 export default function EditProfile() {
+
+  const [ name, setName ] = useState('')
+  const [ email, setEmail ] = useState('')
   const [image, setImage] = useState(null);
+  const [uploading, setUploading] = useState(false)
+  const [transferred, setTransferred] = useState(0)
   
- 
+  // Pegar o nome e email do usuario
+  const getUser = async () => {
+    const response = await api.get("user-info", { headers : {
+     "X-access-token" : await AsyncStorage.getItem("token")
+    }}).then(response => {
+      setName(response.data.name)
+      setEmail(response.data.email) 
+      console.log(name, email)
+    }).catch(err => {
+      console.log(err);
+    })
+}
+useEffect(() => {
+    getUser()
+  }, [])
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -30,12 +53,12 @@ export default function EditProfile() {
       quality: 1,
     });
 
-    console.log(result);
+    console.log(result.cancelled);
 
     if (!result.cancelled) {
       setImage(result.uri);
-    }
-  };    
+    };    
+  }
 
    function RenderInner()  {
        return(
@@ -75,9 +98,11 @@ export default function EditProfile() {
 }
 
   var bs = React.createRef()
-
   var fall = new Animated.Value(1)
 
+  function ShowBottomSheet() {
+        bs.current.snapTo(0)
+  }
   return (
     <SafeAreaView style={styles.container}>
         <BottomSheet 
@@ -91,8 +116,18 @@ export default function EditProfile() {
         />
         <Animated.View style={{margin: 20, opacity: Animated.add(0.5, Animated.multiply(fall, 1.0))}}>
             <View style={{alignItems:'center'}}>
-                <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
+                <TouchableOpacity onPress={ShowBottomSheet}>
                     <View style={styles.viewStyle}>
+                        {image ?  
+                        <ImageBackground
+                            source={{uri: image}}
+                            style={{width: 100, height: 100}}
+                            imageStyle={{borderRadius:15}}
+                        >
+                        <View style={styles.viewCameraIcon}>
+                            <Icon name="camera" size={35} color="#FFF" style={styles.styleCameraIcon}/>
+                        </View>
+                        </ImageBackground> :   
                         <ImageBackground
                             source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ6xHwZck5v7nMjMdmZ4sOWDbaIl29HGVnBw&usqp=CAU'}}
                             style={{width: 100, height: 100}}
@@ -101,22 +136,23 @@ export default function EditProfile() {
                         <View style={styles.viewCameraIcon}>
                             <Icon name="camera" size={35} color="#FFF" style={styles.styleCameraIcon}/>
                         </View>
-                        </ImageBackground>
+                        </ImageBackground>}
                     </View>
                 </TouchableOpacity>
-                <Text style={styles.textName}>Adriel Laurentino</Text>
+                <Text style={styles.textName}>{name}</Text>
+                <Caption>{email}</Caption>
             </View>
             <View style={{top: 55}}>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" size={20} style={{marginTop: 3}}/>
-                    <TextInput placeholder='Nome' placeholderTextColor='#666666' style={styles.textinput} autoCorrect={false} />
+                    <TextInput placeholder='Nome' placeholderTextColor='#666666' style={styles.textinput} autoCorrect={false} onChangeText={text => setName(text)} />
                 </View>
                 <View style={styles.action}>
                     <FontAwesome name="envelope-o" size={20} style={{marginTop: 3}}/>
-                    <TextInput placeholder='Email' keyboardType='email-address' placeholderTextColor='#666666' style={styles.textinput} autoCorrect={false} />
+                    <TextInput placeholder='Email' keyboardType='email-address' placeholderTextColor='#666666' style={styles.textinput} autoCorrect={false} onChangeText={text => setEmail(text)} autoCapitalize='none'/>
                 </View>
             </View>
-            <TouchableOpacity style={styles.commandButton}>
+            <TouchableOpacity style={styles.commandButton} >
                 <Text style={styles.panelButtomTitle}>Atualizar os dados</Text>
             </TouchableOpacity>
         </Animated.View>

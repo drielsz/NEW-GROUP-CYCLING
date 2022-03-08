@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "188926700002",
+    "project_id": "group-cycling-firebase-image",
+    "storage_bucket": "group-cycling-firebase-image.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188926700002:android:1a660badb80c8d34b7b1bb",
+        "android_client_info": {
+          "package_name": "com.groupcyclingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188926700002-fgnnp1ao7uc8h6t523hlv5jcnqto2m46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4O6VanQbqOGKD_99TcebRhu8GJPg-A3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188926700002-fgnnp1ao7uc8h6t523hlv5jcnqto2m46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

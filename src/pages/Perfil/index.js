@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Dimensions, TouchableOpacity, Text as Text02, Image as ImageIconTopBar} from 'react-native';
-import AppLoading from 'expo-app-loading';
-import {useFonts, Roboto_500Medium, Roboto_700Bold, Roboto_300Light,Roboto_900Black} from '@expo-google-fonts/roboto'
 // Styles do Perfil:
 import {AnotherView, PrimaryView, Text} from './styles';
 // Styles Global:
@@ -66,7 +64,7 @@ function Perfil({navigation, props}) {
       </View>
       
           <AnotherView style={styles.anotherView}>
-                <ImageProfile source={require('../../assets/Perfil-picture.png')}/>
+                <ImageProfile source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ6xHwZck5v7nMjMdmZ4sOWDbaIl29HGVnBw&usqp=CAU'}}/>
 
                 {/* <View style={{position: 'absolute', left: height * 0.08, top: height * -0.0255}}>  
                   <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>254
