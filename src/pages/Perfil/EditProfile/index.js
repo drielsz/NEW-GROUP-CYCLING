@@ -75,13 +75,28 @@ export default function EditProfile() {
       aspect: [4, 3],
       quality: 1,
     });
-
     console.log(result.cancelled);
-
     if (!result.cancelled) {
-      setImage(result.uri);
+      setImage(result.uri); 
     }
   };
+
+  var data = new FormData();
+
+  const PostImage = async () => {
+    console.log(`===${image}===`)
+    data.append('images', image)
+    console.log(data)
+    const response = await api.post("send-image", data, { headers : {
+       "Content-Type": "multipart/form-data",
+    }}).then (async (response) => {
+        console.log('Sucesso')
+    }).catch ((error) => {
+        console.log(error.response)
+    }
+    )
+}
+
 
   const handleProgress = (event) => {
     setUploading(Math.round((event.loaded * 100) / event.total));
@@ -229,7 +244,7 @@ export default function EditProfile() {
             />
           </View>
         </View>
-        <TouchableOpacity style={styles.commandButton} onPress={{}}>
+        <TouchableOpacity style={styles.commandButton} onPress={PostImage}>
           <Text style={styles.panelButtomTitle}>Atualizar os dados</Text>
         </TouchableOpacity>
       </Animated.View>

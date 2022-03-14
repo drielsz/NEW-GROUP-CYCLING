@@ -75,14 +75,14 @@ export function DrawerContent(props, state) {
                     <View>
                         <UserInfoSection>
                             <View style={{flexDirection: 'row', marginTop: 15}}>
-                                <Avatar.Image source={require('../../assets/Perfil-picture.png')}
+                                <Avatar.Image source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ6xHwZck5v7nMjMdmZ4sOWDbaIl29HGVnBw&usqp=CAU'}}
                                 
                                 />
                                 <View style={{marginLeft: 15,
                                 flexDirection: 'column'
                                 }}>
                                     <Title allowFontScaling={false}>{name}</Title>
-                                    <Caption allowFontScaling={false}>@drielsz</Caption>
+                                    <Caption allowFontScaling={false}>@</Caption>
                                 </View>
                             </View>
 
