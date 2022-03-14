@@ -25,8 +25,6 @@ export const Text = styled.Text `
     align-self: ${(props) => props.alignSelf || 'center'};
     margin-bottom: ${(props) => props.marginBottom || '0'};
     margin-right: ${(props) => props.marginRight || '0'};
-    borderBottomColor: ${(props) => props.borderBottomColor || colors.borderbottom};
-    borderBottomWidth: ${props => props.borderBottomWidth || '0px'};
 `
 
 

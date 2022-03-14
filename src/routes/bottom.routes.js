@@ -72,7 +72,7 @@ export default function BottomRoutes({props}) {
                                 borderTopColor: colors.transparent,
                                 paddingBottom: height * 0.005,
                                 paddingTop: height * 0.007,
-                                height: width * 0.13,
+                                height: width * 0.12,
                             }
                         }}
                         tabBarOptions={{
@@ -94,7 +94,7 @@ export default function BottomRoutes({props}) {
                     )}}/> */}
 
                     <Tab.Screen name='Equipamentos' component={Equipamentos} options={{headerShown:false, tabBarIcon: ({size, color}) => (
-                        <Image source={EQUIPAMENTS} style={{width: size, height: size, tintColor: color}}/>
+                        <AntDesign name="shoppingcart" size={size} color={color} />
                     )}}/>
 
                     <Tab.Screen name='Perfil' component={DrawerNavigator} options={{headerShown:false, tabBarIcon: ({size, color}) => (

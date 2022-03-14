@@ -18,7 +18,7 @@ export default function Navigation () {
         <NavigationContainer>
           <AuthProvider>
             <ThemeProvider theme={theme}>
-              <StatusBar style="light"/>
+              <StatusBar style="auto"/>
               <RoutesAuth/>
             </ThemeProvider>
           </AuthProvider>

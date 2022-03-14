@@ -14,10 +14,8 @@ export const colors = {
     replyfromComments: '#A7A6A7',
     name101010: '#101010',
     desc: '#a4a4a4',
-  //
     transparent: 'transparent',
     colorButtom: 'rgba(31, 29, 36, 95)',
-  // 
     borderbottom: '#FF9052',
     namebutton: "#444444",
     blind: '#FFFFFF',

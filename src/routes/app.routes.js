@@ -8,6 +8,7 @@ import Perfil from '../../src/pages/Perfil';
 import EditProfile from '../../src/pages/Perfil/EditProfile';
 import Buy from '../../src/pages/Equipamentos/Buy';
 import Comments from '../../src/pages/Equipamentos/Buy/Comments';
+import ItensToCart from '../../src/pages/Equipamentos/ItensToCart'
 import Feed from '../../src/pages/Feed';
 import InstaStories from '../components/InstaStories';
 import ListaHorizontal from '../components/ListaHorizontal'
@@ -25,7 +26,8 @@ const AppRoutes = React.FC = () => (
         options={{headerShown: true, title:'Edite o seu Perfil', headerTitleAlign:'center', headerStyle:{backgroundColor:'#FAFAFA'}}} />
         <AppStack.Screen name='Buy' component={Buy} options={{headerShown: false}} />
         <AppStack.Screen name='Comments' component={Comments} options={{headerShown: false}} />
-        <AppStack.Screen name ='ListaHorizontal' component={ListaHorizontal} options={{headerShown: false}} />
+        <AppStack.Screen name='ListaHorizontal' component={ListaHorizontal} options={{headerShown: false}} />
+        <AppStack.Screen name='ItensToCart' component={ItensToCart} />
     </AppStack.Navigator>
 )
 

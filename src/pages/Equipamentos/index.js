@@ -1,40 +1,26 @@
-import React, {useState, componentDidMount, useEffect} from 'react'; 
-import { View, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback, Animated} from 'react-native';
+import React, {useState} from 'react'; 
+import { View, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 // Importando dimensões
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
-// import
+// Horizontal List of equipaments
 import ListaHorizontal from '../../components/ListaHorizontal';
-// Importando estilos
-import {ScrollView, Text, Feather, Entypo, FontAwesome5, Ionicons, Header} from './styles';
-// import FastImage
-import FastImage from 'react-native-fast-image'
-// 
-import { data } from './data'
+// Import styles and icons
+import {ScrollView, Text, Feather, Entypo, FontAwesome5, Ionicons} from './styles';
+import { Octicons } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
+import equipaments from '../../assets/Equipaments.png'
+// Colors
+import {colors} from '../../styles/colors'
 
 function Equipamentos({navigation}) {  
-  // Scroll Animation
-  let AnimatedHeaderValue = new Animated.Value(0)
-  const Header_Max_Height = 110 // Max Height of the Header
-  const Header_Min_Height = 50// Min Height of the Header
-
-  const animateHeaderBackgroundColor = AnimatedHeaderValue.interpolate({
-    inputRange: [0, Header_Max_Height - Header_Min_Height],
-    outputRange: ['transparent', 'transparent'],
-    extrapolate: 'clamp'
-  })
-
-  const animatedHeaderHeight = AnimatedHeaderValue.interpolate({
-    inputRange: [0, Header_Max_Height - Header_Min_Height],
-    outputRange: [Header_Max_Height, Header_Min_Height],
-    extrapolate: 'clamp'
-  })
-
   // Search
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
-  const [clicked, setClicked] = useState(false);
+  // Controller
+  const [heartClicked, setHeartClicked] = useState(false);
+  const [clicked, setClicked] = useState(false)
   // Array de backup
   const [originalImages, setOriginalImages] = useState([
     {
@@ -128,24 +114,25 @@ function Equipamentos({navigation}) {
     <ScrollView
     vertical
     showsVerticalScrollIndicator={false}
-    scrollEventThrottle={16}
-    onScroll={Animated.event(
-      [{nativeEvent: {contentOffset: {y: AnimatedHeaderValue}}}],
-      {useNativeDriver: false}
-    )}
     >
         {/* Icons */}
-    <Animated.View style={[styles.header, {
-      height: animatedHeaderHeight,
-      backgroundColor: animateHeaderBackgroundColor
-    }]}>
-        <View style={styles.icons}>
-          <View style={styles.heart}>
-              <FontAwesome5 name="heart" size={25}/>
-          </View>
-            <View>
-              <Ionicons name="reorder-three-outline" size={27} />
+    <View>
+        <View style={{width: width, height: height * 0.08, top: height * 0.01, alignItems: 'flex-end', justifyContent: 'center'}}>
+          <View style={{marginHorizontal: height * 0.02}}>
+            <View style={{flexDirection:'row', justifyContent:'space-between', width: width / 3.5}}>
+              <TouchableOpacity onPress={() => navigation.navigate('ItensToCart')}>
+                <Image source={equipaments} style={{width: 28, height: 28, tintColor: 'white'}} resizeMode='contain'/>
+              </TouchableOpacity>
+
+              <TouchableOpacity>
+                <AntDesign name={'hearto'} size={28} color={colors.blind}/>
+              </TouchableOpacity>
+
+              <TouchableOpacity>
+                <Octicons name="three-bars" size={28} color="white" />
+              </TouchableOpacity>
             </View>
+          </View>
         </View>
         <View style={styles.searchBar__unclicked}>
           {/* Search */}
@@ -163,7 +150,7 @@ function Equipamentos({navigation}) {
             autoCapitalize='none'
           />
         </View>
-    </Animated.View>
+    </View>
 
         <View style={styles.text}>
           <Text allowFontScaling={false} style={{textAlign:'left', fontFamily:'Nunito_700Bold'}}>

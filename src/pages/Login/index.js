@@ -38,7 +38,7 @@ const Login = ({navigation}) => {
         }).then (async (response) => {
             await AsyncStorage.setItem("token", response.data.token);
             signIn()
-        }).catch (async (error) => {
+        }).catch ((error) => {
             if(error.response.status === 422){
                 Alert.alert('', 'Preencha todos os dados.')
             }

@@ -10,7 +10,8 @@ var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
 
 export const ScrollView = styled(ScrollViewGestureProps)`
-    background-color: ${(props) => props.bg || props.theme.background};
+    /*#101010*/
+    background-color: ${(props) => props.bg || props.theme.background}; 
 `
 export const Text = styled(TextReact)`
     color: ${(props) => props.color || props.theme.color}

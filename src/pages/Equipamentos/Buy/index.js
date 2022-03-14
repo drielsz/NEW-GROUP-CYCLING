@@ -28,7 +28,8 @@ export default function Buy ({navigation, item, route}) {
     
     // Mudar a cor do coração
     const [heartClicked, setHeartClicked] = useState(false);
-
+    // To do functions that changge color
+    const [clicked, setClicked] = useState(false)
     const favoriteHeart = () => {
         setHeartClicked(!heartClicked)
     }
@@ -84,24 +85,31 @@ export default function Buy ({navigation, item, route}) {
                         </TouchableOpacity>
                     </Arrow>
 
-               {/* DotView para a imagem */}
-                {/* <DotView style={{bottom: height * 0.050}}>
-                    <Dot/>
-                    <Dot bg={colors.gray}/>
-                    <Dot bg={colors.gray}/>
-                    <Dot bg={colors.gray}/>
-                </DotView> */}
+                    {/* DotView para a imagem */}
+                        {/* <DotView style={{bottom: height * 0.050}}>
+                            <Dot/>
+                            <Dot bg={colors.gray}/>
+                            <Dot bg={colors.gray}/>
+                            <Dot bg={colors.gray}/>
+                        </DotView> */}
+                    {/* DotView end */}
 
-                {/* Adicionar ao carrinho */}
-            
+                    {/* Sessão de compra */}
                     <Button style={{top: height * 0.04}}>
-                        <Text allowFontScaling={false}  style={{color: colors.secondary, fontFamily:'Roboto_700Bold'}}>Adicionar ao carrinho</Text>
+                        <Text allowFontScaling={false}  style={{color: colors.secondary, fontFamily:'Nunito_700Bold'}}>Comprar agora</Text>
                     </Button> 
-
+                    <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center', top: height * 0.07, justifyContent:'space-evenly'}}>
+                        <Button width={'42%'} bg={colors.name101010} style={{borderColor: 'white', borderWidth: 1}}>
+                            <Text allowFontScaling={false}  style={{color: colors.secondary, fontFamily:'Nunito_700Bold'}}>Adicionar ao carrinho</Text>
+                        </Button> 
+                        <Button width={'42%'} bg={colors.name101010} style={{borderColor: 'white', borderWidth: 1}}>
+                            <Text allowFontScaling={false}  style={{color: colors.secondary, fontFamily:'Nunito_700Bold'}}>Adicionar à lista de desejos</Text>
+                        </Button> 
+                    </View>
+                    
                 {/* Parte dos produtos relacionados */}
-                <MarginLeftRight style={{marginTop: height * 0.090}}>
-                    <Text allowFontScaling={false} style={{bottom: height * 0.005, fontFamily: 'Roboto_700Bold'}}>Produtos relacionados</Text>
-
+                <MarginLeftRight style={{marginTop: height * 0.13}}>
+                    <Text allowFontScaling={false} style={{bottom: height * 0.005, fontFamily: 'Nunito_700Bold'}}>Produtos relacionados</Text>
                     <View>
                         <ScrollView scrollEnabled>
                             <FlatList
@@ -127,7 +135,6 @@ export default function Buy ({navigation, item, route}) {
                             />
                         </ScrollView>
                     </View>
-
                 </MarginLeftRight>
 
             </ScrollView>

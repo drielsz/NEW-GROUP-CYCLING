@@ -41,11 +41,12 @@ export default function Register ({navigation}) {
             email: email,
             password: password,
             password_again: password
-        }).then (async (response) => {
+        }).then ((response) => {
             if(response.status === 201){
                 Alert.alert("Conta cadastrada com sucesso", `Seja bem vindo, ${name}`)
             }
-        }).catch( async (error) => {
+        }).catch( 
+             (error) => {
             if(error.response.status === 400){
                 Alert.alert(`Olá, ${name}`, "Esse e-mail já está em uso, tente novamente utilizando outro!")
             }
