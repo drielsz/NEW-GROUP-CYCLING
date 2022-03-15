@@ -154,7 +154,7 @@ const Login = ({navigation}) => {
                 style={{alignItems:'center', justifyContent:'center'}}>
                 <Text allowFontScaling={false} style={{fontFamily: 'Nunito_700Bold'}}
                 color = { colors.backgroundLogin }
-                fontSize = { height * 0.018 }>ENTRAR</Text> 
+                fontSize={height * 0.018}px>ENTRAR</Text> 
             </Button >
             
             <TouchableOpacity style={{marginTop: height * 0.015}}  onPress={() => navigation.navigate('Register')} >
@@ -167,8 +167,8 @@ const Login = ({navigation}) => {
                 color={colors.primary}
                 fontSize = { height * 0.015 }
                 style={{fontFamily:'Nunito_800ExtraBold'}}
-                texttransform = 'none'
-                borderBottomWidth = { height * 0.002 }> Cadastre-se aqui.</Text> 
+                texttransform='none'
+                borderBottomWidth={height * 0.002}px> Cadastre-se aqui.</Text> 
                 </Text>
             </TouchableOpacity> 
             <View style={{top: height * 0.04}}>

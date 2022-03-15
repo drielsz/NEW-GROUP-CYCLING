@@ -40,64 +40,65 @@ function Perfil({navigation, props}) {
     getUser()
   }, [])
   return(
-      <PrimaryView source={background} style={{width: width}}>
+      <><PrimaryView source={{ uri: 'https://images.unsplash.com/photo-1515523110800-9415d13b84a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' }} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
 
-      <View style={{left: width /1.52, top: height * 0.013}}>
+      <View style={{ left: width / 1.52, top: height * 0.013 }}>
         <View style={styles.circle}>
-          <TouchableOpacity onPress={() =>navigation.navigate('EditProfile')}>
-            <ImageIconTopBar source={EditProfile} 
-            style={{
-            width: width * 0.050625, 
-            height : height * 0.540625,
-            left: height * 0.003,
-            }} resizeMode='contain'/> 
+          <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
+            <ImageIconTopBar source={EditProfile}
+              style={{
+                width: width * 0.050625,
+                height: height * 0.540625,
+                left: height * 0.003,
+              }} resizeMode='contain' />
           </TouchableOpacity>
         </View>
       </View>
 
-      <View style={{left: width * 0.77, top: height * 0.013}}>
+      <View style={{ left: width * 0.77, top: height * 0.013 }}>
         <View style={styles.circle}>
-      <TouchableOpacity  onPress={() => navigation.openDrawer()}>
-        <Ionicons name="ios-reorder-three-outline" size={30}color="black" /> 
-      </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Ionicons name="ios-reorder-three-outline" size={30} color="black" />
+          </TouchableOpacity>
         </View>
       </View>
-      
-          <AnotherView style={styles.anotherView}>
-                <ImageProfile source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ6xHwZck5v7nMjMdmZ4sOWDbaIl29HGVnBw&usqp=CAU'}}/>
+    </PrimaryView><AnotherView style={styles.anotherView}>
+        <ImageProfile source={{ uri: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-6/272898753_1329792957500236_8397756379102866395_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Flu-bKNgpF0AX8ZGuM1&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9vJ6Lplw-cggkpAQf8NuFbcmliAFW1ibbG2MneYJ1CwQ&oe=6235FA83' }} />
 
-                {/* <View style={{position: 'absolute', left: height * 0.08, top: height * -0.0255}}>  
-                  <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>254
-                  <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguindo</Text></Text> 
-                </View>
+        {/* <View style={{position: 'absolute', left: height * 0.08, top: height * -0.0255}}>
+      <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>254
+      <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguindo</Text></Text>
+    </View>
 
-                <View style={{position: 'absolute', right: height * 0.08, top: height * -0.0255}}>  
-                  <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>455
-                  <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguidores</Text></Text> 
-                </View> */}
+    <View style={{position: 'absolute', right: height * 0.08, top: height * -0.0255}}>
+      <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>455
+      <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguidores</Text></Text>
+    </View> */}
 
-                  <Text allowFontScaling={false} style={{fontFamily: 'Nunito_700Bold'}}>{name}</Text>
-                  <Text 
-                  allowFontScaling={false}
-                  style={{fontFamily: 'Nunito_400Regular'}} 
-                  size={height* 0.02}
-                  margin={height * 0.003}
-                  >
-                  {email}</Text>
-   
-            <View style={styles.container}>
-              <TouchableOpacity style={styles.button}>
-                      <Text02 allowFontScaling={false} color={colors.namebutton} 
-                      style={{fontFamily: 'Roboto_900Black', fontSize: height * 0.0225, color: colors.namebutton}}>SEGUIR</Text02>
-                </TouchableOpacity>
-            </View>
+        <Text allowFontScaling={false} style={{ fontFamily: 'Nunito_700Bold' }}>{name}</Text>
+        <Text
+          allowFontScaling={false}
+          style={{ fontFamily: 'Nunito_400Regular' }}
+          size={height * 0.02}
+          margin={height * 0.003}
+        >
+          {email}</Text>
 
-            <Text allowFontScaling={false} size={height * 0.0225}  style={{fontFamily: 'Roboto_500Medium', left: width * 0.59, top: height * 0.24, 
-            position: 'absolute',color: colors.tertiary}}>Mensagem</Text>
+        <View style={styles.container}>
+          <TouchableOpacity style={styles.button}>
+            <Text02 allowFontScaling={false} color={colors.namebutton}
+              style={{ fontFamily: 'Roboto_900Black', fontSize: height * 0.0225, color: colors.namebutton }}>SEGUIR</Text02>
+          </TouchableOpacity>
+        </View>
 
-          <MyCarousel/>
-          </AnotherView>
-      </PrimaryView>
+        <Text allowFontScaling={false} size={height * 0.0225} style={{
+          fontFamily: 'Roboto_500Medium', left: width * 0.59, top: height * 0.24,
+          position: 'absolute', color: colors.tertiary
+        }}>Mensagem</Text>
+
+        <MyCarousel />
+      </AnotherView></>
+
     )
 }
 

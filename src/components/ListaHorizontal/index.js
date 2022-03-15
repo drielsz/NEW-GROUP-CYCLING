@@ -59,10 +59,9 @@ function ListaHorizontal ({onPress, style, navigation}) {
             style={{marginTop: height * 0.05}}
             horizontal
             showsHorizontalScrollIndicator={false}
-            snapToAlignment='center'
             renderItem={({index, item}) => (
                 <>
-                <TouchableWithoutFeedback onPress={() => navigation.navigate('Buy', {imageData: item.image})}>
+                <TouchableWithoutFeedback onPress={onPress}>
                     <Image
                         source={item.image}
                         key={index}

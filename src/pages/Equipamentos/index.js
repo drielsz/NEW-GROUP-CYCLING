@@ -1,5 +1,5 @@
-import React, {useState} from 'react'; 
-import { View, StyleSheet, Dimensions, TextInput, Image, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react'; 
+import { View, StyleSheet, Dimensions, Image, TouchableWithoutFeedback, TouchableOpacity, useColorScheme} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 // Importando dimensões
 var width = Dimensions.get('window').width;
@@ -7,7 +7,7 @@ var height = Dimensions.get('window').height;
 // Horizontal List of equipaments
 import ListaHorizontal from '../../components/ListaHorizontal';
 // Import styles and icons
-import {ScrollView, Text, Feather, Entypo, FontAwesome5, Ionicons} from './styles';
+import {ScrollView, Text, TextInput} from './styles';
 import { Octicons } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import equipaments from '../../assets/Equipaments.png'
@@ -109,6 +109,12 @@ function Equipamentos({navigation}) {
     setimages(arr.filter(d => d.name.includes(s)))
   }
 
+  // Theme
+  const deviceTheme = useColorScheme()
+  useEffect(() => {
+    console.log(deviceTheme)
+  },[]) 
+
   return(
           
     <ScrollView
@@ -116,40 +122,45 @@ function Equipamentos({navigation}) {
     showsVerticalScrollIndicator={false}
     >
         {/* Icons */}
-    <View>
-        <View style={{width: width, height: height * 0.08, top: height * 0.01, alignItems: 'flex-end', justifyContent: 'center'}}>
+    <View style={{top: 5}}> 
+        <View style={{width: width, height: height * 0.08, top: height * 0.018, alignItems: 'flex-end', justifyContent: 'center'}}>
           <View style={{marginHorizontal: height * 0.02}}>
             <View style={{flexDirection:'row', justifyContent:'space-between', width: width / 3.5}}>
               <TouchableOpacity onPress={() => navigation.navigate('ItensToCart')}>
-                <Image source={equipaments} style={{width: 28, height: 28, tintColor: 'white'}} resizeMode='contain'/>
+                {/* Icon */}
+                {deviceTheme === 'dark' ? <Image source={equipaments} style={{width: 28, height: 28, tintColor: 'white'}} resizeMode='contain'/>
+                :
+                <Image source={equipaments} style={{width: 28, height: 28, tintColor: colors.name101010}} resizeMode='contain'/>
+                }
+                
               </TouchableOpacity>
 
               <TouchableOpacity>
-                <AntDesign name={'hearto'} size={28} color={colors.blind}/>
+                {/* Icon */}
+                {deviceTheme === 'dark' ? <AntDesign name={'hearto'} size={28} color={colors.blind}/> 
+                :
+                <AntDesign name={'hearto'} size={28} color={colors.name101010}/>
+                }
+                
               </TouchableOpacity>
 
               <TouchableOpacity>
-                <Octicons name="three-bars" size={28} color="white" />
+                {/* Icon */}
+                {deviceTheme === 'dark' ? <Octicons name="three-bars" size={28} color={'white'}/>
+                :
+                <Octicons name="three-bars" size={28} color={colors.name101010}/>
+                }
               </TouchableOpacity>
             </View>
           </View>
         </View>
-        <View style={styles.searchBar__unclicked}>
-          {/* Search */}
-          <Feather
-            name="search"
-            size={20}
-            color="#A4A4A4"
-            style={{ marginLeft: 1 }}
-          />
-          <TextInput 
-            allowFontScaling={false}
-            placeholder='Pesquisar'
-            style={styles.input}
-            onChangeText={(s) => search(s)}
-            autoCapitalize='none'
-          />
-        </View>
+      {/* Input here */}
+      <TextInput 
+      allowFontScaling={false}
+      placeholder='Pesquise aqui...'
+      onChangeText={(s) => search(s)}
+      autoCapitalize='none'
+      />
     </View>
 
         <View style={styles.text}>
@@ -160,7 +171,6 @@ function Equipamentos({navigation}) {
 
 
         <ListaHorizontal 
-      
         onPress={item => navigation.navigate('Buy', {
           imageData: item.image
         })}/>
@@ -178,11 +188,10 @@ function Equipamentos({navigation}) {
                  <Image 
                   source={item.image}
                   fadeDuration={400}
-                  loadingIndicatorSource
                   progressiveRenderingEnabled
                   resizeMethod='scale'
                   key={index}
-                  style={{width: width/2, height: height * 0.3, margin: height * 0.0016}}/>
+                  style={{width: width/2.028, height: height * 0.3, margin: height * 0.0016}}/>
           </TouchableWithoutFeedback>
      
         )}
@@ -193,21 +202,6 @@ function Equipamentos({navigation}) {
 
 
 const styles= StyleSheet.create({
-  container:{
-    flex: 1,
-    alignItems:'center',
-    padding: height * 0.03,
-    
-  },
-  searchBar__unclicked:{
-    padding: height * 0.010,
-    flexDirection: "row",
-    width: width - 5,
-    backgroundColor: "#EFEFEF",
-    borderRadius: height * 0.015,
-    alignItems: "center",
-    top: height * 0.015,
-  },
   input:{
     marginLeft: height * 0.02,
     color: '#A4A4A4',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Dimensions, View } from 'react-native'
-
+import { ImageProfile } from '../styles';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { colors } from '../styles/colors'
@@ -55,12 +55,11 @@ export default function BottomRoutes({props}) {
                 )}}/> */}
 
                 <Tab.Screen name='Equipamentos' component={Equipamentos} options={{headerShown:false, tabBarIcon: ({size, color}) => (
-                    <Image source={EQUIPAMENTS} style={{width: size, height: size, tintColor: color}}/>
+                    <AntDesign name="shoppingcart" size={size} color={color} />
                 )}}/>
 
                 <Tab.Screen name='Perfil' component={DrawerNavigator} options={{headerShown:false, tabBarIcon: ({size, color}) => (
-                    <MaterialCommunityIcons name="face-profile" size={size} color={color} />
-                    
+                   <Image source={{uri: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-6/272898753_1329792957500236_8397756379102866395_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Flu-bKNgpF0AX8ZGuM1&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9vJ6Lplw-cggkpAQf8NuFbcmliAFW1ibbG2MneYJ1CwQ&oe=6235FA83'}} style={{width: size, height: size, borderRadius: size}}/>
                 )}}/>
 
             </Tab.Navigator> 
@@ -98,8 +97,7 @@ export default function BottomRoutes({props}) {
                     )}}/>
 
                     <Tab.Screen name='Perfil' component={DrawerNavigator} options={{headerShown:false, tabBarIcon: ({size, color}) => (
-                        <MaterialCommunityIcons name="face-profile" size={size} color={color} />
-                        
+                       <Image source={{uri: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-6/272898753_1329792957500236_8397756379102866395_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Flu-bKNgpF0AX8ZGuM1&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9vJ6Lplw-cggkpAQf8NuFbcmliAFW1ibbG2MneYJ1CwQ&oe=6235FA83'}} style={{width: size, height: size, borderRadius: size}}/>
                     )}}/>
                 </Tab.Navigator>}        
         </View>  

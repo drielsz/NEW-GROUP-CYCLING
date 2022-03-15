@@ -13,23 +13,14 @@ import {
 } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { ImageProfile } from "../../../styles";
-// 
-import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  Title,
-  Caption,
-  Avatar,
-  Text,
-  TouchableRipple,
-} from "react-native-paper";
-// 
+// Icons
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 // 
 import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
-// Colors
+// Colors and styles
+import { SafeAreaView, Text, Caption, FontAwesomeIcon } from "./styles";
 import { colors } from "../../../styles/colors";
 // API AsyncStorage
 import { api } from "../../../services/axios";
@@ -46,7 +37,7 @@ export default function EditProfile() {
   const [uploading, setUploading] = useState(false);
   const [response, setResponse] = useState("You should see new response here");
 
-  // Pegar o nome e email do usuario
+  // to take name and email 
   const getUser = async () => {
     const response = await api
       .get("user-info", {
@@ -81,14 +72,14 @@ export default function EditProfile() {
     }
   };
 
-  var data = new FormData();
+  var files = new FormData();
 
   const PostImage = async () => {
     console.log(`===${image}===`)
-    data.append('images', image)
-    console.log(data)
-    const response = await api.post("send-image", data, { headers : {
-       "Content-Type": "multipart/form-data",
+    files.append('images', image)
+    console.log(files)
+    const response = await api.post("send-image", files, { headers : {
+      "Content-Type": "multipart/form-files",
     }}).then (async (response) => {
         console.log('Sucesso')
     }).catch ((error) => {
@@ -105,7 +96,6 @@ export default function EditProfile() {
   function RenderInner() {
     return (
       <View style={styles.panel}>
-        <StatusBar style="dark"/>
         <View style={{ alignItems: "center" }}>
           <Text style={styles.panelTitle}>Atualizar a foto</Text>
           <Text style={styles.panelSubtitle}>
@@ -162,7 +152,8 @@ export default function EditProfile() {
   //   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
+      <StatusBar style="dark"/>
       <BottomSheet
         ref={bs}
         snapPoints={[330, 0]}
@@ -175,7 +166,7 @@ export default function EditProfile() {
       <Animated.View
         style={{
           margin: 20,
-          opacity: Animated.add(0.5, Animated.multiply(fall, 1.0)),
+          opacity: Animated.add(0.5, Animated.multiply(fall, 1)),
         }}
       >
         <View style={{ alignItems: "center" }}>
@@ -191,7 +182,7 @@ export default function EditProfile() {
                     <Icon
                       name="camera"
                       size={35}
-                      color="#FFF"
+                      color="#FFFFFF"
                       style={styles.styleCameraIcon}
                     />
                   </View>
@@ -208,7 +199,7 @@ export default function EditProfile() {
                     <Icon
                       name="camera"
                       size={35}
-                      color="#FFF"
+                      color="#FFFFFF"
                       style={styles.styleCameraIcon}
                     />
                   </View>
@@ -216,13 +207,15 @@ export default function EditProfile() {
               )}
             </View>
           </TouchableOpacity>
-          <Text style={styles.textName}>{name}</Text>
+
+          <Text>{name}</Text>
           <Caption>{email}</Caption>
           <Caption>Uploaded {uploading}%</Caption>
         </View>
+
         <View style={{ top: 55 }}>
           <View style={styles.action}>
-            <FontAwesome name="user-o" size={20} style={{ marginTop: 3 }} />
+            <FontAwesomeIcon name="user-o" size={20}/>
             <TextInput
               placeholder="Nome"
               placeholderTextColor="#666666"
@@ -232,7 +225,7 @@ export default function EditProfile() {
             />
           </View>
           <View style={styles.action}>
-            <FontAwesome name="envelope-o" size={20} style={{ marginTop: 3 }} />
+            <FontAwesomeIcon name="envelope-o" size={20}/>
             <TextInput
               placeholder="Email"
               keyboardType="email-address"
@@ -253,11 +246,6 @@ export default function EditProfile() {
 }
 
 const styles = StyleSheet.create({
-  textName: {
-    marginTop: 10,
-    fontSize: 18,
-    fontWeight: "bold",
-  },
   viewCameraIcon: {
     flex: 1,
     justifyContent: "center",
@@ -268,7 +256,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: "#fff",
+    borderColor: "#FFFFFF",
     borderRadius: 10,
   },
   viewStyle: {
@@ -277,10 +265,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#fafafa",
   },
   commandButton: {
     padding: 15,

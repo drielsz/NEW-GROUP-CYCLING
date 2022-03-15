@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, useColorScheme } from 'react-native';
 // Drawer 
 import { 
     DrawerContentScrollView,
@@ -63,11 +63,8 @@ export function DrawerContent(props, state) {
         signOut()
     }
 
-    const  [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
-    const toggleTheme = () => {
-        setIsDarkTheme(!isDarkTheme);
-    }
+    const deviceTheme = useColorScheme()
 
     return (
         <Container>
@@ -75,9 +72,7 @@ export function DrawerContent(props, state) {
                     <View>
                         <UserInfoSection>
                             <View style={{flexDirection: 'row', marginTop: 15}}>
-                                <Avatar.Image source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ6xHwZck5v7nMjMdmZ4sOWDbaIl29HGVnBw&usqp=CAU'}}
-                                
-                                />
+                                <Avatar.Image source={{uri: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-6/272898753_1329792957500236_8397756379102866395_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Flu-bKNgpF0AX8ZGuM1&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9vJ6Lplw-cggkpAQf8NuFbcmliAFW1ibbG2MneYJ1CwQ&oe=6235FA83'}}/>
                                 <View style={{marginLeft: 15,
                                 flexDirection: 'column'
                                 }}>
@@ -201,24 +196,12 @@ export function DrawerContent(props, state) {
                                 onPress={() => {}}
                                 />
                             {/*  */}
-                            <View style={{borderBottomColor: '#f4f4f4', borderBottomWidth: height * 0.001}}/>
+                            {deviceTheme === 'light' ? <View/> : 
+                            <View style={{borderBottomColor: '#f4f4f4', borderBottomWidth: height * 0.001}}/>}
                         </Drawer.Section>
                     </View>
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>
-                    {/* <DrawerItem
-                        icon={({color, size}) => (
-                            <>
-                                <MaterialCommunityIcons name="theme-light-dark" size={size} color={color} />
-                                <Text>Dark Theme</Text>
-                            </>
-                            
-                            
-                        )}
-                          label=''
-                          onPress={() => {}}  
-                    /> */}
-                    {/* <Switch  style={{position: 'absolute', alignSelf:'flex-end'}}/> */}
                     <DrawerItem 
                         icon={({color, size}) => (
                             <>
@@ -233,16 +216,13 @@ export function DrawerContent(props, state) {
                         label=''
                         onPress={handleSignOut}
                         />
-                    <View style={{borderBottomColor: '#f4f4f4', borderBottomWidth: height * 0.001}}/>
+                    {deviceTheme === 'light' ? <View/> : <View style={{borderBottomColor: '#f4f4f4', borderBottomWidth: height * 0.001}}/>}
             </Drawer.Section>
         </Container>
     )
 }
 
 const styles= StyleSheet.create ({
-    locatorViewContainer: (props) => {
-        borderColor: props.theme.color
-    },  
     caption:{
         fontSize:height * 0.014,
         lineHeight: height * 0.014,

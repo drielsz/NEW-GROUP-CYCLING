@@ -53,7 +53,9 @@ export default function Register ({navigation}) {
             if(error.response.status === 422){
                 Alert.alert('', 'Preencha todos os dados.')
             }
-            console.log(error.response.status)
+            else{
+                console.log(error.response.status)
+            }
         }
         )
     }
