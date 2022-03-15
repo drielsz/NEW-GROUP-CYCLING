@@ -20,7 +20,7 @@ import Feather from "react-native-vector-icons/Feather";
 import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
 // Colors and styles
-import { SafeAreaView, Text, Caption, FontAwesomeIcon, Header, TextReact, AntDesign, ViewFromBottomSheetContent } from "./styles";
+import { SafeAreaView, Text, Caption, FontAwesomeIcon, Header, TextReact, AntDesign, ViewFromBottomSheetContent, HeaderBottomSheetContent, StylePannelBottomSheetContent } from "./styles";
 import { colors } from "../../../styles/colors";
 // API AsyncStorage
 import { api } from "../../../services/axios";
@@ -122,13 +122,13 @@ export default function EditProfile() {
   // This appear when bottom sheet dont is activated
   function RenderHeader() {
     return (
-      <View style={styles.header}>
+      <HeaderBottomSheetContent style={styles.header}>
         <View style={styles.panelHeader}>
-          <View style={styles.panelHandle}>
+          <StylePannelBottomSheetContent style={styles.panelHandle}>
 
-          </View>
+          </StylePannelBottomSheetContent>
         </View>
-      </View>
+      </HeaderBottomSheetContent>
     );
   }
 
@@ -307,7 +307,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   header: {
-    backgroundColor: "#101010",
     shadowColor: "#333333",
     shadowOffset: { width: -1, height: -3 },
     shadowRadius: 2,
@@ -320,7 +319,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: height * 0.040,
     borderRadius: 4,
-    backgroundColor: "#101010",
     marginBottom: 10,
   },
   panelTitle: {

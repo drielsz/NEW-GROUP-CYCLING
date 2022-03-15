@@ -61,7 +61,15 @@ export const AntDesign = styled(AntDesignIcon)`
 `
 
 export const ViewFromBottomSheetContent = styled.View`
-  background-color: ${props => props.theme.color};
+  background-color: ${props => props.theme.background};
   padding: 20px;
   padding-top: 20px;
+`
+
+export const HeaderBottomSheetContent = styled.View`
+  background-color: ${props => props.theme.background};
+`
+
+export const StylePannelBottomSheetContent = styled(HeaderBottomSheetContent)`
+
 `
