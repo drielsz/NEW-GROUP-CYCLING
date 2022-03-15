@@ -16,25 +16,33 @@ export const PrimaryView = styled.ImageBackground.attrs(props => ({
     /* background-color: ${(props) => props.background || colors.primary} */
 `;
 
-
 export const AnotherView = styled.View`
     width: ${(props) => props.width || width};
     height: ${(props) => props.height || height};
     margin-top: ${(props) => props.margin || height * 0.18}px;
-    background-color: ${(props) => props.bg || colors.secondary}
-
-`
+    background-color: ${(props) => props.bg || props.theme.background};
+`;
 
 export const Text = styled.Text`
-    color: ${(props) => props.color || colors.tertiary};
+    color: ${(props) => props.color || props.theme.color};
     align-self: ${(props) => props.align || 'center'};
     font-size: ${(props) => props.size || height * 0.04}px;
     margin-top: ${(props) => props.margin || height * 0.03}px;
-`
-
+`;
 
 export const Button = styled.TouchableOpacity`
     width: '120px';
     height: '61px';
     background-color: ${(props) => props.bg || colors.primary};
+`;
+
+export const CircleToIcon = styled.View`
+    justify-content: center;
+    align-items: center;
+    margin: ${height * 0.04}px;
+    width: 37px;
+    height: 37px;
+    border-radius: 33;
+    background-color: ${(props) => props.bg || props.theme.background};
+    position: absolute;
 `

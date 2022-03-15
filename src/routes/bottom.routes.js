@@ -1,10 +1,9 @@
 import React from 'react';
-import { Image, Dimensions, View } from 'react-native'
+import { Image, Dimensions, View, Platform, useColorScheme} from 'react-native'
 import { ImageProfile } from '../styles';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { colors } from '../styles/colors'
-import { useColorScheme } from 'react-native';
 
 import Home from '../pages/Home';
 import Pedal from '../pages/Pedal';
@@ -12,7 +11,7 @@ import Equipamentos from '../pages/Equipamentos';
 // Images
 import EQUIPAMENTS from '../assets/Equipaments.png'
 
-import { Entypo, MaterialCommunityIcons, Octicons, AntDesign } from '@expo/vector-icons'
+import { Octicons, AntDesign, Ionicons } from '@expo/vector-icons'
 
 var height = Dimensions.get("window").height
 var width = Dimensions.get("window").width;
@@ -43,7 +42,10 @@ export default function BottomRoutes({props}) {
             }}
         >
                 <Tab.Screen name='Início' component={Home} options={{headerShown: false, tabBarIcon: ({size, color}) => (
-                    <Entypo name='home' size={size} color={color}/>
+                     Platform.OS === 'ios' ? 
+                     <Ionicons name="ios-home-outline" size={size} color={color} /> 
+                     :
+                    <Ionicons name='home-outline' size={size} color={color}/>
                 )}}/>
 
                 <Tab.Screen name='Pedal' component={Pedal} options={{headerShown: false, tabBarIcon: ({size, color}) => (
@@ -81,7 +83,10 @@ export default function BottomRoutes({props}) {
                         }}
                     >
                     <Tab.Screen name='Início' component={Home} options={{headerShown: false, tabBarIcon: ({size, color}) => (
-                        <Entypo name='home' size={size} color={color}/>
+                        Platform.OS === 'ios' ? 
+                        <Ionicons name="ios-home-outline" size={size} color={color} /> 
+                        :
+                        <Ionicons name='home-outline' size={size} color={color}/>
                     )}}/>
 
                     <Tab.Screen name='Pedal' component={Pedal} options={{headerShown: false, tabBarIcon: ({size, color}) => (

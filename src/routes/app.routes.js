@@ -1,5 +1,6 @@
 // Pages after login is complete
 import React from 'react'
+import { useColorScheme } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 // Screens
 import BottomRoutes from './bottom.routes'
@@ -23,7 +24,7 @@ const AppRoutes = React.FC = () => (
         <AppStack.Screen name='Perfil' component={Perfil} options={{haderShown:false}}/>
         <AppStack.Screen name="Map" component={Map} options={{headerShown: false}}/>
         <AppStack.Screen name='EditProfile' component={EditProfile} 
-        options={{headerShown: true, title:'Edite o seu Perfil', headerTitleAlign:'center', headerStyle:{backgroundColor:'#FAFAFA'}}} />
+        options={{headerShown: false, title:'Edite o seu Perfil', headerTitleAlign:'center', headerStyle:{backgroundColor:'#FAFAFA'}}} />
         <AppStack.Screen name='Buy' component={Buy} options={{headerShown: false}} />
         <AppStack.Screen name='Comments' component={Comments} options={{headerShown: false}} />
         <AppStack.Screen name='ListaHorizontal' component={ListaHorizontal} options={{headerShown: false}} />

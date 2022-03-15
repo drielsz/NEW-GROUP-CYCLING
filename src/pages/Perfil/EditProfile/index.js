@@ -9,7 +9,7 @@ import {
   Platform,
   ImageBackground,
   TextInput,
-  Alert,
+  useColorScheme
 } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { ImageProfile } from "../../../styles";
@@ -20,7 +20,7 @@ import Feather from "react-native-vector-icons/Feather";
 import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
 // Colors and styles
-import { SafeAreaView, Text, Caption, FontAwesomeIcon } from "./styles";
+import { SafeAreaView, Text, Caption, FontAwesomeIcon, Header, TextReact, AntDesign, ViewFromBottomSheetContent } from "./styles";
 import { colors } from "../../../styles/colors";
 // API AsyncStorage
 import { api } from "../../../services/axios";
@@ -92,10 +92,11 @@ export default function EditProfile() {
   const handleProgress = (event) => {
     setUploading(Math.round((event.loaded * 100) / event.total));
   };
-
+  
+  // After Bottom Sheet appear
   function RenderInner() {
     return (
-      <View style={styles.panel}>
+      <ViewFromBottomSheetContent>
         <View style={{ alignItems: "center" }}>
           <Text style={styles.panelTitle}>Atualizar a foto</Text>
           <Text style={styles.panelSubtitle}>
@@ -114,15 +115,18 @@ export default function EditProfile() {
         >
           <Text style={styles.panelButtomTitle}>Cancelar</Text>
         </TouchableOpacity>
-      </View>
+      </ViewFromBottomSheetContent>
     );
   }
 
+  // This appear when bottom sheet dont is activated
   function RenderHeader() {
     return (
       <View style={styles.header}>
         <View style={styles.panelHeader}>
-          <View style={styles.panelHandle}></View>
+          <View style={styles.panelHandle}>
+
+          </View>
         </View>
       </View>
     );
@@ -150,10 +154,16 @@ export default function EditProfile() {
   //     }
   //     setImage(null)
   //   }
-
+  const deviceTheme = useColorScheme()
   return (
+    <><Header>
+      <View style={{...StyleSheet.absoluteFillObject}}>
+        <TextReact>Edite o seu Perfil</TextReact>
+      </View>
+      <AntDesign name="arrowleft" size={24} color="black" />
+    </Header>
     <SafeAreaView>
-      <StatusBar style="dark"/>
+      {deviceTheme === 'dark' ? <StatusBar style="light"/> : <StatusBar style="dark"/>}
       <BottomSheet
         ref={bs}
         snapPoints={[330, 0]}
@@ -161,8 +171,8 @@ export default function EditProfile() {
         renderHeader={RenderHeader}
         initialSnap={1}
         callbackNode={fall}
-        enabledGestureInteraction
-      />
+        enabledGestureInteraction 
+        />
       <Animated.View
         style={{
           margin: 20,
@@ -183,8 +193,7 @@ export default function EditProfile() {
                       name="camera"
                       size={35}
                       color="#FFFFFF"
-                      style={styles.styleCameraIcon}
-                    />
+                      style={styles.styleCameraIcon} />
                   </View>
                 </ImageBackground>
               ) : (
@@ -200,8 +209,7 @@ export default function EditProfile() {
                       name="camera"
                       size={35}
                       color="#FFFFFF"
-                      style={styles.styleCameraIcon}
-                    />
+                      style={styles.styleCameraIcon} />
                   </View>
                 </ImageBackground>
               )}
@@ -215,33 +223,53 @@ export default function EditProfile() {
 
         <View style={{ top: 55 }}>
           <View style={styles.action}>
-            <FontAwesomeIcon name="user-o" size={20}/>
+            <FontAwesomeIcon name="user-o" size={20} />
+            {deviceTheme === 'dark' ?   
             <TextInput
+              placeholder="Nome"
+              placeholderTextColor="#FFFFFF"
+              style={styles.textinput}
+              autoCorrect={false}
+              onChangeText={(text) => setName(text)} />
+              :
+              <TextInput
               placeholder="Nome"
               placeholderTextColor="#666666"
               style={styles.textinput}
               autoCorrect={false}
-              onChangeText={(text) => setName(text)}
-            />
+              onChangeText={(text) => setName(text)} /> 
+              }
+           
           </View>
           <View style={styles.action}>
-            <FontAwesomeIcon name="envelope-o" size={20}/>
-            <TextInput
+            <FontAwesomeIcon name="envelope-o" size={20} />
+            {deviceTheme === 'dark' ? 
+              <TextInput
               placeholder="Email"
               keyboardType="email-address"
-              placeholderTextColor="#666666"
+              placeholderTextColor="#FFFFFF"
               style={styles.textinput}
               autoCorrect={false}
               onChangeText={(text) => setEmail(text)}
-              autoCapitalize="none"
-            />
+              autoCapitalize="none" />
+            :
+            <TextInput
+            placeholder="Email"
+            keyboardType="email-address"
+            placeholderTextColor="#666666"
+            style={styles.textinput}
+            autoCorrect={false}
+            onChangeText={(text) => setEmail(text)}
+            autoCapitalize="none" />
+            }
+
           </View>
         </View>
         <TouchableOpacity style={styles.commandButton} onPress={PostImage}>
           <Text style={styles.panelButtomTitle}>Atualizar os dados</Text>
         </TouchableOpacity>
       </Animated.View>
-    </SafeAreaView>
+    </SafeAreaView></>
   );
 }
 
@@ -275,11 +303,11 @@ const styles = StyleSheet.create({
   },
   panel: {
     padding: 20,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#101010",
     paddingTop: 20,
   },
   header: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#101010",
     shadowColor: "#333333",
     shadowOffset: { width: -1, height: -3 },
     shadowRadius: 2,
@@ -290,9 +318,9 @@ const styles = StyleSheet.create({
   },
   panelHandle: {
     width: 40,
-    height: 8,
+    height: height * 0.040,
     borderRadius: 4,
-    backgroundColor: "#00000040",
+    backgroundColor: "#101010",
     marginBottom: 10,
   },
   panelTitle: {

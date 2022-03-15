@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image as ImageReact, Dimensions, TouchableOpacity, Text as TextReact } from 'react-native';
+import { ImageBackground as ImageReact, Dimensions, TouchableOpacity, Text as TextReact } from 'react-native';
+// Icon
+import { AntDesign as AntDesignIcon } from '@expo/vector-icons'; 
 import {ScrollView as ScrollViewGestureProps} from 'react-native-gesture-handler';
 // Estilos
 import styled from 'styled-components';
@@ -14,7 +16,7 @@ export const ScrollView = styled(ScrollViewGestureProps)`
     background-color: ${(props) => props.bg || props.theme.background}; 
 `
 export const Text = styled(TextReact)`
-    color: ${(props) => props.color || props.theme.color}
+    color: ${(props) => props.color || props.theme.color};
 `
 export const Image = styled(ImageReact)`
     width: ${(props) => props.width || width};
@@ -53,11 +55,11 @@ export const Arrow = styled.View`
 `
 export const MarginLeftRight = styled.View`
     margin-left: ${(props) => props.left || height * 0.030};
-    margin-right: ${(props) => props.right || height * 0.030}
+    margin-right: ${(props) => props.right || height * 0.030};
 `
 
 export const Spacer = styled.View`
-    margin-top: ${(props) => props.top || height * 0.023}
+    margin-top: ${(props) => props.top || height * 0.023};
 `
 
 export const Button = styled(TouchableOpacity)`
@@ -68,7 +70,7 @@ export const Button = styled(TouchableOpacity)`
     width: ${(props) => props.width || width * 0.89};
     height: ${(props) => props.height || height * 0.065};
     background: ${(props) => props.bg || props.theme.backgroundIcon};
-    border-radius: ${(props) => props.radius || height * 0.008}
+    border-radius: ${(props) => props.radius || height * 0.008};
 `
 // width: 320
 export const ViewHeart = styled.View`
@@ -82,4 +84,19 @@ export const ViewHeart = styled.View`
     border-radius: ${(props) => props.radius || height * 0.03};
     top: ${(props) => props.top || height * 0.42};
     align-self: flex-end;
+`
+
+export const AntDesign = styled(AntDesignIcon)`
+    
+`
+
+export const ViewBackArrow = styled(TouchableOpacity)`
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px;
+    margin-left:  ${height * 0.030};
+    width: 45px;
+    height: 45px;
+    border-radius: 33px;
+    background-color: ${(props) => props.bg || props.theme.background}
 `
