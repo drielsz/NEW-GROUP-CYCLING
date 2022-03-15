@@ -30,7 +30,7 @@ import * as ImagePicker from "expo-image-picker";
 
 const { width, height } = Dimensions.get("window");
 
-export default function EditProfile() {
+export default function EditProfile({navigation}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(null);
@@ -160,7 +160,9 @@ export default function EditProfile() {
       <View style={{...StyleSheet.absoluteFillObject}}>
         <TextReact>Edite o seu Perfil</TextReact>
       </View>
-      <AntDesign name="arrowleft" size={24} color="black" />
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <AntDesign name="arrowleft" size={24} color="black" />
+      </TouchableOpacity>
     </Header>
     <SafeAreaView>
       {deviceTheme === 'dark' ? <StatusBar style="light"/> : <StatusBar style="dark"/>}
