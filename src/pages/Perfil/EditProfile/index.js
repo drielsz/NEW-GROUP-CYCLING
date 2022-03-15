@@ -24,6 +24,7 @@ import { SafeAreaView, Text, Caption, FontAwesomeIcon, Header, TextReact, AntDes
 import { colors } from "../../../styles/colors";
 // API AsyncStorage
 import { api } from "../../../services/axios";
+import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // IMAGE UPLOAD
 import * as ImagePicker from "expo-image-picker";
@@ -63,31 +64,27 @@ export default function EditProfile({navigation}) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
+      base64: true,
       aspect: [4, 3],
       quality: 1,
     });
     console.log(result.cancelled);
     if (!result.cancelled) {
-      setImage(result.uri); 
+      setImage(result.base64); 
     }
   };
-
-  var files = new FormData();
-
+ 
   const PostImage = async () => {
-    console.log(`===${image}===`)
-    files.append('images', image)
-    console.log(files)
-    const response = await api.post("send-image", files, { headers : {
-      "Content-Type": "multipart/form-files",
-    }}).then (async (response) => {
-        console.log('Sucesso')
-    }).catch ((error) => {
-        console.log(error.response)
-    }
-    )
-}
-
+    var response = await axios({
+      method: 'POST',
+      url: "https://group-cycling-backend.herokuapp.com/send-image/",
+      data: {"Base64": image}
+    }).then((response) => {
+      console.log(response.data.message);
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
 
   const handleProgress = (event) => {
     setUploading(Math.round((event.loaded * 100) / event.total));

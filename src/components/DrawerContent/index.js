@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, StyleSheet, Dimensions, useColorScheme } from 'react-native';
+import { View, StyleSheet, Dimensions, useColorScheme, TextInput } from 'react-native';
 // Drawer 
 import { 
     DrawerContentScrollView,
@@ -77,7 +77,10 @@ export function DrawerContent(props, state) {
                                 flexDirection: 'column'
                                 }}>
                                     <Title allowFontScaling={false}>{name}</Title>
-                                    <Caption allowFontScaling={false}>@</Caption>
+                                    <View style={{flexDirection:'row'}}>
+                                        <Caption allowFontScaling={false}>@</Caption>
+                                        <TextInput style={{bottom: height * 0.0048, left: height * 0.002}}/>
+                                    </View>
                                 </View>
                             </View>
 

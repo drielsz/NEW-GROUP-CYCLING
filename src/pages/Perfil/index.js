@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Dimensions, TouchableOpacity, Text as Text02, Image as ImageIconTopBar, useColorScheme} from 'react-native';
+import {StyleSheet, View, Dimensions, TouchableOpacity, Text as Text02, Image as ImageIconTopBar, useColorScheme, TextInput} from 'react-native';
 // Styles do Perfil:
 import {AnotherView, PrimaryView, Text, CircleToIcon} from './styles';
 // Styles Global:
@@ -82,15 +82,8 @@ function Perfil({navigation, props}) {
     </PrimaryView><AnotherView style={styles.anotherView}>
         <ImageProfile source={{ uri: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-6/272898753_1329792957500236_8397756379102866395_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Flu-bKNgpF0AX8ZGuM1&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9vJ6Lplw-cggkpAQf8NuFbcmliAFW1ibbG2MneYJ1CwQ&oe=6235FA83' }} />
 
-        {/* <View style={{position: 'absolute', left: height * 0.08, top: height * -0.0255}}>
-      <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>254
-      <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguindo</Text></Text>
-    </View>
+        {/* Position that the followers will have, things like that */}
 
-    <View style={{position: 'absolute', right: height * 0.08, top: height * -0.0255}}>
-      <Text  size={height * 0.0290625} style={{position: 'absolute', fontFamily: 'Roboto_900Black'}}>455
-      <Text size={height * 0.024} style={{fontFamily: 'Roboto_500Medium'}}>{'\n'}Seguidores</Text></Text>
-    </View> */}
 
         <Text allowFontScaling={false} style={{ fontFamily: 'Nunito_700Bold' }}>{name}</Text>
         <Text
@@ -100,7 +93,6 @@ function Perfil({navigation, props}) {
           margin={height * 0.003}
         >
           {email}</Text>
-
         <View style={styles.container}>
           <TouchableOpacity style={styles.button}>
             <Text02 allowFontScaling={false} color={colors.namebutton}
