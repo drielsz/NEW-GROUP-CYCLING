@@ -84,7 +84,7 @@ export default function EditProfile({navigation}) {
     }).catch((err) => {
       console.log(err);
     });
-  };
+  };  
 
   const handleProgress = (event) => {
     setUploading(Math.round((event.loaded * 100) / event.total));

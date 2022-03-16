@@ -29,7 +29,7 @@ export default function BottomRoutes({props}) {
             screenOptions={{      
                 tabBarStyle:{
                     backgroundColor: colors.blind,
-                    borderTopColor: colors.desc,
+                    borderTopColor: 'transparent',
                     paddingBottom: height * 0.005,
                     paddingTop: height * 0.007,
                     height: width * 0.13,

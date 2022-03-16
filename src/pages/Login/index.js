@@ -150,7 +150,7 @@ const Login = ({navigation}) => {
 
         </View>
             
-            <Button onPress={SignIn}  
+            <Button onPress={navigation.navigate('Home')}  
                 style={{alignItems:'center', justifyContent:'center'}}>
                 <Text allowFontScaling={false} style={{fontFamily: 'Nunito_700Bold'}}
                 color = { colors.backgroundLogin }

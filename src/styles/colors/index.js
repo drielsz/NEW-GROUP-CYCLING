@@ -24,6 +24,9 @@ export const colors = {
     backgroundLogin: '#3B2F47',
     facebookLogin: '#1778F2',
     googleLogin: "#F5F5F5",
+    // HomeFeedScreen
+    blackSecondary: '#312B32',
+    graySecondary: '#98A6A9'
   };
 
 export const LabelColor = (props) => {

@@ -4,4 +4,5 @@ export default {
     backgroundCommentProduct: '#EFEFEF',
     color: '#121212',
     search: '#A4A4A4',
+    nameUserPost: '#312B32'
 }
