@@ -78,7 +78,8 @@ export default function EditProfile({navigation}) {
     var response = await axios({
       method: 'POST',
       url: "https://group-cycling-backend.herokuapp.com/send-image/",
-      data: {"Base64": image}
+      data: {"Base64": image, "caption": ''},
+      headers: {"X-access-token" : await AsyncStorage.getItem("token")}
     }).then((response) => {
       console.log(response.data.message);
     }).catch((err) => {

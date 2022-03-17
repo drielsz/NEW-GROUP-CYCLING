@@ -22,6 +22,7 @@ function Perfil({navigation, props}) {
 
   const [ name, setName ] = useState('')
   const [ email, setEmail ] = useState('')
+  const [ imageProfile, setImageProfile ] = useState('')
 
   // Pegar o nome e email do usuario
   const getUser = async () => {
@@ -36,35 +37,47 @@ function Perfil({navigation, props}) {
       })
   }
 
+  const getImageProfile = async () => {
+    const response = await api.get("posts", { headers :{
+        "X-access-token" : await AsyncStorage.getItem("token")
+    }}).then(response => {
+        setImageProfile(response.data)
+      }).catch(err => {
+        console.log(err.data);
+      })
+}
+
   useEffect(() => {
     getUser()
+    getImageProfile()
   }, [])
 
   const deviceTheme = useColorScheme()
   return(
-      <>
-      <PrimaryView source={{ uri: 'https://images.unsplash.com/photo-1515523110800-9415d13b84a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' }} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
+      <><>
+      <PrimaryView source={{ uri: 'https://images.unsplash.com/photo-1515523110800-9415d13b84a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' }} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
+
 
       <View style={{ left: width / 1.52, top: height * 0.013 }}>
         <CircleToIcon>
           <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
-            {deviceTheme === 'light' ? 
-               <ImageIconTopBar source={EditProfile}
-               style={{
-                 width: width * 0.050625,
-                 height: height * 0.540625,
-                 left: height * 0.003,
-                 tintColor: 'black'
-               }} resizeMode='contain' />
+            {deviceTheme === 'light' ?
+              <ImageIconTopBar source={EditProfile}
+                style={{
+                  width: width * 0.050625,
+                  height: height * 0.540625,
+                  left: height * 0.003,
+                  tintColor: 'black'
+                }} resizeMode='contain' />
               :
               <ImageIconTopBar source={EditProfile}
-              style={{
-                width: width * 0.050625,
-                height: height * 0.540625,
-                left: height * 0.003,
-                tintColor: 'white'
-              }} resizeMode='contain' />}
-         
+                style={{
+                  width: width * 0.050625,
+                  height: height * 0.540625,
+                  left: height * 0.003,
+                  tintColor: 'white'
+                }} resizeMode='contain' />}
+
           </TouchableOpacity>
         </CircleToIcon>
       </View>
@@ -72,15 +85,20 @@ function Perfil({navigation, props}) {
       <View style={{ left: width * 0.77, top: height * 0.013 }}>
         <CircleToIcon>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            {deviceTheme === 'light' ?  <Ionicons name="ios-reorder-three-outline" size={30} color="black" /> 
-            :
-            <Ionicons name="ios-reorder-three-outline" size={30} color="white" />
-            }
+            {deviceTheme === 'light' ? <Ionicons name="ios-reorder-three-outline" size={30} color="black" />
+              :
+              <Ionicons name="ios-reorder-three-outline" size={30} color="white" />}
           </TouchableOpacity>
         </CircleToIcon>
       </View>
-    </PrimaryView><AnotherView style={styles.anotherView}>
-        <ImageProfile source={{ uri: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-6/272898753_1329792957500236_8397756379102866395_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Flu-bKNgpF0AX8ZGuM1&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9vJ6Lplw-cggkpAQf8NuFbcmliAFW1ibbG2MneYJ1CwQ&oe=6235FA83' }} />
+    </><AnotherView style={styles.anotherView}>
+
+        {imageProfile ? 
+        <ImageProfile
+        source={{ uri: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-6/272898753_1329792957500236_8397756379102866395_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Flu-bKNgpF0AX8ZGuM1&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9vJ6Lplw-cggkpAQf8NuFbcmliAFW1ibbG2MneYJ1CwQ&oe=6235FA83' }} />
+          :
+        <ImageProfile source={imageProfile} />}
+
 
         {/* Position that the followers will have, things like that */}
 
@@ -106,9 +124,7 @@ function Perfil({navigation, props}) {
         }}>Mensagem</Text>
 
         <MyCarousel />
-      </AnotherView>
-      </>
-
+      </AnotherView></>
     )
 }
 

@@ -38,6 +38,7 @@ const Login = ({navigation}) => {
         }).then (async (response) => {
             await AsyncStorage.setItem("token", response.data.token);
             signIn()
+            console.log(`===${await AsyncStorage.getItem("token")}===`)
         }).catch ((error) => {
             if(error.response.status === 422){
                 Alert.alert('', 'Preencha todos os dados.')
@@ -150,7 +151,7 @@ const Login = ({navigation}) => {
 
         </View>
             
-            <Button onPress={navigation.navigate('Home')}  
+            <Button onPress={SignIn}  
                 style={{alignItems:'center', justifyContent:'center'}}>
                 <Text allowFontScaling={false} style={{fontFamily: 'Nunito_700Bold'}}
                 color = { colors.backgroundLogin }

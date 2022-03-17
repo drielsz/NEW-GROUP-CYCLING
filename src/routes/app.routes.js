@@ -13,6 +13,7 @@ import ItensToCart from '../../src/pages/Equipamentos/ItensToCart'
 import Feed from '../../src/pages/Feed';
 import InstaStories from '../components/InstaStories';
 import ListaHorizontal from '../components/ListaHorizontal'
+import AddPost from '../pages/Home/AddPost';
 
 const AppStack = createStackNavigator()
 
@@ -29,6 +30,7 @@ const AppRoutes = React.FC = () => (
         <AppStack.Screen name='Comments' component={Comments} options={{headerShown: false}} />
         <AppStack.Screen name='ListaHorizontal' component={ListaHorizontal} options={{headerShown: false}} />
         <AppStack.Screen name='ItensToCart' component={ItensToCart} />
+        <AppStack.Screen name='AddPost' component={AddPost} options={{headerShown: false}} />
     </AppStack.Navigator>
 )
 
