@@ -16,17 +16,25 @@ import { ImageProfile } from "../../../styles";
 // Icons
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Feather from "react-native-vector-icons/Feather";
-// 
-import BottomSheet from "reanimated-bottom-sheet";
+// Animated
 import Animated from "react-native-reanimated";
 // Colors and styles
-import { SafeAreaView, Text, Caption, FontAwesomeIcon, Header, TextReact, AntDesign, ViewFromBottomSheetContent, HeaderBottomSheetContent, StylePannelBottomSheetContent } from "./styles";
+import 
+{ SafeAreaView, 
+Text, 
+Caption, 
+FontAwesomeIcon, 
+Header, 
+TextReact, 
+AntDesign, 
+} from "./styles";
+import ButtonDefault from '../../../components/Button'
 import { colors } from "../../../styles/colors";
 // API AsyncStorage
 import { api } from "../../../services/axios";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// IMAGE UPLOAD
+// IMAGE PICKER
 import * as ImagePicker from "expo-image-picker";
 
 const { width, height } = Dimensions.get("window");
@@ -35,7 +43,6 @@ export default function EditProfile({navigation}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(null);
-  const [uploading, setUploading] = useState(false);
   const [response, setResponse] = useState("You should see new response here");
 
   // to take name and email 
@@ -87,71 +94,7 @@ export default function EditProfile({navigation}) {
     });
   };  
 
-  const handleProgress = (event) => {
-    setUploading(Math.round((event.loaded * 100) / event.total));
-  };
-  
-  // After Bottom Sheet appear
-  function RenderInner() {
-    return (
-      <ViewFromBottomSheetContent>
-        <View style={{ alignItems: "center" }}>
-          <Text style={styles.panelTitle}>Atualizar a foto</Text>
-          <Text style={styles.panelSubtitle}>
-            Escolha sua miniatura de perfil
-          </Text>
-        </View>
-        <TouchableOpacity style={styles.panelButtom}>
-          <Text style={styles.panelButtomTitle}>Tirar Uma Foto</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.panelButtom} onPress={pickImage}>
-          <Text style={styles.panelButtomTitle}>Escolher Da Galeria</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.panelButtom}
-          onPress={() => bs.current.snapTo(1)}
-        >
-          <Text style={styles.panelButtomTitle}>Cancelar</Text>
-        </TouchableOpacity>
-      </ViewFromBottomSheetContent>
-    );
-  }
 
-  // This appear when bottom sheet dont is activated
-  function RenderHeader() {
-    return (
-      <HeaderBottomSheetContent style={styles.header}>
-        <View style={styles.panelHeader}>
-          <StylePannelBottomSheetContent style={styles.panelHandle}>
-
-          </StylePannelBottomSheetContent>
-        </View>
-      </HeaderBottomSheetContent>
-    );
-  }
-
-  var bs = React.createRef();
-  var fall = new Animated.Value(1);
-
-  function ShowBottomSheet() {
-    bs.current.snapTo(0);
-  }
-
-  //   const submitImageProfile = async () => {
-  //     const uploadUri = image;
-  //     let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1)
-
-  //     setUploading(true)
-
-  //     try{
-  //         await storage().ref(filename).putFile(uploadUri)
-  //         setUploading(false)
-  //         Alert.alert('Image uploaded', 'Your image has been uploaded to the Firebase')
-  //     }catch (e){
-  //         console.log(e)
-  //     }
-  //     setImage(null)
-  //   }
   const deviceTheme = useColorScheme()
   return (
     <><Header>
@@ -164,23 +107,13 @@ export default function EditProfile({navigation}) {
     </Header>
     <SafeAreaView>
       {deviceTheme === 'dark' ? <StatusBar style="light"/> : <StatusBar style="dark"/>}
-      <BottomSheet
-        ref={bs}
-        snapPoints={[330, 0]}
-        renderContent={RenderInner}
-        renderHeader={RenderHeader}
-        initialSnap={1}
-        callbackNode={fall}
-        enabledGestureInteraction 
-        />
-      <Animated.View
+      <View
         style={{
           margin: 20,
-          opacity: Animated.add(0.5, Animated.multiply(fall, 1)),
         }}
       >
         <View style={{ alignItems: "center" }}>
-          <TouchableOpacity onPress={ShowBottomSheet}>
+          <TouchableOpacity onPress={pickImage}>
             <View style={styles.viewStyle}>
               {image ? (
                 <ImageBackground
@@ -218,7 +151,6 @@ export default function EditProfile({navigation}) {
 
           <Text>{name}</Text>
           <Caption>{email}</Caption>
-          <Caption>Uploaded {uploading}%</Caption>
         </View>
 
         <View style={{ top: 55 }}>
@@ -265,10 +197,10 @@ export default function EditProfile({navigation}) {
 
           </View>
         </View>
-        <TouchableOpacity style={styles.commandButton} onPress={PostImage}>
-          <Text style={styles.panelButtomTitle}>Atualizar os dados</Text>
-        </TouchableOpacity>
-      </Animated.View>
+        
+        <ButtonDefault text={'Atualizar os dados'} bg={colors.primary} top={height * 0.15}  onPress={PostImage} disabled={!image ? true : false}/>
+
+      </View>
     </SafeAreaView></>
   );
 }
