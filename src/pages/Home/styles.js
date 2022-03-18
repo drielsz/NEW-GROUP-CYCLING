@@ -8,6 +8,8 @@ var width = Dimensions.get("window").width;
 // Safe area View, responsavel por os componentes dentro do aplicativo em lugares seguros, ou seja, não deixar um texto no topo
 // em cima de alguma coisa.
 import { SafeAreaView as SafeAreaContext } from 'react-native-safe-area-context';
+import {TouchableRipple} from 'react-native-paper'
+import { Feather } from '@expo/vector-icons'; 
 
 // Vou utilizar bastante props, para caso se quiser mudar a cor, ou algo do tipo, é fácil de acessar e mudar, O Safe Area View vai ser o container do projeto
 export const SafeAreaView = styled(SafeAreaContext)`
@@ -54,4 +56,20 @@ export const ViewReactions = styled.View`
     position: absolute;
     right: ${height * 0.04}px;
     top: ${height * 0.47}px;
+`
+
+export const FabViwer = styled(TouchableRipple)`
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 2000;
+    bottom: 20;
+    right: 20;
+    background-color: ${(props) => props.bg || props.theme.color};
+    width: 55px;
+    height: 55px;
+    border-radius: 35px;
+`
+export const FeatherIcon = styled(Feather)`
+    color: ${(props) => props.color || props.theme.background}
 `

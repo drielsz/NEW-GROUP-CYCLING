@@ -7,8 +7,11 @@ import{
     StyleSheet,
     TouchableOpacity,
     TouchableNativeFeedback,
-    FlatList
+    FlatList,
+    Platform, Text,
+    Share
  } from 'react-native';
+ import {TouchableRipple} from 'react-native-paper'
 // Cores utilizadas
 import { colors } from '../../styles/colors';
 // Dimensões, utilizada para fazer responsividade.
@@ -17,19 +20,21 @@ var width = Dimensions.get("window").width;
 // Status Bar
 import { StatusBar } from 'expo-status-bar';
 // Styles
-import { SafeAreaView, Header, Image, Name, Time, Description, ViewReactions, ImageReact } from './styles';
+import { SafeAreaView, Header, Image, Name, Time, Description, ViewReactions, FabViwer } from './styles';
 // Images
 import LikePost from '../../assets/LikePost.png';
 import CommentPost from '../../assets/CommentPost.png';
 import SharePost from '../../assets/SharePost.png';
 // Icons
 import { AntDesign, MaterialCommunityIcons, Ionicons   } from '@expo/vector-icons'; 
+import FabButton from '../../components/FabButton'
 // Global Styles
 import { Avatar } from 'react-native-paper';
 import { ScrollView, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 // Api
 import {api} from '../../services/axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function RedeSocial ({navigation}) {  
     const deviceTheme = useColorScheme()
@@ -38,7 +43,7 @@ export default function RedeSocial ({navigation}) {
     const [image, setImage] = useState()
     const [avatar, setAvatar] = useState()
     const [description, setDescription] = useState()
-    const [like, setLike] = useState()
+    const [like, setLike] = useState(false)
     const [comment, setComment] = useState()
     const [post, setPost] = useState()
     const [refresh, setRefresh] = useState(false)
@@ -52,6 +57,32 @@ export default function RedeSocial ({navigation}) {
             console.log(err.data);
           })
     }
+    
+      const test = () => {
+          setImage()
+      }
+      const url = "https://awesome.contents.com/";
+      const title = "Awesome Contents";
+      const message = "Please check this out.";
+      const options = {title, message, url}
+      const sharePost = async ({item}) => {
+        try{
+            const result = await Share.share({
+                title, message, url
+            })  
+            if(result.action === Share.sharedAction){   
+                if(result.activityType){
+                    // share with activity type of result
+                } else {
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction){
+                // dimissed
+            }
+        }catch (error) {
+            alert(error.message)
+        }
+      }
 
       const getUser = async () => {
         const response = await api.get("user-info", { headers : {
@@ -74,6 +105,10 @@ export default function RedeSocial ({navigation}) {
         setInterval(() => {setRefresh(false)}, 5000) 
     }, [])
 
+    console.log(like)
+    const setLiking = () => {
+        setLike(!like ? true : false)
+    }
     const RenderPost = ({ item }) => (
         <ScrollView style={{flex: 1, top: height * 0.03}}>
         {deviceTheme === 'dark' ? <StatusBar style='light'/> : <StatusBar style='dark'/>}
@@ -82,7 +117,7 @@ export default function RedeSocial ({navigation}) {
               <TouchableOpacity style={{left: height * 0.02}}>
                   <Avatar.Image size={35} source={{uri: item.avatar}}/>
               </TouchableOpacity>
-              <TouchableOpacity style={{left: height * 0.036}} onPress={() => navigation.navigate('AddPost')}>
+              <TouchableOpacity style={{left: height * 0.036}} onPress={{}}>
                   <Name>{name}</Name>
               </TouchableOpacity>
               <View style={{position:'absolute', right: height * 0.02}}>
@@ -94,15 +129,17 @@ export default function RedeSocial ({navigation}) {
             <Image resizeMode='cover' source={{uri: 'https://group-cycling.s3.sa-east-1.amazonaws.com/'+item.image_url}} style={{width: width, height: height * 0.446}}/>
             {/* Will Have three itens, View From React */}
             <ViewReactions>
-                <TouchableOpacity style={{width: height * 0.026, height: 25, justifyContent:'center', alignItems:'center'}}>
+                <TouchableOpacity onPress={sharePost} style={{width: height * 0.026, height: 25, justifyContent:'center', alignItems:'center'}}>
                     <Ionicons name="share-social-outline" size={25} color="#98A6A9" style={{width: 25}} />
                 </TouchableOpacity>
                 <TouchableOpacity style={{width: height * 0.026, height: 25, justifyContent:'center', alignItems:'center'}}>
                     <MaterialCommunityIcons name="comment-processing-outline" size={25} color="#98A6A9" style={{width: 25}}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ width: height * 0.026, height: 25, justifyContent:'center', alignItems:'center'}}>
-                    <AntDesign name='hearto' color='#98A6A9' size={25} style={{width: 25}}/>
+                
+                <TouchableOpacity onPress={setLiking}  style={{ width: height * 0.026, height: 25, justifyContent:'center', alignItems:'center'}}>
+                    <AntDesign name={like === true ? 'heart' : 'hearto'} color={like === true ? colors.primary : '#98A6A9'} size={25} style={{width: 25}}/>
                 </TouchableOpacity>
+
             </ViewReactions>
             <View style={{left: height * 0.011, top: height * 0.012, height: height * 0.15, maxWidth: width - height * 0.023}}>
                 <TouchableOpacity style={{alignSelf: 'flex-start'}}>
@@ -111,6 +148,7 @@ export default function RedeSocial ({navigation}) {
                 <Description>{item.caption}</Description>
             </View>
         </View>
+        
         </ScrollView>
       );
     return (
@@ -122,6 +160,7 @@ export default function RedeSocial ({navigation}) {
             refreshing={refresh}
             onRefresh={handleRefresh}
         />
+        <FabButton onPress={() => navigation.navigate('AddPost')}/>
       </SafeAreaView>
     );
 }
