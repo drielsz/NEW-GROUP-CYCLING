@@ -1,7 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {
   View,
-  Text,
   Dimensions,
   StyleSheet,
   TouchableOpacity,
@@ -9,11 +8,10 @@ import {
 } from 'react-native';
 // React
 // carrossel das imagens
-import Carousel, {ParallaxImage, Pagination} from 'react-native-snap-carousel';
+import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
 //  DATA = imagens do carrossel
 import { DATA } from './data'
 // Cores usada 
-import { colors } from '../../styles/colors';
 
 // Pegando as dimensões da tela
 var width = Dimensions.get('window').width;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { colors } from '../styles/colors'
 
@@ -31,7 +30,7 @@ export const Button = styled(TouchableOpacity)`
     width: ${(props) =>  props.width || height * 0.270}px;
     height: ${(props) =>  props.height || height * 0.07}px;
     background-color: ${(props) => props.background || colors.primary};
-    border-radius: ${(props) => props.radius || height * 0.02}px
+    border-radius: ${(props) => props.radius || height * 0.02}px;
 `
 
 export const Container = styled(ImageBackground)
@@ -42,7 +41,7 @@ export const Container = styled(ImageBackground)
 `
 
 export const ImageProfile = styled.Image.attrs(props => ({
-}))
+}));
 `
     width: ${(props) => props.size || height * 0.15}px;
     height: ${height * 0.16}px;

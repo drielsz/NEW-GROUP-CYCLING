@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { FlatList, View, Dimensions, Image, ScrolLView, TouchableWithoutFeedback } from 'react-native';
+import React, {useState} from 'react';
+import { FlatList, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;

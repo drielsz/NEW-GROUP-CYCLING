@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Dimensions, TouchableOpacity, Text as Text02, Image as ImageIconTopBar, useColorScheme, TextInput} from 'react-native';
+import {StyleSheet, View, Dimensions, TouchableOpacity, Text as Text02, Image as ImageIconTopBar, useColorScheme} from 'react-native';
 // Styles do Perfil:
 import {AnotherView, PrimaryView, Text, CircleToIcon} from './styles';
 // Styles Global:
@@ -7,10 +7,8 @@ import {ImageProfile} from '../../styles'
 import {colors} from '../../styles/colors'
 import MyCarousel from '../MyCarousel';
 import EditProfile from '../../assets/EditProfile.png';
-import Lines from '../../assets/Lines.png';
 import {Ionicons} from '@expo/vector-icons';
 // Images 
-import background from '../../assets/backgroundPerfil.png'
 // Pegando as dimensões da tela
 var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;

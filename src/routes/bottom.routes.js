@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image, Dimensions, View, Platform, useColorScheme} from 'react-native'
-import { ImageProfile } from '../styles';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { colors } from '../styles/colors'
@@ -9,7 +8,6 @@ import Home from '../pages/Home';
 import Pedal from '../pages/Pedal';
 import Equipamentos from '../pages/Equipamentos';
 // Images
-import EQUIPAMENTS from '../assets/Equipaments.png'
 
 import { Octicons, AntDesign, Ionicons } from '@expo/vector-icons'
 

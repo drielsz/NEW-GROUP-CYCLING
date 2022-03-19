@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from "react";
 import {
-  Button,
   View,
   TouchableOpacity,
-  Image,
   Dimensions,
   StyleSheet,
-  Platform,
   ImageBackground,
   TextInput,
   useColorScheme
 } from "react-native";
 import { StatusBar } from 'expo-status-bar';
-import { ImageProfile } from "../../../styles";
 // Icons
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import Feather from "react-native-vector-icons/Feather";
 // Animated
-import Animated from "react-native-reanimated";
 // Colors and styles
 import 
 { SafeAreaView, 

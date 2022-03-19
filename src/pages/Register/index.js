@@ -4,14 +4,11 @@ import {
   TextInput,
   Dimensions,
   StyleSheet,
-  KeyboardAvoidingView,
   Animated,
-  Image,
   Keyboard,
   Alert,
   TouchableOpacity
 } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 // Estilos
 import { Container } from "./styles";
 // Dimensões
@@ -22,7 +19,6 @@ import { Text, Button } from "../../styles";
 // Cores
 import { colors } from "../../styles/colors";
 // API e ASYNC
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api } from "../../services/axios";
 //
 

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, Dimensions } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import GetLocation from 'react-native-get-location'
 import Geocoder from "react-native-geocoding";
 import * as Location from 'expo-location';
 import SearchLocationMap from '../../components/SearchLocationMap'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import {
     Back,
@@ -16,7 +14,7 @@ import {
     LocationTimeTextSmall
   } from "./styles";
 
-Geocoder.init("AIzaSyAV3UYYuWSpB2u2hOFL3KsR8P9XcRpgWlc");
+Geocoder.init("AIzaSyDSCm9pww7YqX4IYg7xSMjc0zNWH92WXLE");
 
 import markerImage from '../../assets/marker.png'
 import backImage from '../../assets/back.png'

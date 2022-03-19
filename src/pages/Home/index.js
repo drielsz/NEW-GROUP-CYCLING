@@ -3,15 +3,10 @@ import{
     View, 
     Dimensions,
     useColorScheme,
-    PixelRatio,  
-    StyleSheet,
     TouchableOpacity,
-    TouchableNativeFeedback,
     FlatList,
-    Platform, Text,
     Share
  } from 'react-native';
- import {TouchableRipple} from 'react-native-paper'
 // Cores utilizadas
 import { colors } from '../../styles/colors';
 // Dimensões, utilizada para fazer responsividade.
@@ -20,17 +15,14 @@ var width = Dimensions.get("window").width;
 // Status Bar
 import { StatusBar } from 'expo-status-bar';
 // Styles
-import { SafeAreaView, Header, Image, Name, Time, Description, ViewReactions, FabViwer } from './styles';
+import { SafeAreaView, Header, Image, Name, Time, Description, ViewReactions } from './styles';
 // Images
-import LikePost from '../../assets/LikePost.png';
-import CommentPost from '../../assets/CommentPost.png';
-import SharePost from '../../assets/SharePost.png';
 // Icons
 import { AntDesign, MaterialCommunityIcons, Ionicons   } from '@expo/vector-icons'; 
 import FabButton from '../../components/FabButton'
 // Global Styles
 import { Avatar } from 'react-native-paper';
-import { ScrollView, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 // Api
 import {api} from '../../services/axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';

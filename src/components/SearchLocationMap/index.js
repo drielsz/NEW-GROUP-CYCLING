@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react'
+import React, {Component} from 'react'
 import {Platform, View, Modal, Text, TextInput, Button, Dimensions} from 'react-native'
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 
@@ -74,8 +74,8 @@ export default class SearchLocationMap extends Component {
       }}
       
       query={{
-        key: "AIzaSyAV3UYYuWSpB2u2hOFL3KsR8P9XcRpgWlc",
-        language: "pt-br"
+        key: "AIzaSyC31INtr1pC5sPMcY_YiteWb7G4bqpXv9E",
+        language: "pt-BR"
       }}
       textInputProps={{
         onFocus: () => {

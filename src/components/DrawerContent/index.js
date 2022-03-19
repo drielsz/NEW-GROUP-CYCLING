@@ -6,12 +6,10 @@ import {
     DrawerItem
 }  from '@react-navigation/drawer';
 // Importando as cores
-import { colors, LabelColor } from '../../styles/colors';
 // Pegando as dimensões da tela
 var width = Dimensions.get('window').width; 
 var height = Dimensions.get('window').height
 // Importando dos estilos globais
-import { ImageProfile } from '../../styles';
 // Styles
 import { 
     Container,
@@ -22,17 +20,12 @@ import {
     Entypo,
     Octicons,
     Icons,
-    MaterialCommunityIcons,
     Text,
-    Image,
-    Line
-} from './styles'
+    Image} from './styles'
 // Importando do react native paper
 import {
     Avatar,
     Drawer,
-    TouchableRipple,
-    Switch,
 } from 'react-native-paper';
 // API
 import { useAuth } from '../../contexts/auth';

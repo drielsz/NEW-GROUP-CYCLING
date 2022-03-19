@@ -6,16 +6,6 @@ import { api } from '../../services/axios'
 
 import markerImage from '../../assets/marker.png'
 
-import {
-    Back,
-    LocationBox,
-    LocationText,
-    LocationTimeBox,
-    LocationTimeText,
-    LocationTimeTextSmall
-} from '../../config/Map/styles'
-
-
 const MapPointers = () => {
     const [pointers, setPointers] = useState([])
     const [modalVisible, setModalVisible] = useState(false)

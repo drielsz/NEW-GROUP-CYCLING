@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableWithoutFeedback, Animated, Dimensions} from 'react-native'
+import React from 'react';
+import {View, Animated, Dimensions} from 'react-native'
 import {FabViwer, FeatherIcon, MaterialI, AntDesignIcon} from './styles'
 
 var height = Dimensions.get("window").height
@@ -19,6 +19,7 @@ export default function FabButton ({navigation, onPress}) {
 
         open = !open
     }
+    
     const postStyle = {
         transform: [
             {scale: animation},
@@ -53,7 +54,7 @@ export default function FabButton ({navigation, onPress}) {
             }
         ]
     }
-    
+
     return(
     <View>
       <FabViwer onPress={() => console.log('Pressed')} bottom={height * 0.16} style={[searchStyle]}>

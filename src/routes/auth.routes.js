@@ -2,9 +2,7 @@
 import React from 'react'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import BottomRoutes from './bottom.routes'
 import {createStackNavigator} from '@react-navigation/stack'
-import AddPost from '../pages/Home/AddPost'
 
 const AuthStack = createStackNavigator()
 

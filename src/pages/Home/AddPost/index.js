@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import {TouchableOpacity, View, StyleSheet, TextInput, Dimensions, Image, ActivityIndicator} from 'react-native'
+import React, {useState} from 'react'
+import {TouchableOpacity, View, StyleSheet, TextInput, Dimensions, Image} from 'react-native'
 import {SafeAreaView} from '../../Home/styles'
-import {Button, Text} from '../../Equipamentos/Buy/styles'
 import {Header, TextReact, AntDesign} from '../../Perfil/EditProfile/styles'
 import { colors } from '../../../styles/colors'
 // Status Bar
