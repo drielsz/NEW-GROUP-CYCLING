@@ -7,13 +7,10 @@ import { Dimensions } from 'react-native';
 var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
 
-export const PrimaryView = styled.ImageBackground.attrs(props => ({
-    resizeMode: props.mode || 'cover',
-}))`
+export const PrimaryView = styled.ImageBackground`
     width: auto;
     height: 280;
     min-height: auto;
-    /* background-color: ${(props) => props.background || colors.primary} */
 `;
 
 export const AnotherView = styled.View`
@@ -31,8 +28,8 @@ export const Text = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-    width: '120px';
-    height: '61px';
+    width: 120px;
+    height: 61px;
     background-color: ${(props) => props.bg || colors.primary};
 `;
 

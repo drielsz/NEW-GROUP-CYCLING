@@ -33,16 +33,13 @@ export const Button = styled(TouchableOpacity)`
     border-radius: ${(props) => props.radius || height * 0.02}px;
 `
 
-export const Container = styled(ImageBackground)
-`
+export const Container = styled(ImageBackground)`
     flex:1;
     align-items: ${(props) => props.align || 'center'};
     justify-content: ${(props) => (props.justify || 'center')};
 `
 
-export const ImageProfile = styled.Image.attrs(props => ({
-}));
-`
+export const ImageProfile = styled.Image`
     width: ${(props) => props.size || height * 0.15}px;
     height: ${height * 0.16}px;
     aspect-ratio: 1;
